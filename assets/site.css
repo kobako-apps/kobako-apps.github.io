@@ -595,7 +595,8 @@ a {
 
 /* アプリ一覧（トップ） */
 
-.app-list {
+/* ul を付けて .doc ul（左の余白）より優先させる */
+ul.app-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 16px;
