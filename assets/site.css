@@ -599,6 +599,8 @@ a {
 ul.app-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  /* 1列になる狭い画面でも、カードの高さをいちばん高いものに揃える */
+  grid-auto-rows: 1fr;
   gap: 16px;
   padding: 0;
   margin: 0;
@@ -606,6 +608,7 @@ ul.app-list {
 }
 
 .app-list a {
+  height: 100%;
   display: flex;
   gap: 16px;
   align-items: center;
