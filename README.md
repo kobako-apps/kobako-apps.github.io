@@ -1,6 +1,6 @@
 # kobako-apps.github.io
 
-iOS アプリの LP・サポート・プライバシーポリシーを置く GitHub Pages のサイト。
+Kobako Apps（GitHub 組織 kobako-apps）の iOS アプリの LP・サポート・プライバシーポリシーを置く GitHub Pages のサイト。
 公開 URL: https://kobako-apps.github.io/
 
 **このリポジトリは公開されている。** アプリのソース・秘密情報・未公開の資料は置かない。
