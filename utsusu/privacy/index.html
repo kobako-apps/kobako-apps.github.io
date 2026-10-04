@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Utsusu プライバシーポリシー</title>
+  <meta name="description" content="iOS アプリ「Utsusu」のプライバシーポリシー。">
+  <link rel="canonical" href="https://kobako-apps.github.io/utsusu/privacy/">
+  <link rel="alternate" hreflang="ja" href="https://kobako-apps.github.io/utsusu/privacy/">
+  <link rel="alternate" hreflang="en" href="https://kobako-apps.github.io/utsusu/privacy/en/">
+  <link rel="icon" href="../images/icon.png">
+  <link rel="apple-touch-icon" href="../images/apple-touch-icon.png">
+  <link rel="stylesheet" href="../../assets/site.css">
+  <style>
+    :root { --accent: #5a5fd8; --accent-soft: #ecedfd; --bg: #f6f6fb; }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) { --accent: #a9afff; --accent-soft: #22244a; --accent-ink: #0f1020; --bg: #0f1020; --surface: #191a2e; }
+    }
+    :root[data-theme="dark"] { --accent: #a9afff; --accent-soft: #22244a; --accent-ink: #0f1020; --bg: #0f1020; --surface: #191a2e; }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="../"><img src="../images/icon.png" alt="">Utsusu</a>
+      <nav class="header-nav" aria-label="サイト内">
+        <a href="../support/">サポート</a>
+        <a href="en/" hreflang="en" lang="en">English</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="doc">
+    <article class="wrap reading" style="margin: 0 auto;">
+      <nav class="lang-switch" aria-label="言語">
+        <a href="./" aria-current="true">日本語</a>
+        <a href="en/" hreflang="en" lang="en">English</a>
+      </nav>
+
+      <h1>プライバシーポリシー（Utsusu）</h1>
+      <p class="doc-meta">制定日: 2026年10月4日<br>開発者: Toshihiro.nakao</p>
+
+      <p>本プライバシーポリシーは、iOS アプリ「Utsusu」（以下「本アプリ」）における、利用者の情報の取り扱いについて定めるものです。</p>
+
+      <h2>1. 開発者が収集する情報</h2>
+      <p>本アプリの開発者は、利用者の個人情報や、本アプリで撮影・入力されたデータを収集しません。</p>
+      <ul>
+        <li>利用状況の解析、広告、トラッキングのための仕組み（SDK を含む）は組み込んでいません。</li>
+        <li>本アプリで撮影した写真や、工事・黒板の記録が、開発者のサーバーに送られることはありません。開発者は独自のサーバーを運用していません。</li>
+      </ul>
+
+      <h2>2. 本アプリが端末内で扱う情報</h2>
+      <p>本アプリは、利用者が撮影・入力した次の情報を、利用者の端末内に保存します。</p>
+      <ul>
+        <li>工事の記録（工事名、発注者名、施工者名、測点の範囲などの設定）</li>
+        <li>撮影した写真（黒板を合成した写真、黒板のない原本、一覧表示用の縮小画像）</li>
+        <li>写真ごとの記録（撮影日時、工種・測点などの黒板の内容、略図、原本の指紋（SHA-256））</li>
+        <li>黒板のプリセット、ゴミ箱に入れた写真の記録、写真や工事の変更の履歴</li>
+      </ul>
+      <p>変更の履歴には、どの端末で変更したかを見分けるための ID を記録します。この ID は本アプリが初めて起動したときに作る乱数で、端末やあなた自身を特定する情報は含みません。</p>
+
+      <h2>3. カメラ</h2>
+      <p>本アプリは、黒板付きの工事写真を撮影するために、カメラの利用の許可を求めます。撮影した写真は上記のとおり端末内に保存し、本アプリが自動で外部に送ることはありません（iCloud による同期を除きます）。</p>
+
+      <h2>4. 位置情報（任意）</h2>
+      <p>本アプリは、写真に撮影場所を記録する機能のために、アプリの使用中に限って位置情報の利用の許可を求めることがあります。</p>
+      <ul>
+        <li>この機能を使う場合、撮影時の緯度・経度・高度などを、写真の記録と、写真ファイルの中の位置情報（Exif の GPS 情報）に保存します。</li>
+        <li>位置情報を記録した写真を書き出したり共有したりすると、写真ファイルや CSV に撮影場所が含まれます。撮影場所を他の人に知られたくない場合は、この機能を使わないでください。</li>
+        <li>位置情報の利用を許可しない場合も、撮影場所の記録を除き、すべての機能を利用できます。</li>
+      </ul>
+
+      <h2>5. iCloud による同期</h2>
+      <p>設定で iCloud による同期をオンにしていて、端末で iCloud にサインインしている場合、上記の記録と写真を、利用者自身の iCloud アカウント（Apple の CloudKit のプライベートデータベース）に保存し、同じ Apple ID でサインインした利用者自身の端末どうしで同期します。</p>
+      <ul>
+        <li>同期されたデータは利用者の iCloud 上にあり、開発者はこれを閲覧・取得できません。</li>
+        <li>同期をオフにした場合や iCloud にサインインしていない場合は同期を行わず、データは端末内にのみ保存します。</li>
+        <li>本アプリは、iCloud 上のデータの変更を受け取るために、Apple の通知の仕組みを使います。この通知は同期のためだけに使い、利用者に表示するお知らせは送りません。</li>
+        <li>iCloud 上のデータは Apple のプライバシーポリシーに従って取り扱われます。</li>
+      </ul>
+
+      <h2>6. 写真や台帳の書き出し・共有</h2>
+      <p>写真台帳の PDF、黒板付きの写真、原本、写真一覧の CSV などは、利用者が保存・共有の操作を行ったときにだけ、利用者が選んだ送り先（写真ライブラリ、ファイル、メール、他のアプリなど）に渡されます。本アプリが自動で外部に送ることはありません。</p>
+      <p>書き出した写真には撮影日時が含まれ、黒板付きの写真には黒板の内容と原本の指紋（SHA-256）も含まれます。位置情報を記録した写真には撮影場所も含まれます（4. を参照）。</p>
+
+      <h2>7. アプリ内課金</h2>
+      <p>本アプリのアプリ内課金は、Apple の App Store を通じて処理されます。支払いに関する情報は Apple が取り扱い、開発者が利用者の支払い情報を受け取ることはありません。本アプリは、購入済みかどうかの確認のために、Apple が提供する購入情報を端末内で参照します。</p>
+
+      <h2>8. 第三者への提供</h2>
+      <p>開発者は利用者の情報を収集しないため、第三者に提供することもありません。</p>
+
+      <h2>9. お問い合わせの際に受け取る情報</h2>
+      <p>サポートページのお問い合わせフォームは、Google LLC が提供する <strong>Google フォーム</strong>で受け付けています。お問い合わせの際に利用者が入力した情報（返信先のメールアドレス、お問い合わせの内容など）は、開発者が受け取ります。</p>
+      <ul>
+        <li>受け取った情報は、お問い合わせへの回答と、不具合の調査・改善のためにのみ使います。</li>
+        <li>法令に基づく場合を除き、第三者に提供しません。</li>
+        <li>対応が終わり、必要がなくなった情報は削除します。</li>
+        <li>フォームでの情報の取り扱いには、Google のプライバシーポリシーも適用されます。</li>
+      </ul>
+      <p>これは利用者が自分の意思で送る場合に限られ、本アプリの利用によって情報が開発者へ送られることはありません。</p>
+
+      <h2>10. データの削除</h2>
+      <ul>
+        <li>本アプリの設定にある「すべてのデータを削除」から、端末内と利用者の iCloud 上にある工事・写真・黒板のプリセットなどのデータをすべて削除できます。iCloud による同期をオフにしている場合、iCloud 上の写真は、次に同期をオンにした時に削除されます。</li>
+        <li>本アプリを端末から削除すると、端末内のデータは削除されます。</li>
+        <li>iCloud 上のデータは、端末の「設定」から iCloud のストレージの管理でも削除できます。</li>
+      </ul>
+
+      <h2>11. 子どものプライバシー</h2>
+      <p>本アプリは工事写真を撮影・管理する方を対象としており、13 歳未満の子どもを対象としたものではありません。</p>
+
+      <h2>12. 本ポリシーの変更</h2>
+      <p>本ポリシーは、必要に応じて変更することがあります。変更した場合は、本ページに掲載し、制定日または改定日を更新します。</p>
+
+      <h2>13. お問い合わせ</h2>
+      <p>本ポリシーまたは本アプリのプライバシーに関するお問い合わせは、以下までご連絡ください。</p>
+      <ul>
+        <li>開発者: Toshihiro.nakao</li>
+        <li>連絡先: <a href="../support/">サポートページのお問い合わせフォーム</a></li>
+      </ul>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <nav aria-label="フッター">
+        <a href="../">Utsusu</a>
+        <a href="../support/">サポート</a>
+        <a href="en/" hreflang="en" lang="en">English</a>
+        <a href="../../">ほかのアプリ</a>
+      </nav>
+      <span>© 2026 Kobako Apps</span>
+    </div>
+  </footer>
+</body>
+</html>
