@@ -11,6 +11,8 @@ Kobako Apps（GitHub 組織 kobako-apps）の iOS アプリの LP・サポート
 index.html            アプリ一覧（トップ）
 404.html              見つからないとき（絶対パスで書く）
 assets/site.css       全アプリ共通のスタイル
+assets/icon.png       サイトのアイコン（トップ・404 のファビコンとヘッダー）、apple-touch-icon.png も
+favicon.ico           ブラウザが既定で取りに来るファビコン（32px）
 <app>/index.html      LP（日本語）
 <app>/en/index.html   LP（英語）
 <app>/support/        サポート（日英併記・お問い合わせは Google フォーム）
