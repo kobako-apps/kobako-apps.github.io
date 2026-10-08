@@ -730,3 +730,146 @@ ul.app-list {
   padding: 0 26px;
   font-size: 17px;
 }
+
+/* 動き
+   「視差効果を減らす」がオンの人には動かさない。登場の動きは backwards にして、
+   終わったあとはホバーの変形が効くようにする。スクロールに合わせて出す演出は
+   animation-timeline に対応したブラウザだけで効き、ほかでは最初から表示される。 */
+
+.button,
+.app-list a,
+.app-list img,
+.brand img {
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+
+.header-nav a,
+.site-footer a {
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+}
+
+@keyframes device-in {
+  from {
+    opacity: 0;
+    transform: translateY(28px) scale(0.97);
+  }
+}
+
+/* transform は登場の動きで使うので、浮き沈みは translate で別に動かす */
+@keyframes float {
+  to {
+    translate: 0 -6px;
+  }
+}
+
+@keyframes hop {
+  40% {
+    transform: translateY(-4px) rotate(-8deg);
+  }
+  70% {
+    transform: translateY(0) rotate(4deg);
+  }
+}
+
+@keyframes fade-down {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* ページを開いたとき: ヒーローの文字を上から順に、少し遅れて端末の画像 */
+  .hero .wrap > div:first-child > *,
+  .doc h1,
+  .doc .doc-meta,
+  .app-list li {
+    animation: rise-in 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) backwards;
+  }
+
+  .hero .wrap > div:first-child > :nth-child(2),
+  .doc .doc-meta,
+  .app-list li:nth-child(1) {
+    animation-delay: 0.06s;
+  }
+
+  .hero .wrap > div:first-child > :nth-child(3),
+  .app-list li:nth-child(2) {
+    animation-delay: 0.12s;
+  }
+
+  .hero .wrap > div:first-child > :nth-child(4),
+  .app-list li:nth-child(3) {
+    animation-delay: 0.18s;
+  }
+
+  .hero .wrap > div:first-child > :nth-child(n + 5),
+  .app-list li:nth-child(n + 4) {
+    animation-delay: 0.24s;
+  }
+
+  .hero .device {
+    animation:
+      device-in 0.8s 0.15s cubic-bezier(0.2, 0.7, 0.2, 1) backwards,
+      float 3.2s 1s ease-in-out infinite alternate;
+  }
+
+  /* 触ったとき */
+  .button:active {
+    transform: scale(0.97);
+  }
+
+  .faq details[open] > div {
+    animation: fade-down 0.25s ease-out;
+  }
+
+  @media (hover: hover) {
+    .button:hover {
+      transform: scale(1.03);
+    }
+
+    .button:active {
+      transform: scale(0.97);
+    }
+
+    .app-list a:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow), 0 12px 28px rgba(0, 0, 0, 0.08), 0 0 0 2px var(--accent);
+    }
+
+    .app-list a:hover img {
+      transform: rotate(-6deg) scale(1.06);
+    }
+
+    .brand:hover img {
+      animation: hop 0.5s ease;
+    }
+  }
+
+  /* スクロールしたとき: 画面に入ったところで下からふわっと。端末の画像は文章より少し遅れて */
+  @supports (animation-timeline: view()) {
+    .points li,
+    .section-title,
+    .section-lead,
+    .feature > div,
+    .card,
+    .plan,
+    .cta .wrap > * {
+      animation: rise-in cubic-bezier(0.2, 0.7, 0.2, 1) backwards;
+      animation-timeline: view();
+      animation-range: entry 0% entry 70%;
+    }
+
+    .feature > .feature-media {
+      animation-name: device-in;
+      animation-range: entry 15% entry 90%;
+    }
+  }
+}
