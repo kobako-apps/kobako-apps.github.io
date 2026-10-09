@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AiFolio - 書類・PDFを自動で整理</title>
+  <meta name="description" content="Inbox フォルダに入れた請求書や領収書を、端末の中の AI が読み取り、日付と発行元でわかりやすい名前を付けて、いつものフォルダへ整理する iPhone・iPad アプリです。">
+  <meta name="apple-itunes-app" content="app-id=6820385961">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="AiFolio - 書類・PDFを自動で整理">
+  <meta property="og:description" content="Inbox に入れるだけで、書類が片づく。端末の中の AI が読み取って名前を付け、いつものフォルダへ整理します。">
+  <meta property="og:image" content="https://kobako-apps.github.io/aifolio/images/icon.png">
+  <meta property="og:url" content="https://kobako-apps.github.io/aifolio/">
+  <link rel="canonical" href="https://kobako-apps.github.io/aifolio/">
+  <link rel="icon" href="images/icon.png">
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+  <link rel="stylesheet" href="../assets/site.css">
+  <style>
+    /* アプリの黄色 (#FBC934) は塗り専用。文字にはアプリと同じ濃い金色 (AccentInk) を使う */
+    :root { --accent: #8a6400; --accent-soft: #fff3cc; --bg: #f7f5ef; --brand: #fbc934; --on-brand: #1b1812; }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) { --accent: #f4c53a; --accent-soft: #33290d; --accent-ink: #1b1812; --bg: #12110d; --surface: #1d1b16; }
+    }
+    :root[data-theme="dark"] { --accent: #f4c53a; --accent-soft: #33290d; --accent-ink: #1b1812; --bg: #12110d; --surface: #1d1b16; }
+
+    /* ボタン・番号・おすすめの枠は、アプリと同じ黄色の地に濃い文字 */
+    .button:not(.secondary), .points .num { background: var(--brand); color: var(--on-brand); }
+    .plan.featured { box-shadow: var(--shadow), 0 0 0 2px var(--brand); }
+
+    /* 「入れる → 読む → 整理」の流れ */
+    .flow { list-style: none; margin: 0 auto; padding: 0; max-width: var(--content); display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .flow li { background: var(--surface); border-radius: var(--radius-card); box-shadow: var(--shadow); padding: 20px; }
+    .flow .step { display: inline-block; font-size: 12px; font-weight: 700; color: var(--accent); background: var(--accent-soft); border-radius: 999px; padding: 2px 10px; margin-bottom: 8px; }
+    .flow h3 { margin: 0 0 6px; font-size: 17px; }
+    .flow p { margin: 0; color: var(--ink-sub); font-size: 15px; }
+    .flow code { font-size: 13px; word-break: break-all; }
+    @media (max-width: 820px) { .flow { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="./"><img src="images/icon.png" alt="">AiFolio</a>
+      <nav class="header-nav" aria-label="サイト内">
+        <a class="optional" href="#features">機能</a>
+        <a class="optional" href="#pricing">料金</a>
+        <a href="privacy/">プライバシー</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <div>
+          <span class="eyebrow">書類・PDF の自動整理アプリ</span>
+          <h1>Inbox に入れるだけで、<br>書類が片づく。</h1>
+          <p class="lead">ダウンロードフォルダにたまった「scan_0917.pdf」。開くまで中身がわからない請求書や領収書を、端末の中の AI が読み取り、日付と発行元でわかりやすい名前を付けて、いつものフォルダへ整理します。</p>
+          <a class="button store-button" href="https://apps.apple.com/jp/app/id6820385961">App Store で見る</a>
+          <p class="hero-note">iPhone・iPad（iOS 26 以上）／アカウント登録は不要です</p>
+        </div>
+        <div class="device">
+          <img src="images/01_home.jpg" alt="Inbox の画面。黄色のカードに確認待ち 3 件と「確認をはじめる」ボタンがあり、その下に支払期限が近い電気料金 8,420 円と水道料金のカード、自動で整理した書類の一覧が並んでいる" width="660" height="1434">
+        </div>
+      </div>
+    </section>
+
+    <section class="points" aria-label="特長">
+      <div class="wrap">
+        <ul>
+          <li>
+            <span class="num">1</span>
+            <h2>名前を付けて、仕分けまで</h2>
+            <p>書類の種類・発行元・日付・金額を読み取り、ファイル名と保存先のフォルダを決めて移します。</p>
+          </li>
+          <li>
+            <span class="num">2</span>
+            <h2>迷った書類だけ確認</h2>
+            <p>自信がある書類は確認なしで整理。迷った書類だけ、読み取った場所を見ながら確かめます。</p>
+          </li>
+          <li>
+            <span class="num">3</span>
+            <h2>書類は端末の外に出ない</h2>
+            <p>文字の読み取りも分類も、端末の中で行います。書類をサーバーへ送ることはありません。</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="flow-title">
+      <div class="wrap">
+        <h2 class="section-title" id="flow-title">使い方は、フォルダに入れるだけ</h2>
+        <p class="section-lead">アプリ専用の保管庫は使いません。書類は、あなたが選んだフォルダに置かれたままです。</p>
+        <ol class="flow">
+          <li>
+            <span class="step">1. 入れる</span>
+            <h3>Inbox フォルダに書類を入れる</h3>
+            <p>「ファイル」で保存する、ほかのアプリの共有ボタンから送る、アプリの「+」から選ぶ。フォルダごとの取り込みもできます。</p>
+          </li>
+          <li>
+            <span class="step">2. 読み取る</span>
+            <h3>AI が中身を読んで名前を決める</h3>
+            <p>スキャンや写真も文字を読み取り、<code>2026-10-02_株式会社サンプル_請求書_12800円.pdf</code> のような名前を付けます。</p>
+          </li>
+          <li>
+            <span class="step">3. 整理する</span>
+            <h3>決めたフォルダへ移す</h3>
+            <p>「請求書 › 2026」のように、増えすぎないフォルダを自動で作って移します。間違えたら、いつでも元に戻せます。</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section" id="features">
+      <div class="wrap">
+        <h2 class="section-title">届いた書類の山を、<br>探せる書類の棚に</h2>
+        <p class="section-lead">請求書・領収書・明細・契約書・保証書。フリーランスの経費の書類から、家の書類まで。</p>
+
+        <article class="feature">
+          <div>
+            <h3>迷った書類は、<br>根拠を見て確認</h3>
+            <p>確認の画面では、AI が読み取った日付・発行元・金額・期限の場所を、書類の上に番号付きの枠で示します。ファイル名の項目と同じ番号なので、どこを読んだかがひと目でわかります。</p>
+            <ul>
+              <li>ファイル名や保存先は、その場で直せます</li>
+              <li>迷ったら「あとで」にして、最後に回せます</li>
+              <li>文字が読みにくいスキャンは、高い解像度で読み直せます</li>
+            </ul>
+          </div>
+          <div class="feature-media">
+            <div class="device small"><img src="images/02_review.jpg" alt="確認の画面。請求書の請求日・発行元・ご請求金額・お支払期限に 1 から 4 の番号付きの枠があり、その下に同じ番号の付いたファイル名の項目、保存先の請求書 › 2026、確信度 98% が表示されている" width="660" height="1434" loading="lazy"></div>
+          </div>
+        </article>
+
+        <article class="feature">
+          <div>
+            <h3>ファイル名は、<br>いつも同じ形に</h3>
+            <p>日付・発行元・書類の種類・金額で名前を付けるので、Files で並べても見分けがつきます。名前の付け方と保存先のフォルダの決め方は、自分好みに変えられます。</p>
+            <ul>
+              <li>PDF・写真・Word・Excel・PowerPoint・CSV に対応</li>
+              <li>和暦の日付や「お支払期限」などの見出しも読み取ります</li>
+              <li>同じ内容の書類は、重複として知らせます</li>
+            </ul>
+          </div>
+          <div class="feature-media">
+            <div class="device small"><img src="images/06_detail.jpg" alt="整理した書類の詳細画面。サンプル電力の電気料金 8,420 円、支払期限 10 月 15 日・あと 7 日の印、ファイル名 2026-10-05_サンプル電力_電気料金_8420円.pdf と保存先の公共料金 › 2026 が表示されている" width="660" height="1434" loading="lazy"></div>
+          </div>
+        </article>
+
+        <article class="feature">
+          <div>
+            <h3>あの請求書も、<br>すぐに見つかる</h3>
+            <p>発行元・本文・金額・日付から探せます。見つかった書類の合計金額と、月ごとの推移も表示します。</p>
+            <ul>
+              <li>全角・半角やひらがな・カタカナの違いを気にせず検索</li>
+              <li>本文の一致した箇所を、強調して表示</li>
+              <li>会計ソフトに読み込める CSV に書き出し（PRO）</li>
+            </ul>
+          </div>
+          <div class="feature-media">
+            <div class="device small"><img src="images/03_search.jpg" alt="検索の画面。サンプル電力で検索した 5 件の合計 44,740 円と月ごとの棒グラフがあり、その下に月ごとの電気料金の書類が並んでいる" width="660" height="1434" loading="lazy"></div>
+          </div>
+        </article>
+
+        <article class="feature">
+          <div>
+            <h3>支払期限を、<br>うっかり逃さない</h3>
+            <p>支払期限・契約更新日・有効期限・保証期限を読み取り、近づいたら通知でお知らせします。払い終えた請求書は「支払済み」にすると、通知が止まります。</p>
+            <ul>
+              <li>期限の何日前に知らせるかを選べます</li>
+              <li>払っていない期限切れの書類は、一覧の先頭に残ります</li>
+              <li>通知は端末の中で作られます</li>
+            </ul>
+          </div>
+          <div class="feature-media">
+            <div class="device small"><img src="images/07_deadlines.jpg" alt="期限の一覧の画面。電気料金の支払期限 10 月 15 日あと 6 日、水道料金、保険証券の契約更新日、請求書の支払期限が近い順に並んでいる" width="660" height="1434" loading="lazy"></div>
+          </div>
+        </article>
+
+        <article class="feature">
+          <div>
+            <h3>どこまで任せるか、<br>自分で決められる</h3>
+            <p>整理のしかたは、自信がある書類だけ自動で整理する「スマート」と、1件ずつ確かめる「すべて確認」から選べます。自動で整理する確信度の基準も調整できます。</p>
+            <ul>
+              <li>「この発行元の請求書は 公共料金 › 年」のようなルールで、いつもの場所へ</li>
+              <li>保存先を直して整理すると、次からのルールを提案</li>
+              <li>ショートカットから Inbox の処理や書類の検索（PRO）</li>
+            </ul>
+          </div>
+          <div class="feature-media">
+            <div class="device small"><img src="images/04_automation.jpg" alt="自動化の画面。Inbox から読み取り・分類、保存先への流れの図、整理のしかたでスマートが選ばれ、自動で整理する確信度 90% 以上のスライダーが表示されている" width="660" height="1434" loading="lazy"></div>
+          </div>
+        </article>
+
+        <article class="feature">
+          <div>
+            <h3>整理した書類は、<br>月ごとにすっきり</h3>
+            <p>Outbox には、整理した書類が書類の日付の月ごとに並びます。カテゴリで絞り込めて、間違えて整理した書類はスワイプで Inbox に戻せます。</p>
+            <ul>
+              <li>金額と期限が、一覧でひと目でわかる</li>
+              <li>ファイルはいつものフォルダにあるので、Files からもそのまま開けます</li>
+            </ul>
+          </div>
+          <div class="feature-media">
+            <div class="device small"><img src="images/05_outbox.jpg" alt="Outbox の画面。2026 年 10 月に整理した領収書・請求書・電気料金・保険証券・水道料金が金額と期限の印つきで並び、上にカテゴリの絞り込みがある" width="660" height="1434" loading="lazy"></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="privacy-title">
+      <div class="wrap reading" style="margin: 0 auto; text-align: center;">
+        <h2 class="section-title" id="privacy-title">書類は、あなたの端末の外に出ません</h2>
+        <p class="section-lead" style="margin-bottom: 0;">文字の読み取りと分類は、端末に組み込まれたオンデバイス AI で行います（使えない端末では、端末の中のキーワードで分類します）。書類を開発者や外部のサーバーへ送ることはありません。アカウント登録は不要で、解析や広告の仕組みも入っていません。</p>
+      </div>
+    </section>
+
+    <section class="section" id="pricing" aria-labelledby="pricing-title">
+      <div class="wrap">
+        <h2 class="section-title" id="pricing-title">まずは、そのまま使えます</h2>
+        <p class="section-lead">確認しての整理は、件数の上限なく使えます。確認なしの自動整理まで任せたくなったら、買い切りの PRO 版へ。</p>
+        <div class="plans">
+          <div class="plan">
+            <h3>そのまま</h3>
+            <p class="plan-sub">お支払いなしで使える範囲</p>
+            <ul>
+              <li>確認しての整理（件数の上限なし）</li>
+              <li>文字の読み取り・分類・ファイル名の提案</li>
+              <li>全文検索と、期限の通知</li>
+              <li>確認なしの自動整理を 10 件までお試し</li>
+              <li>ルールは 1 件まで</li>
+            </ul>
+          </div>
+          <div class="plan featured">
+            <h3>PRO 版</h3>
+            <p class="plan-sub">買い切り（1回のお支払い）</p>
+            <ul>
+              <li>確認なしの自動整理を、件数の上限なく</li>
+              <li>ルールを何件でも</li>
+              <li>ショートカットからの操作</li>
+              <li>会計ソフト用の CSV 書き出し</li>
+            </ul>
+          </div>
+        </div>
+        <p class="hero-note" style="text-align: center;">購入した PRO 版は、同じ Apple アカウントのほかの端末でも「購入を復元」で使えます。</p>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="scope-title">
+      <div class="wrap reading" style="margin: 0 auto; text-align: center;">
+        <h2 class="section-title" id="scope-title">ご利用にあたって</h2>
+        <p class="section-lead" style="margin-bottom: 0;">AI の読み取りは、書類の書き方やスキャンの状態によって間違えることがあります。大切な書類は、確認の画面で読み取った内容を確かめてから整理してください。AiFolio は書類を整理するためのアプリで、会計や税務の判断をするものではありません。</p>
+      </div>
+    </section>
+
+    <section class="cta">
+      <div class="wrap">
+        <img class="app-icon" src="images/icon.png" alt="">
+        <h2>たまった書類を、AiFolio に任せませんか。</h2>
+        <p>フォルダを2つ選べば、今日から使えます。</p>
+        <a class="button store-button" href="https://apps.apple.com/jp/app/id6820385961">App Store で見る</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <nav aria-label="フッター">
+        <a href="privacy/">プライバシーポリシー</a>
+        <a href="../">ほかのアプリ</a>
+      </nav>
+      <span>© 2026 Kobako Apps</span>
+    </div>
+  </footer>
+</body>
+</html>
