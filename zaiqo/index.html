@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Zaiqo（ザイコ）- 小さなお店の在庫管理・棚卸し・発注</title>
+  <meta name="description" content="個人事業主やハンドメイド作家、小さなお店のための在庫管理アプリ。今日やることがひと目でわかり、入出庫の記録から発注・棚卸しまで迷わず進められます。倉庫マップで「どの棚にあるか」もわかります。">
+  <meta name="apple-itunes-app" content="app-id=6766033269">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Zaiqo（ザイコ）- 小さなお店の在庫管理・棚卸し・発注">
+  <meta property="og:description" content="在庫表を卒業して、迷わない在庫管理を。今日やることがひと目でわかり、記録・発注・棚卸しまで 1 つのアプリで。">
+  <meta property="og:image" content="https://kobako-apps.github.io/zaiqo/images/icon.png">
+  <meta property="og:url" content="https://kobako-apps.github.io/zaiqo/">
+  <link rel="canonical" href="https://kobako-apps.github.io/zaiqo/">
+  <link rel="icon" href="images/icon.png">
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+  <link rel="stylesheet" href="../assets/site.css">
+  <style>
+    /* アプリの主色 (アイコンの鼻のネイビー) を文字とボタンに、イエロー (舌の色) は塗りに黒文字で使う */
+    :root { --accent: #1e3a8a; --accent-soft: #e6ebf8; --bg: #f2f3f7; --signal: #ffc53d; --on-signal: #16171d; }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) { --accent: #5b7bea; --accent-soft: #1a2240; --accent-ink: #0b0d11; --bg: #0b0d11; --surface: #15181e; --signal: #ffd23f; }
+    }
+    :root[data-theme="dark"] { --accent: #5b7bea; --accent-soft: #1a2240; --accent-ink: #0b0d11; --bg: #0b0d11; --surface: #15181e; --signal: #ffd23f; }
+
+    /* 番号とおすすめの枠は、アプリと同じイエローの地に黒文字 */
+    .points .num { background: var(--signal); color: var(--on-signal); }
+    .plan.featured { box-shadow: var(--shadow), 0 0 0 2px var(--accent); }
+
+    /* 「見る → 記録する → 補充する」の 1 日の流れ */
+    .flow { list-style: none; margin: 0 auto; padding: 0; max-width: var(--content); display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .flow li { background: var(--surface); border-radius: var(--radius-card); box-shadow: var(--shadow); padding: 20px; }
+    .flow .step { display: inline-block; font-size: 12px; font-weight: 700; color: var(--accent); background: var(--accent-soft); border-radius: 999px; padding: 2px 10px; margin-bottom: 8px; }
+    .flow h3 { margin: 0 0 6px; font-size: 17px; }
+    .flow p { margin: 0; color: var(--ink-sub); font-size: 15px; }
+    @media (max-width: 820px) { .flow { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="./"><img src="images/icon.png" alt="">Zaiqo</a>
+      <nav class="header-nav" aria-label="サイト内">
+        <a class="optional" href="#features">機能</a>
+        <a class="optional" href="#pricing">料金</a>
+        <a href="support/">サポート</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <div>
+          <span class="eyebrow">小さなお店の在庫管理アプリ</span>
+          <h1>在庫表を卒業して、<br>迷わない在庫管理を。</h1>
+          <p class="lead">「在庫、あといくつ残ってた？」「発注、出し忘れてた…」。Zaiqo（ザイコ）は、個人事業主やハンドメイド作家、小さなお店のための在庫管理アプリです。開けば今日やることがひと目でわかり、入出庫の記録から発注・棚卸しまで迷わず進められます。</p>
+          <a class="button store-button" href="https://apps.apple.com/jp/app/id6766033269">App Store で見る</a>
+          <p class="hero-note">iPhone・iPad（iOS 18 以上）／アカウント登録は不要です</p>
+        </div>
+        <div class="device">
+          <img src="images/01_today.jpg" alt="「今日」の画面。要対応 4 件として、在庫切れ 2 品目と「下書きを送信」ボタン、発注点以下 5 品目、賞味期限が近い 2 件、入荷予定 1 件の検品が並び、その下に棚卸しの途中のカード、在庫評価額 114,168 円と在庫の充足率 56% が表示されている" width="660" height="1434">
+        </div>
+      </div>
+    </section>
+
+    <section class="points" aria-label="特長">
+      <div class="wrap">
+        <ul>
+          <li>
+            <span class="num">1</span>
+            <h2>今日やることが 1 画面に</h2>
+            <p>在庫切れ・発注点以下・賞味期限・入荷予定を「次の行動」と一緒にまとめます。一覧を眺めて判断する必要はありません。</p>
+          </li>
+          <li>
+            <span class="num">2</span>
+            <h2>間違えても、戻せる</h2>
+            <p>記録する前に「4 袋 → 20 袋」と結果を表示。すべての記録は履歴に残り、あとから取り消せます。削除した商品は 30 日間ゴミ箱に残ります。</p>
+          </li>
+          <li>
+            <span class="num">3</span>
+            <h2>買い切りで、ずっと使える</h2>
+            <p>アカウント登録も月額の支払いもありません。データは端末の中と、自分の iCloud にだけ保存されます。</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="flow-title">
+      <div class="wrap">
+        <h2 class="section-title" id="flow-title">毎日の在庫管理が、3 つの動きで終わる</h2>
+        <p class="section-lead">表計算の在庫表のように、どこを直せばいいか探すことはありません。</p>
+        <ol class="flow">
+          <li>
+            <span class="step">1. 見る</span>
+            <h3>「今日」を開く</h3>
+            <p>足りない商品、期限が近い商品、今日届く荷物。対応が必要なものだけが、やることと一緒に並びます。</p>
+          </li>
+          <li>
+            <span class="step">2. 記録する</span>
+            <h3>バーコードをかざして入出庫</h3>
+            <p>カメラで商品を呼び出し、入庫・出庫をワンタップで。続けて何点もスキャンして記録することもできます（Plus）。</p>
+          </li>
+          <li>
+            <span class="step">3. 補充する</span>
+            <h3>足りない分から発注書</h3>
+            <p>発注点を下回った商品から、仕入先ごとに発注書を作成。届いたら入荷を確定するだけで在庫に加わります。</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section" id="features">
+      <div class="wrap">
+        <h2 class="section-title">商品の登録から棚卸しまで、<br>これ 1 つで</h2>
+        <p class="section-lead">雑貨・食品・ハンドメイド作品・サロンや教室の備品まで。数十点から数千点の商品を扱えます。</p>
+
+        <article class="feature">
+          <div>
+            <span class="tag">1.3 の新機能</span>
+            <h3>あの商品はどの棚？<br>地図がすぐ答える</h3>
+            <p>お店や倉庫の見取り図に棚を並べ、棚番を付けておくと、探している商品のある棚に番号が付き、入口から棚までの道順と距離を表示します。専用の機器は要りません。</p>
+            <ul>
+              <li>在庫切れ・空き棚・期限間近の棚だけを色で絞り込み</li>
+              <li>棚の QR ラベルを印刷して貼れば、カメラを向けて目当ての棚を探せます</li>
+              <li>棚の QR → 商品のバーコードの順に読むだけで、置き場所を登録</li>
+            </ul>
+          </div>
+          <div class="feature-media">
+            <div class="device small"><img src="images/04_floor_map.jpg" alt="倉庫マップの画面。本店の見取り図で、バックヤードの棚 B-02 が黄色く光って 1 番、売場の陳列棚 S-01 が 2 番の印が付き、入口から B-02 まで約 12 m の経路が点線で引かれている。下のシートに浅煎りブレンド 200g が B-02 に 10 袋、S-01 に 6 袋あると表示されている" width="660" height="1434" loading="lazy"></div>
+          </div>
+        </article>
+
+        <article class="feature">
+          <div>
+            <h3>入庫も出庫も、<br>記録する前に結果が見える</h3>
+            <p>入庫・出庫・調整・移動を 1 枚のシートで記録します。「4 袋 → 20 袋」と記録後の在庫を確かめてから保存するので、打ち間違いに気づけます。</p>
+            <ul>
+              <li>出庫は販売・廃棄・その他を分けて記録</li>
+              <li>kg の商品を g で、本で数える商品をケースで入力</li>
+              <li>売場とバックヤードなど、保管場所ごとに在庫を分けて記録（Plus）</li>
+            </ul>
+          </div>
+          <div class="feature-media">
+            <div class="device small"><img src="images/03_stock_record.jpg" alt="在庫を記録するシート。深煎りブレンド 200g の入庫で、保管場所は本店 / 店頭 / 陳列棚 S-01、数量 +16 袋、記録後の在庫 4 袋から 20 袋へ「適正在庫に回復」と表示され、下に「入庫を記録」ボタンがある" width="660" height="1434" loading="lazy"></div>
+          </div>
+        </article>
+
+        <article class="feature">
+          <div>
+            <h3>発注が必要な商品が、<br>いつも一番上に</h3>
+            <p>在庫一覧は、在庫切れ・発注点以下・期限間近の商品から順に並びます。残りの量はバーと色でひと目でわかります。</p>
+            <ul>
+              <li>商品名・SKU・バーコードで検索</li>
+              <li>写真を大きく並べるサムネイル表示にも切り替え</li>
+              <li>パッケージを撮るだけで、商品名・JAN・内容量・賞味期限を読み取って登録</li>
+            </ul>
+          </div>
+          <div class="feature-media">
+            <div class="device small"><img src="images/02_items.jpg" alt="在庫の一覧の画面。在庫切れのコロンビア スプレモとペーパーフィルターが一番上にあり、続いて低在庫のガラスサーバー、エチオピア イルガチェフェ、カフェオレベースなどが、商品写真・残量のバー・状態の印つきで並んでいる" width="660" height="1434" loading="lazy"></div>
+          </div>
+        </article>
+
+        <article class="feature">
+          <div>
+            <h3>棚卸しは、<br>数えて打ち込むだけ</h3>
+            <p>大きなテンキーと「帳簿どおり」ボタンで、1 品ずつテンポよく入力します。帳簿と違う品だけを色で強調し、完了すると差異レポートを作ります。</p>
+            <ul>
+              <li>スキャンで数え上げ、重さを量って個数を数えることも</li>
+              <li>差異の理由と、ロット番号・不良品の数を記録</li>
+              <li>途中で中断して、あとから再開</li>
+              <li>棚卸表を PDF（A4・A3、縦・横）と CSV で出力（Plus）</li>
+            </ul>
+          </div>
+          <div class="feature-media">
+            <div class="device small"><img src="images/06_stocktake.jpg" alt="棚卸しの画面。18 品目中 6 品目を数え終わり、差異 2 件。オリジナルマグが帳簿 14 に対して実数 13 で −1 と赤く強調され、下に大きなテンキーと黄色の「帳簿どおり」ボタンがある" width="660" height="1434" loading="lazy"></div>
+          </div>
+        </article>
+
+        <article class="feature">
+          <div>
+            <h3>発注書は、<br>足りない分から自動で作成</h3>
+            <p>発注点を下回った商品から、仕入先ごとに発注書の下書きを作ります。数と単価を確かめて、PDF にして仕入先へ送るだけです。</p>
+            <ul>
+              <li>入荷を確定すると在庫に自動で加算し、原価・賞味期限・ロット番号も更新</li>
+              <li>予定納期を入れると「今日」の入荷予定に表示</li>
+              <li>会計ソフトの取引インポート用 CSV に書き出し</li>
+            </ul>
+          </div>
+          <div class="feature-media">
+            <div class="device small"><img src="images/05_reorder.jpg" alt="発注書を作成する画面。発注番号 PO-2026-016、仕入先は朝霧コーヒー商会で、明細にカフェオレベース 9 本、ガラスサーバー 5 個、ドリップバッグ 10 個入 8 箱が単価と小計つきで入っている" width="660" height="1434" loading="lazy"></div>
+          </div>
+        </article>
+
+        <article class="feature">
+          <div>
+            <h3>いくら在庫があるか、<br>すぐにわかる</h3>
+            <p>在庫サマリーで、在庫評価額・直近 30 日の入出庫額・廃棄額・よく出る商品・カテゴリ別の評価額をまとめて確かめられます。</p>
+            <ul>
+              <li>在庫切れ・低在庫、保管場所別の在庫のレポート</li>
+              <li>売れ筋と眠っている在庫を見分ける ABC 分析（Plus）</li>
+            </ul>
+          </div>
+          <div class="feature-media">
+            <div class="device small"><img src="images/08_overview.jpg" alt="在庫サマリーの画面。在庫評価額 114,168 円、直近 30 日の入庫額と出庫額、出庫額のうち廃棄・破損 380 円、出庫の多い商品としてフィナンシェ、深煎りブレンド 200g、浅煎りブレンド 200g などの棒グラフが並んでいる" width="660" height="1434" loading="lazy"></div>
+          </div>
+        </article>
+
+        <article class="feature">
+          <div>
+            <h3>期限切れで捨てる前に、<br>ちゃんと気づける</h3>
+            <p>賞味期限が近い商品を、残り日数つきで一覧にします。期限が近いとみなす日数は商品ごとに決められ、通知でもお知らせします。</p>
+            <ul>
+              <li>廃棄した分は廃棄として記録し、廃棄額を集計</li>
+              <li>取り寄せ品など、在庫 0 が普段の商品は知らせない設定も</li>
+            </ul>
+          </div>
+          <div class="feature-media">
+            <div class="device small"><img src="images/10_expiry.jpg" alt="賞味期限の画面。期限切れ 0 件、近日 2 件、余裕あり 5 件。フィナンシェがあと 3 日、カフェオレベース 500ml があと 4 日と表示され、続いてクッキー缶などが期限の近い順に並んでいる" width="660" height="1434" loading="lazy"></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="more-title">
+      <div class="wrap">
+        <h2 class="section-title" id="more-title">業務で使うための、細かな機能</h2>
+        <div class="cards">
+          <div class="card">
+            <h3>バーコード・QR コード</h3>
+            <p>JAN / EAN / UPC、QR コードなど主要な形式に対応。カメラをかざして商品を呼び出し、続けて入出庫できます。</p>
+          </div>
+          <div class="card">
+            <h3>バリエーションと部品表</h3>
+            <p>容量・色違いは別々の在庫として管理。組み立てて作る商品は、入出庫に合わせて部品の在庫も増減します（Plus）。</p>
+          </div>
+          <div class="card">
+            <h3>CSV で出し入れ</h3>
+            <p>商品と在庫を、表計算ソフトでそのまま開ける CSV に書き出し。今の在庫表から CSV で取り込むこともできます（取り込みは Plus）。</p>
+          </div>
+          <div class="card">
+            <h3>すべての変更を履歴に</h3>
+            <p>在庫の変更は日時と記録者つきで残ります。入荷確定や組み立ても、関連する記録ごとまとめて取り消せます。</p>
+          </div>
+          <div class="card">
+            <h3>ウィジェットとショートカット</h3>
+            <p>ホーム画面で今日の在庫の状況を確認。コントロールセンターやロック画面から、スキャンや棚卸しをすぐに開けます。</p>
+          </div>
+          <div class="card">
+            <h3>生体認証でロック</h3>
+            <p>原価や仕入先の情報を守るため、アプリに戻るたびに Face ID / Touch ID で認証するよう設定できます。オフラインでも使えます。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="privacy-title">
+      <div class="wrap reading" style="margin: 0 auto; text-align: center;">
+        <h2 class="section-title" id="privacy-title">在庫のデータは、あなたの手元に</h2>
+        <p class="section-lead" style="margin-bottom: 0;">登録した商品や取引の情報は、端末の中と、Zaiqo Plus で同期する場合はあなた自身の iCloud にだけ保存されます。開発者のサーバーへ送ることはなく、パッケージの写真の読み取りも端末の中で行います。アカウント登録は不要で、解析や広告の仕組みも入っていません。</p>
+      </div>
+    </section>
+
+    <section class="section" id="pricing" aria-labelledby="pricing-title">
+      <div class="wrap">
+        <h2 class="section-title" id="pricing-title">まずは、そのまま使えます</h2>
+        <p class="section-lead">商品 100 点までなら、基本の機能をお支払いなしで使えます。本格的に使いたくなったら、買い切りの Zaiqo Plus へ。</p>
+        <div class="plans">
+          <div class="plan">
+            <h3>そのまま</h3>
+            <p class="plan-sub">お支払いなしで使える範囲</p>
+            <ul>
+              <li>商品 100 点・カテゴリ 5 つ・保管場所 1 拠点まで</li>
+              <li>入出庫の記録とバーコードでの検索</li>
+              <li>棚卸しと、完了直後の差異のまとめ</li>
+              <li>発注書の作成（PDF は透かし入りのプレビュー）</li>
+              <li>倉庫マップで商品を探す</li>
+              <li>CSV の書き出し、ウィジェット</li>
+              <li>在庫の履歴は直近 30 日を表示（記録は消えません）</li>
+            </ul>
+          </div>
+          <div class="plan featured">
+            <h3>Zaiqo Plus</h3>
+            <p class="plan-sub">買い切り（1回のお支払い）</p>
+            <ul>
+              <li>商品・カテゴリ・保管場所が無制限、写真は 1 商品 10 枚まで</li>
+              <li>複数の端末での自動同期（iCloud）</li>
+              <li>連続スキャンでの入出庫</li>
+              <li>倉庫間の移動と、保管場所ごとの在庫</li>
+              <li>倉庫マップの作成と、スキャンでの置き場所の登録</li>
+              <li>バリエーション・部品表（BOM）</li>
+              <li>CSV の取り込み</li>
+              <li>発注書・棚卸表の PDF と棚卸表の CSV の保存・共有</li>
+              <li>棚卸し差異レポート・ABC 分析・高度な検索</li>
+              <li>在庫の履歴を全期間表示</li>
+            </ul>
+          </div>
+        </div>
+        <p class="hero-note" style="text-align: center;">購入した Zaiqo Plus は、同じ Apple アカウントのほかの端末でも「購入を復元」で使えます。</p>
+      </div>
+    </section>
+
+    <section class="cta">
+      <div class="wrap">
+        <img class="app-icon" src="images/icon.png" alt="">
+        <h2>今日から、迷わない在庫管理を。</h2>
+        <p>サンプルデータを入れて、すぐに試せます。</p>
+        <a class="button store-button" href="https://apps.apple.com/jp/app/id6766033269">App Store で見る</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <nav aria-label="フッター">
+        <a href="support/">サポート</a>
+        <a href="privacy/">プライバシーポリシー</a>
+        <a href="../">ほかのアプリ</a>
+      </nav>
+      <span>© 2026 Kobako Apps</span>
+    </div>
+  </footer>
+</body>
+</html>
