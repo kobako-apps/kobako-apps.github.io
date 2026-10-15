@@ -4,11 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Shiftmate - Shift Scheduler</title>
-  <meta name="description" content="A work schedule maker for small shops. Tap AM or PM and the week fills in, and short-staffed days and hours stand out at a glance. No account needed.">
+  <meta name="description" content="A work schedule maker for small shops. Tap AM or PM and the week fills in, short-staffed days and hours stand out at a glance, and staff without the app get the schedule with one link. No account needed.">
   <meta name="apple-itunes-app" content="app-id=6779656148">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Shiftmate - Shift Scheduler">
-  <meta property="og:description" content="Build next week's schedule in minutes and see short-staffed hours at a glance.">
+  <meta property="og:description" content="Build next week's schedule in minutes, see short-staffed hours at a glance, and send it to staff with one link.">
   <meta property="og:image" content="https://kobako-apps.github.io/shiftmate/images/icon.png">
   <meta property="og:url" content="https://kobako-apps.github.io/shiftmate/en/">
   <link rel="canonical" href="https://kobako-apps.github.io/shiftmate/en/">
@@ -18,6 +18,11 @@
   <link rel="icon" href="../images/icon.png">
   <link rel="apple-touch-icon" href="../images/apple-touch-icon.png">
   <link rel="stylesheet" href="../../assets/site.css">
+  <style>
+    /* Three plans side by side: Free, Premium and Shiftmate Link */
+    .plans.three { grid-template-columns: repeat(3, 1fr); max-width: var(--content); }
+    @media (max-width: 820px) { .plans.three { grid-template-columns: 1fr; } }
+  </style>
 </head>
 <body>
   <header class="site-header">
@@ -25,6 +30,7 @@
       <a class="brand" href="./"><img src="../images/icon.png" alt="">Shiftmate</a>
       <nav class="header-nav" aria-label="Site">
         <a class="optional" href="#features">Features</a>
+        <a class="optional" href="#link">Link</a>
         <a class="optional" href="#pricing">Pricing</a>
         <a href="../support/#en">Support</a>
         <a href="../" hreflang="ja" lang="ja">日本語</a>
@@ -38,12 +44,12 @@
         <div>
           <span class="eyebrow">Shift scheduling for small shops</span>
           <h1>The work schedule, faster than paper.</h1>
-          <p class="lead">Still building the schedule on paper, a whiteboard or a spreadsheet? Tap AM or PM and the week fills in, and short-staffed days and hours stand out at a glance.</p>
+          <p class="lead">Still building the schedule on paper, a whiteboard or a spreadsheet? Tap AM or PM and the week fills in, and short-staffed days and hours stand out at a glance. Then send it to staff with one link, even if they don't have the app.</p>
           <a class="button store-button" href="https://apps.apple.com/us/app/id6779656148">View on the App Store</a>
           <p class="hero-note">For iPhone and iPad (iOS 18 or later). No account needed.</p>
         </div>
         <div class="device">
-          <img src="../images/en/01_today.jpg" alt="The Today screen, listing who's working, their hours and how many are on shift now" width="660" height="1434">
+          <img src="../images/en/01_today.jpg" alt="The Today screen with a note about tomorrow's shortage, who's working and their hours, how many are on shift now, and total hours and labor cost" width="660" height="1434">
         </div>
       </div>
     </section>
@@ -59,12 +65,12 @@
           <li>
             <span class="num">2</span>
             <h2>Fill it with taps</h2>
-            <p>Tap a template (AM, Mid, PM, Full Day) to add a shift, or copy last week in one go.</p>
+            <p>Tap AM, Mid or PM to add a shift. Short days turn red and thin hours get a dashed outline.</p>
           </li>
           <li>
             <span class="num">3</span>
-            <h2>See where you're short</h2>
-            <p>Short days turn red and thin hours get a dashed outline. "Add Here" suggests what to add.</p>
+            <h2>One link for staff</h2>
+            <p>No app for your staff. The schedule and request forms arrive as a link they open in any browser.</p>
           </li>
         </ul>
       </div>
@@ -86,7 +92,7 @@
             </ul>
           </div>
           <div class="feature-media">
-            <div class="device small"><img src="../images/en/02_week.jpg" alt="The weekly schedule grid with AM, Mid and PM shifts in each staff row" width="660" height="1434" loading="lazy"></div>
+            <div class="device small"><img src="../images/en/02_week.jpg" alt="The weekly schedule grid with AM, Mid and PM shifts in each staff row, and a short-staffed Thursday marked in red" width="660" height="1434" loading="lazy"></div>
           </div>
         </article>
 
@@ -100,7 +106,7 @@
             </ul>
           </div>
           <div class="feature-media">
-            <div class="device small"><img src="../images/en/03_day.jpg" alt="The Day view with a short-staffed band at midday and an Add Here suggestion" width="660" height="1434" loading="lazy"></div>
+            <div class="device small"><img src="../images/en/03_day.jpg" alt="The Day view with a bar for each person's shift and a dashed band showing one person short from 11a to 2p" width="660" height="1434" loading="lazy"></div>
           </div>
         </article>
 
@@ -110,21 +116,22 @@
             <p>The week view has a table and a heatmap. The heatmap shades every hour of the week by how many people are working, so a thin lunch rush is easy to spot.</p>
           </div>
           <div class="feature-media">
-            <div class="device small"><img src="../images/en/04_heatmap.jpg" alt="The weekly heatmap, shading each hour by headcount" width="660" height="1434" loading="lazy"></div>
+            <div class="device small"><img src="../images/en/04_heatmap.jpg" alt="The weekly heatmap, shading each hour by headcount, with −1 and −2 on short hours" width="660" height="1434" loading="lazy"></div>
           </div>
         </article>
 
         <article class="feature">
           <div>
             <h3>Collect staff requests by a deadline</h3>
-            <p>On the shop's device, staff open Staff View to check their own shifts and send shift requests, day-off requests and swap requests. Weekly Requests let them send a whole week at once, and late requests are marked.</p>
+            <p>Staff send shift requests, day-off requests and swap requests from their Shiftmate Link page, or from Staff View on the shop's device. Weekly Requests let them send a whole week at once, and late requests are marked.</p>
             <ul>
               <li>Approve or decline everything from the To Do tab</li>
-              <li>Each staff member has a personal PIN, so no one can change someone else's shifts</li>
+              <li>Someone called in sick? Find a Replacement lists who can cover, with overtime notes</li>
+              <li>Staff View has a personal PIN for each person, so no one can change someone else's shifts</li>
             </ul>
           </div>
           <div class="feature-media">
-            <div class="device small"><img src="../images/en/05_inbox.jpg" alt="The To Do tab with pending requests and short-staffed days" width="660" height="1434" loading="lazy"></div>
+            <div class="device small"><img src="../images/en/05_inbox.jpg" alt="The To Do tab with pending requests, draft shifts waiting for review and short-staffed days" width="660" height="1434" loading="lazy"></div>
           </div>
         </article>
 
@@ -142,7 +149,7 @@
         <article class="feature">
           <div>
             <h3>Post it, share it, add it to calendars</h3>
-            <p>Add confirmed shifts to the calendar on your device. Share the schedule as an image or PDF, print it for the back room, or send a calendar file staff can add to their own calendar.</p>
+            <p>Add confirmed shifts to the calendar on your device. Share the schedule as an image or PDF (Letter in the U.S.), print it for the back room, or send a calendar file staff can add to their own calendar. Export totals as CSV by pay period.</p>
             <ul>
               <li>Image, PDF, calendar file (.ics) and CSV export are Premium</li>
             </ul>
@@ -154,6 +161,45 @@
       </div>
     </section>
 
+    <section class="section" id="link" aria-labelledby="link-title">
+      <div class="wrap">
+        <h2 class="section-title" id="link-title">Reach staff without the app,<br>with one link</h2>
+        <p class="section-lead">Stop re-sending photos of the schedule. The same link always shows the latest version.</p>
+
+        <article class="feature">
+          <div>
+            <span class="tag">Shiftmate Link</span>
+            <h3>A page for each person,<br>with their shifts and everyone's</h3>
+            <p>Send each staff member a link to their own page. In any browser, no app needed, they see their next shift, their own shifts and everyone's. When you change a shift, the same link shows the update, so there's nothing to send again.</p>
+            <ul>
+              <li>Open requests for a period with a deadline. Staff send them from their page, and they land in To Do for approval, with a notification</li>
+              <li>See who has sent requests and who hasn't, and remind the rest</li>
+              <li>Turn the shared schedule into a QR code to post in the back room</li>
+            </ul>
+          </div>
+          <div class="feature-media">
+            <div class="device small"><img src="../images/en/06_linkWeb.jpg" alt="A staff member's page with open requests and the time left until the deadline, their next shift, and a list of this month's shifts" width="660" height="1434" loading="lazy"></div>
+          </div>
+        </article>
+
+        <div class="cards">
+          <div class="card">
+            <h3>Even we can't read it</h3>
+            <p>Everything is encrypted on the shop's device and in your staff's browsers before it's sent. The key exists only inside the link.</p>
+          </div>
+          <div class="card">
+            <h3>Only confirmed shifts and days off</h3>
+            <p>Hourly wages, labor cost, phone numbers and notes are never included. Draft shifts and other people's requests aren't either.</p>
+          </div>
+          <div class="card">
+            <h3>Replace a link anytime</h3>
+            <p>Don't want someone who left to see it? Tap Replace Link. Deactivating a staff member also turns off their page.</p>
+          </div>
+        </div>
+        <p class="hero-note" style="text-align: center;">Shiftmate Link is a monthly or yearly auto-renewable subscription, separate from Premium.</p>
+      </div>
+    </section>
+
     <section class="section" aria-labelledby="more-title">
       <div class="wrap">
         <h2 class="section-title" id="more-title">For the rest of the day, too</h2>
@@ -161,11 +207,11 @@
         <div class="cards">
           <div class="card">
             <h3>Today at a glance</h3>
-            <p>Who's working, when, and today's labor cost. Tomorrow's shortages show up here too.</p>
+            <p>Who's working, when, and today's labor cost. Tomorrow's shortages show up here and in the day-before reminder.</p>
           </div>
           <div class="card">
             <h3>Labor cost and hours</h3>
-            <p>Hours and estimated labor cost per person, with U.S. federal (FLSA) overtime or a custom rule, totaled by your pay period.</p>
+            <p>Hours and estimated labor cost per person, with U.S. federal (FLSA) overtime or a custom rule, totaled by your pay period. Book a raise ahead of time.</p>
           </div>
           <div class="card">
             <h3>Home Screen widget</h3>
@@ -191,15 +237,15 @@
     <section class="section" aria-labelledby="privacy-title">
       <div class="wrap reading" style="margin: 0 auto; text-align: center;">
         <h2 class="section-title" id="privacy-title">Your data stays on your device</h2>
-        <p class="section-lead" style="margin-bottom: 0;">No sign-up. Your data is stored on your device and works without a connection. The developer never collects it, and there's no analytics or advertising inside.</p>
+        <p class="section-lead" style="margin-bottom: 0;">No sign-up. Your data is stored on your device and works without a connection (except sending and receiving Shiftmate Link). What you share by link is encrypted, so even we can't read it. There's no analytics or advertising inside.</p>
       </div>
     </section>
 
     <section class="section" id="pricing" aria-labelledby="pricing-title">
       <div class="wrap">
         <h2 class="section-title" id="pricing-title">Start for free</h2>
-        <p class="section-lead">Building the schedule works without Premium. When your shop grows, unlock Premium with a one-time purchase.</p>
-        <div class="plans">
+        <p class="section-lead">Building the schedule works without Premium. When your shop grows, unlock Premium with a one-time purchase. To reach staff by link, add Shiftmate Link.</p>
+        <div class="plans three">
           <div class="plan">
             <h3>Free</h3>
             <p class="plan-sub">Up to 3 active staff</p>
@@ -221,8 +267,18 @@
               <li>Image, PDF, calendar and CSV export</li>
             </ul>
           </div>
+          <div class="plan">
+            <h3>Shiftmate Link</h3>
+            <p class="plan-sub">Monthly or yearly subscription</p>
+            <ul>
+              <li>A personal page for each staff member</li>
+              <li>Share the schedule by link, always up to date</li>
+              <li>Collect requests by link, with notifications</li>
+              <li>A QR code for the shared schedule</li>
+            </ul>
+          </div>
         </div>
-        <p class="hero-note" style="text-align: center;">Buy once and restore it on your other devices with the same Apple Account.</p>
+        <p class="hero-note" style="text-align: center;">Buy Premium once and restore it on your other devices with the same Apple Account. Shiftmate Link is sold separately and works without Premium.</p>
       </div>
     </section>
 
