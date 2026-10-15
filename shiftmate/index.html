@@ -4,11 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Shiftmate - シフト表作成・シフト管理</title>
-  <meta name="description" content="紙より速く組める、お店の勤務表。スタッフ数名〜20名ほどの小さなお店のための、設定いらずのシフト管理アプリです。足りない日と時間帯がひと目でわかります。">
+  <meta name="description" content="紙より速く組める、お店の勤務表。スタッフ数名〜20名ほどの小さなお店のための、設定いらずのシフト管理アプリです。足りない日と時間帯がひと目でわかり、できたシフト表はアプリを持っていないスタッフにもリンク1本で届けられます。">
   <meta name="apple-itunes-app" content="app-id=6779656148">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Shiftmate - シフト表作成・シフト管理">
-  <meta property="og:description" content="紙より速く組める、お店の勤務表。足りない日と時間帯がひと目でわかります。">
+  <meta property="og:description" content="紙より速く組める、お店の勤務表。足りない日と時間帯がひと目でわかり、スタッフにはリンク1本で届けられます。">
   <meta property="og:image" content="https://kobako-apps.github.io/shiftmate/images/icon.png">
   <meta property="og:url" content="https://kobako-apps.github.io/shiftmate/">
   <link rel="canonical" href="https://kobako-apps.github.io/shiftmate/">
@@ -18,6 +18,11 @@
   <link rel="icon" href="images/icon.png">
   <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
   <link rel="stylesheet" href="../assets/site.css">
+  <style>
+    /* 料金は 無料・プレミアム・Shiftmate リンク の3つを並べる */
+    .plans.three { grid-template-columns: repeat(3, 1fr); max-width: var(--content); }
+    @media (max-width: 820px) { .plans.three { grid-template-columns: 1fr; } }
+  </style>
 </head>
 <body>
   <header class="site-header">
@@ -25,6 +30,7 @@
       <a class="brand" href="./"><img src="images/icon.png" alt="">Shiftmate</a>
       <nav class="header-nav" aria-label="サイト内">
         <a class="optional" href="#features">機能</a>
+        <a class="optional" href="#link">リンク</a>
         <a class="optional" href="#pricing">料金</a>
         <a href="support/">サポート</a>
         <a href="en/" hreflang="en" lang="en">English</a>
@@ -38,12 +44,12 @@
         <div>
           <span class="eyebrow">小さなお店のシフト管理アプリ</span>
           <h1>紙より速く組める、<br>お店の勤務表。</h1>
-          <p class="lead">紙やホワイトボード、表計算で組んでいるシフト表を、スマホの中へ。早番・遅番をタップするだけで1週間が埋まり、足りない日と時間帯はひと目でわかります。</p>
+          <p class="lead">紙やホワイトボード、表計算で組んでいるシフト表を、スマホの中へ。早番・遅番をタップするだけで1週間が埋まり、足りない日と時間帯はひと目でわかります。できたシフト表は、アプリを持っていないスタッフにもリンク1本で届けられます。</p>
           <a class="button store-button" href="https://apps.apple.com/jp/app/id6779656148">App Store で見る</a>
           <p class="hero-note">iPhone・iPad（iOS 18 以上）／アカウント登録は不要です</p>
         </div>
         <div class="device">
-          <img src="images/ja/01_today.jpg" alt="「今日」の画面。出勤するスタッフと時間帯、いま勤務中の人数が並ぶ" width="660" height="1434">
+          <img src="images/ja/01_today.jpg" alt="「今日」の画面。明日の不足の知らせと、出勤するスタッフの時間帯、いま勤務中の人数、総労働と人件費の見込みが並ぶ" width="660" height="1434">
         </div>
       </div>
     </section>
@@ -59,12 +65,12 @@
           <li>
             <span class="num">2</span>
             <h2>タップで埋まる</h2>
-            <p>早番・中番・遅番のテンプレートをタップして入力。前の週をまるごとコピーもできます。</p>
+            <p>早番・中番・遅番をタップして入力。足りない日は赤、足りない時間は点線でわかります。</p>
           </li>
           <li>
             <span class="num">3</span>
-            <h2>足りない時間がわかる</h2>
-            <p>足りない日は赤、必要人数に届かない時間は点線。「足すならここ」まで提案します。</p>
+            <h2>リンク1本で届く</h2>
+            <p>スタッフはアプリ不要。シフト表も希望の受け付けも、ブラウザで開けるリンクで届きます。</p>
           </li>
         </ul>
       </div>
@@ -86,7 +92,7 @@
             </ul>
           </div>
           <div class="feature-media">
-            <div class="device small"><img src="images/ja/02_week.jpg" alt="週のシフト表。スタッフごとの行に、早番・中番・遅番が並ぶ" width="660" height="1434" loading="lazy"></div>
+            <div class="device small"><img src="images/ja/02_week.jpg" alt="週のシフト表。スタッフごとの行に早番・中番・遅番が並び、人数が足りない木曜が赤く示される" width="660" height="1434" loading="lazy"></div>
           </div>
         </article>
 
@@ -100,7 +106,7 @@
             </ul>
           </div>
           <div class="feature-media">
-            <div class="device small"><img src="images/ja/03_day.jpg" alt="「日」の画面。11時〜14時に1人不足の帯があり、「足すならここ」の提案が出ている" width="660" height="1434" loading="lazy"></div>
+            <div class="device small"><img src="images/ja/03_day.jpg" alt="「日」の画面。スタッフごとの勤務の帯と、11時〜14時に1人不足していることを示す点線の帯" width="660" height="1434" loading="lazy"></div>
           </div>
         </article>
 
@@ -110,21 +116,22 @@
             <p>週の表示は「表」と「濃淡」の2種類。濃淡では、1週間の時間ごとの人数が色の濃さでわかります。昼のピークの手薄な時間も見逃しません。</p>
           </div>
           <div class="feature-media">
-            <div class="device small"><img src="images/ja/04_heatmap.jpg" alt="週の濃淡表示。時間ごとの人数が色の濃さで示される" width="660" height="1434" loading="lazy"></div>
+            <div class="device small"><img src="images/ja/04_heatmap.jpg" alt="週の濃淡表示。時間ごとの人数が色の濃さで示され、足りない時間に「−1」「−2」が付く" width="660" height="1434" loading="lazy"></div>
           </div>
         </article>
 
         <article class="feature">
           <div>
             <h3>スタッフの希望を、締切を決めてまとめて受け付け</h3>
-            <p>スタッフは、お店の端末の「スタッフ表示」から自分のシフトの確認と、希望シフト・希望休・交換希望の提出ができます。1週間分をまとめて出せて、締切後の提出には印が付きます。</p>
+            <p>希望シフト・希望休・交換希望は、Shiftmate リンクのページから、またはお店の端末の「スタッフ表示」から出せます。1週間分をまとめて出せて、締切後の提出には印が付きます。</p>
             <ul>
               <li>店長は「やること」の画面で、承認待ちの希望をその場で承認・却下</li>
-              <li>スタッフごとの本人PINで、ほかの人のシフトは操作できません</li>
+              <li>急な欠勤には「代わりを探す」。入れる人を、時間外や連勤の注意つきで並べます</li>
+              <li>スタッフ表示は本人PINつき。ほかの人のシフトは操作できません</li>
             </ul>
           </div>
           <div class="feature-media">
-            <div class="device small"><img src="images/ja/05_inbox.jpg" alt="「やること」の画面。承認待ちの希望と、スタッフが足りない日が並ぶ" width="660" height="1434" loading="lazy"></div>
+            <div class="device small"><img src="images/ja/05_inbox.jpg" alt="「やること」の画面。承認待ちの希望、仮シフトの確認待ち、スタッフが足りない日が並ぶ" width="660" height="1434" loading="lazy"></div>
           </div>
         </article>
 
@@ -142,7 +149,7 @@
         <article class="feature">
           <div>
             <h3>貼り出し・共有・カレンダーへ</h3>
-            <p>確定したシフトを端末のカレンダーへ書き出せます。シフト表は画像・PDFで共有して、印刷して貼り出すことも。集計はCSVで出力できます。</p>
+            <p>確定したシフトを端末のカレンダーへ書き出せます。シフト表は画像・PDFで共有して、印刷して貼り出すことも（用紙は A4。米国などではレター）。集計は給与の期間ごとに CSV で出力できます。</p>
             <ul>
               <li>画像・PDF・カレンダーファイル（.ics）・CSV の書き出しはプレミアムです</li>
             </ul>
@@ -154,6 +161,45 @@
       </div>
     </section>
 
+    <section class="section" id="link" aria-labelledby="link-title">
+      <div class="wrap">
+        <h2 class="section-title" id="link-title">アプリが無いスタッフにも、<br>リンク1本で届ける</h2>
+        <p class="section-lead">シフト表を写真で撮って送り直す毎日から、同じリンクがいつも最新になる毎日へ。</p>
+
+        <article class="feature">
+          <div>
+            <span class="tag">Shiftmate リンク</span>
+            <h3>スタッフごとのマイページで、<br>自分のシフトもみんなのシフトも</h3>
+            <p>スタッフにマイページのリンクを送ると、アプリが無くてもブラウザで、次の勤務・自分のシフト・みんなのシフトを確認できます。シフトを直しても同じリンクのまま最新になるので、送り直しは要りません。</p>
+            <ul>
+              <li>期間と締切を決めて希望を集めると、スタッフはマイページから提出。届いた希望は「やること」の承認待ちに入り、通知でもお知らせします</li>
+              <li>誰の希望が届いたか、まだの人は誰かを一覧で確認。まだの人へ知らせることもできます</li>
+              <li>全員で見るシフト表は、QR コードにして休憩室に貼り出せます</li>
+            </ul>
+          </div>
+          <div class="feature-media">
+            <div class="device small"><img src="images/ja/06_linkWeb.jpg" alt="スタッフのマイページ。希望の受け付けと締切までの残り、次の勤務、10月のシフトの一覧が並ぶ" width="660" height="1434" loading="lazy"></div>
+          </div>
+        </article>
+
+        <div class="cards">
+          <div class="card">
+            <h3>開発者も中身を読めない</h3>
+            <p>中身はお店の端末とスタッフのブラウザで暗号化してから送ります。解くための鍵はリンクの中にだけあります。</p>
+          </div>
+          <div class="card">
+            <h3>載せるのは確定と休みだけ</h3>
+            <p>時給・人件費・電話番号・メモは載せません。仮のシフトや、ほかの人の希望も出しません。</p>
+          </div>
+          <div class="card">
+            <h3>リンクはいつでも作り直せる</h3>
+            <p>辞めた人に見られたくないときは「新しいリンクにする」。スタッフを無効にすると、その人のページも止まります。</p>
+          </div>
+        </div>
+        <p class="hero-note" style="text-align: center;">Shiftmate リンクは、プレミアムとは別の月額・年額の自動更新サブスクリプションです。</p>
+      </div>
+    </section>
+
     <section class="section" aria-labelledby="more-title">
       <div class="wrap">
         <h2 class="section-title" id="more-title">毎日の運営にも</h2>
@@ -161,11 +207,11 @@
         <div class="cards">
           <div class="card">
             <h3>今日の出勤がひと目で</h3>
-            <p>出勤するスタッフと時間帯、いま勤務中の人数を表示。明日の不足もここで知らせます。</p>
+            <p>出勤するスタッフと時間帯、いま勤務中の人数を表示。明日の不足もここと前日のお知らせで伝えます。</p>
           </div>
           <div class="card">
             <h3>人件費と労働時間を自動で集計</h3>
-            <p>スタッフ別の労働時間と人件費の見込み。深夜・時間外の割増も含め、給与の締め日に合わせて集計します。</p>
+            <p>スタッフ別の労働時間と人件費の見込み。深夜・時間外の割増も含め、給与の締め日に合わせて集計します。時給の改定は先の日付で予約できます。</p>
           </div>
           <div class="card">
             <h3>ホーム画面のウィジェット</h3>
@@ -190,15 +236,15 @@
     <section class="section" aria-labelledby="privacy-title">
       <div class="wrap reading" style="margin: 0 auto; text-align: center;">
         <h2 class="section-title" id="privacy-title">データはお店の端末の中に</h2>
-        <p class="section-lead" style="margin-bottom: 0;">アカウント登録は不要。データは端末の中に保存され、電波が届かない場所でも使えます。開発者がデータを集めることはなく、解析や広告の仕組みも入っていません。</p>
+        <p class="section-lead" style="margin-bottom: 0;">アカウント登録は不要。データは端末の中に保存され、電波が届かない場所でも使えます（Shiftmate リンクの送受信を除く）。リンクで送る内容は暗号化され、開発者も読めません。解析や広告の仕組みも入っていません。</p>
       </div>
     </section>
 
     <section class="section" id="pricing" aria-labelledby="pricing-title">
       <div class="wrap">
         <h2 class="section-title" id="pricing-title">まずは無料で</h2>
-        <p class="section-lead">シフトを組む機能は、プレミアムなしで使えます。お店が大きくなったら、買い切りのプレミアムへ。</p>
-        <div class="plans">
+        <p class="section-lead">シフトを組む機能は、プレミアムなしで使えます。お店が大きくなったら、買い切りのプレミアムへ。スタッフにリンクで届けるなら Shiftmate リンクを。</p>
+        <div class="plans three">
           <div class="plan">
             <h3>無料</h3>
             <p class="plan-sub">在籍スタッフ3名まで</p>
@@ -220,8 +266,18 @@
               <li>画像・PDF・カレンダー・CSV の書き出し</li>
             </ul>
           </div>
+          <div class="plan">
+            <h3>Shiftmate リンク</h3>
+            <p class="plan-sub">月額・年額のサブスクリプション</p>
+            <ul>
+              <li>スタッフごとのマイページ</li>
+              <li>シフト表をリンクで配る（いつも最新）</li>
+              <li>希望をリンクで集める・届いたら通知</li>
+              <li>全員で見るシフト表の QR コード</li>
+            </ul>
+          </div>
         </div>
-        <p class="hero-note" style="text-align: center;">一度の購入で、同じ Apple アカウントのほかの端末でも復元できます。</p>
+        <p class="hero-note" style="text-align: center;">プレミアムは一度の購入で、同じ Apple アカウントのほかの端末でも復元できます。Shiftmate リンクはプレミアムとは別の商品で、プレミアムが無くても使えます。</p>
       </div>
     </section>
 
