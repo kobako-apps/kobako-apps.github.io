@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mikurabe（みくらべ）- PDF比較・契約書の差分チェック</title>
+  <meta name="description" content="旧版と新版の PDF を選ぶだけで、追加・削除・変更された箇所を色分けして拾い出す比較アプリ。変更を1件ずつ了承・差し戻しして、相手方への返信文の下書きや赤字入り PDF の書き出しまで。比較は端末の中で行います。">
+  <meta name="apple-itunes-app" content="app-id=6794534595">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Mikurabe（みくらべ）- PDF比較・契約書の差分チェック">
+  <meta property="og:description" content="戻ってきた契約書、どこが変わったかひと目で。確認から返信文の下書き、赤字入り PDF の書き出しまで 1 つのアプリで。">
+  <meta property="og:image" content="https://kobako-apps.github.io/mikurabe/images/icon.png">
+  <meta property="og:url" content="https://kobako-apps.github.io/mikurabe/">
+  <link rel="canonical" href="https://kobako-apps.github.io/mikurabe/">
+  <link rel="icon" href="images/icon.png">
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+  <link rel="stylesheet" href="../assets/site.css">
+  <style>
+    /* アプリの主色 (アイコンのオウムの紺) を文字とボタンに、琥珀 (アイコンの地の色) は塗りに黒文字で使う */
+    :root { --accent: #1f3f95; --accent-soft: #e7ecf8; --bg: #f2f2ef; --signal: #ffb52e; --on-signal: #16171d;
+            --insert: #0a7a53; --insert-bg: rgba(20, 160, 111, .14); --delete: #c42f38; --delete-bg: rgba(229, 72, 77, .12); --replace: #a86200; --replace-bg: rgba(235, 161, 46, .2); }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) { --accent: #6f93f0; --accent-soft: #1a2342; --accent-ink: #0e0f11; --bg: #0e0f11; --surface: #1a1b1f; --signal: #ffc163;
+                                        --insert: #3fd39a; --insert-bg: rgba(20, 160, 111, .26); --delete: #ff7a7e; --delete-bg: rgba(229, 72, 77, .26); --replace: #ffc163; --replace-bg: rgba(235, 161, 46, .26); }
+    }
+    :root[data-theme="dark"] { --accent: #6f93f0; --accent-soft: #1a2342; --accent-ink: #0e0f11; --bg: #0e0f11; --surface: #1a1b1f; --signal: #ffc163;
+                               --insert: #3fd39a; --insert-bg: rgba(20, 160, 111, .26); --delete: #ff7a7e; --delete-bg: rgba(229, 72, 77, .26); --replace: #ffc163; --replace-bg: rgba(235, 161, 46, .26); }
+
+    /* 番号とおすすめの枠は、アイコンと同じ琥珀の地に黒文字 */
+    .points .num { background: var(--signal); color: var(--on-signal); }
+    .plan.featured { box-shadow: var(--shadow), 0 0 0 2px var(--accent); }
+
+    /* 見出しの中の赤字の見本 (アプリと同じ色分け) */
+    .del { color: var(--delete); text-decoration: line-through; text-decoration-thickness: 2px; }
+    .ins { color: var(--insert); text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 4px; }
+
+    /* 「比べる → 確かめる → 返す」の流れ */
+    .flow { list-style: none; margin: 0 auto; padding: 0; max-width: var(--content); display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .flow li { background: var(--surface); border-radius: var(--radius-card); box-shadow: var(--shadow); padding: 20px; }
+    .flow .step { display: inline-block; font-size: 12px; font-weight: 700; color: var(--accent); background: var(--accent-soft); border-radius: 999px; padding: 2px 10px; margin-bottom: 8px; }
+    .flow h3 { margin: 0 0 6px; font-size: 17px; }
+    .flow p { margin: 0; color: var(--ink-sub); font-size: 15px; }
+    @media (max-width: 820px) { .flow { grid-template-columns: 1fr; } }
+
+    /* 色分けの凡例 */
+    .legend { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; padding: 0; margin: 12px 0 0; }
+    .legend li { font-size: 13px; font-weight: 700; border-radius: 999px; padding: 3px 12px; }
+    .legend .l-ins { color: var(--insert); background: var(--insert-bg); }
+    .legend .l-del { color: var(--delete); background: var(--delete-bg); }
+    .legend .l-rep { color: var(--replace); background: var(--replace-bg); }
+
+    /* 表記のゆれの例 (「同じとみなす」組) */
+    .same { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 14px; background: var(--accent-soft); border-radius: 6px; padding: 1px 6px; white-space: nowrap; }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="./"><img src="images/icon.png" alt="">Mikurabe</a>
+      <nav class="header-nav" aria-label="サイト内">
+        <a class="optional" href="#features">機能</a>
+        <a class="optional" href="#pricing">料金</a>
+        <a href="support/">サポート</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <div>
+          <span class="eyebrow">PDF の比較・差分チェックアプリ</span>
+          <h1 aria-label="戻ってきた契約書、どこが変わった？">戻ってきた契約書、<br>どこが<span class="del" aria-hidden="true">同じ</span><span class="ins">変わった</span>？</h1>
+          <p class="lead">相手方から戻った契約書を、端から読み比べていませんか。Mikurabe（みくらべ）は、旧版と新版の PDF を選ぶだけで、追加・削除・変更された箇所を色分けして拾い出します。見つけた変更を 1 件ずつ確かめて、相手方への返信文の下書きまで、このアプリで仕上げられます。</p>
+          <a class="button store-button" href="https://apps.apple.com/jp/app/id6794534595">App Store で見る</a>
+          <p class="hero-note">iPhone・iPad（iOS 18 以上）／アカウント登録は不要です</p>
+        </div>
+        <div class="device">
+          <img src="images/01_compare.jpg" alt="比較の画面。契約書_サンプル新を旧版と比べ、5 件の変更が見つかっている。第 2 条（報酬）の「金 100 万円」が 150 万円に、支払期日が「毎月末日」から「翌月 10 日」に変わった箇所が、取消線と下線で示され、AI の要点「報酬が 100 万円から 150 万円に変わる」が添えられている" width="660" height="1434">
+        </div>
+      </div>
+    </section>
+
+    <section class="points" aria-label="特長">
+      <div class="wrap">
+        <ul>
+          <li>
+            <span class="num">1</span>
+            <h2>変わった箇所だけを、色分けで</h2>
+            <p>追加は緑、削除は赤、変更は橙。条項ごとにまとめた一覧から、PDF の該当箇所へすぐに移れます。</p>
+          </li>
+          <li>
+            <span class="num">2</span>
+            <h2>表記のゆれは、変更にしない</h2>
+            <p>全角と半角、改行の位置、改ページのずれ、条番号の振り直し。日本語の文書で起きがちな「見かけだけの差」を拾いません。</p>
+          </li>
+          <li>
+            <span class="num">3</span>
+            <h2>契約書を、外に出さない</h2>
+            <p>比較も AI の要点づくりも、端末の中で行います。PDF をサーバーにアップロードする必要はありません。</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="flow-title">
+      <div class="wrap">
+        <h2 class="section-title" id="flow-title">比べて、確かめて、返すまで</h2>
+        <p class="section-lead">変更を見つけたあとの「相手方への連絡」まで、ひと続きで終わります。</p>
+        <ol class="flow">
+          <li>
+            <span class="step">1. 比べる</span>
+            <h3>旧版と新版を選ぶ</h3>
+            <p>ファイル App や共有シートから PDF を 2 つ選んで「比較する」。変更点の一覧がすぐに出ます。</p>
+          </li>
+          <li>
+            <span class="step">2. 確かめる</span>
+            <h3>1 件ずつ、了承か差し戻し</h3>
+            <p>変更ごとに判断を付けると、次の未確認の変更へ進みます。気になった点はメモに残せます。</p>
+          </li>
+          <li>
+            <span class="step">3. 返す</span>
+            <h3>返信文と赤字 PDF を書き出す</h3>
+            <p>差し戻した変更から依頼文を組み立て、赤字を焼き込んだ PDF と一緒に相手方へ送れます。</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section" id="features">
+      <div class="wrap">
+        <h2 class="section-title">見落としなく、<br>手早く確かめるために</h2>
+        <p class="section-lead">契約書・覚書・利用規約・就業規則・仕様書・見積書。版を重ねる文書の確認に。</p>
+
+        <article class="feature">
+          <div>
+            <span class="tag">1.1 の新機能</span>
+            <h3>1 件ずつ確かめて、<br>見落としをなくす</h3>
+            <p>変更を了承・差し戻しで仕分けながら進めます。何件確かめたかが常に見えるので、途中で手を止めても、どこまで見たかを見失いません。</p>
+            <ul>
+              <li>判断を付けると、次の未確認の変更へ自動で進む</li>
+              <li>差し戻した理由をメモに残せる</li>
+              <li>未確認の変更だけに絞り込める</li>
+            </ul>
+          </div>
+          <div class="feature-media">
+            <div class="device small"><img src="images/02_reviewed.jpg" alt="すべての変更を確認し終えた比較の画面。5/5 確認済みの印が付き、報酬と契約期間の変更は了承、支払期日の変更は差し戻しで「支払サイトは従来どおり毎月末日でお願いしたい」とメモが付いている。下に「すべて確認しました」と「書き出す」ボタンがある" width="660" height="1434" loading="lazy"></div>
+          </div>
+        </article>
+
+        <article class="feature">
+          <div>
+            <span class="tag">1.1 の新機能</span>
+            <h3>差し戻した点から、<br>返信文を下書き</h3>
+            <p>差し戻した変更とメモから、条項と変更前後を引用した相手方への依頼文を組み立てます。一から文章を考える必要はありません。</p>
+            <ul>
+              <li>「丁寧」「簡潔」の 2 つの文体</li>
+              <li>メモを補足として載せるかを選べる</li>
+              <li>その場で編集して、コピー・共有</li>
+            </ul>
+          </div>
+          <div class="feature-media">
+            <div class="device small"><img src="images/03_reply.jpg" alt="返信文の下書きの画面。差し戻した 2 件への返信として、件名「契約書_サンプル新 修正案へのご回答」に続き、第 2 条（報酬）の支払期日について「変更前の『支払期日は毎月末日とする。』のままとしていただけますでしょうか」と依頼する文が組み立てられている" width="660" height="1434" loading="lazy"></div>
+          </div>
+        </article>
+
+        <article class="feature">
+          <div>
+            <h3>PDF のまま、<br>赤字で確かめる</h3>
+            <p>元の PDF のレイアウトの上に、追加と削除を書き込みます。表や段組みのある文書でも、どこが変わったかを紙面の位置で確かめられます。</p>
+            <ul>
+              <li>新版を基準にも、旧版を基準にも表示できる</li>
+              <li>削除の印をタップすると、消えた文を表示</li>
+              <li>iPad では旧版と新版を左右に並べて表示</li>
+            </ul>
+            <ul class="legend" aria-label="色分け">
+              <li class="l-ins">追加</li>
+              <li class="l-del">削除</li>
+              <li class="l-rep">変更</li>
+            </ul>
+          </div>
+          <div class="feature-media">
+            <div class="device small"><img src="images/04_pdf_redline.jpg" alt="PDF 赤字の画面。業務委託契約書（サンプル）の PDF の上で、報酬の 150 と支払期日の翌月 10 日が橙で、追加された自動更新の一文と第 5 条（準拠法）が緑の下線で示されている" width="660" height="1434" loading="lazy"></div>
+          </div>
+        </article>
+
+        <article class="feature">
+          <div>
+            <h3>直しの流れを、<br>文章で読み通す</h3>
+            <p>本文を 1 本の文章として流し込み、削除を取消線、追加を下線で示します。何をどう直したかを、文脈ごと読めます。</p>
+            <ul>
+              <li>本文と変更点をまとめて検索</li>
+              <li>数値だけの変更を目立たせる</li>
+              <li>条項が丸ごと移った時は「移動」として表示</li>
+            </ul>
+          </div>
+          <div class="feature-media">
+            <div class="device small"><img src="images/05_text_redline.jpg" alt="文章の画面。契約書の本文が流し込まれ、「金 100 万円」の 100 が取消線、150 が下線、「毎月末日」が取消線で「翌月 10 日」が下線、契約期間の 1 年が 2 年に、追加された自動更新の文と第 5 条（準拠法）が緑の下線で示されている" width="660" height="1434" loading="lazy"></div>
+          </div>
+        </article>
+
+        <article class="feature">
+          <div>
+            <h3>赤字入りの PDF を、<br>そのまま相手へ</h3>
+            <p>確かめた結果を、相手方や社内に渡せる形で書き出します。</p>
+            <ul>
+              <li>旧・新の PDF に差分を焼き込んだファイル（元の PDF のコメントやハイライトも一緒に）</li>
+              <li>変更サマリーを PDF とテキストで</li>
+              <li>了承・差し戻しとメモ、AI の要点を含めるかを選べる（社内向けと相手方向けを分けられる）</li>
+            </ul>
+          </div>
+          <div class="feature-media">
+            <div class="device small"><img src="images/06_export.jpg" alt="エクスポートの画面。相手方への返信として「返信文の下書き」、差分焼き込み PDF として「旧・新の差分ハイライト PDF（2 ファイル）」、変更サマリーとしてサマリー PDF とサマリーテキストが並び、了承・差し戻しとメモを含めるか、AI の要点を含めるかのスイッチがある" width="660" height="1434" loading="lazy"></div>
+          </div>
+        </article>
+
+        <article class="feature">
+          <div>
+            <h3>表記のゆれは無視して、<br>本当の変更だけ</h3>
+            <p>何を「同じ」とみなすかを選べます。見かけだけの差が一覧を埋めないので、意味のある変更を見落としません。</p>
+            <ul>
+              <li>全角と半角 <span class="same">ＡＢ１２ = AB12</span></li>
+              <li>空白と改行の量 <span class="same">甲　　は = 甲 は</span></li>
+              <li>行末で語を分けたハイフン <span class="same">agree-↵ment = agreement</span></li>
+              <li>英字の大文字と小文字、新旧で繰り返すヘッダとフッタ</li>
+            </ul>
+          </div>
+          <div class="feature-media">
+            <div class="device small"><img src="images/09_settings.jpg" alt="設定の画面。比較のしかたとして、全角と半角、空白と改行の量、語を分けるハイフン、英字の大文字と小文字、ヘッダとフッタの 5 つを「同じとみなす」スイッチが並び、それぞれに AB12 = AB12 などの例が添えられている" width="660" height="1434" loading="lazy"></div>
+          </div>
+        </article>
+
+        <article class="feature">
+          <div>
+            <h3>比べた記録を、<br>あとから開き直せる</h3>
+            <p>どの版をいつ比べたかを、変更の件数と一緒に残します。前回の比較を開き直して、確かめた判断やメモの続きから作業できます。</p>
+            <ul>
+              <li>変更の種類ごとの件数を色の帯で表示</li>
+              <li>同じアカウントのほかの端末と、記録と変更点を同期（購入者向け・既定はオフ）</li>
+            </ul>
+          </div>
+          <div class="feature-media">
+            <div class="device small"><img src="images/08_history.jpg" alt="履歴の画面。業務委託契約書_先方修正後が 9 件（3 時間前）、利用規約_第 4 版が 16 件（昨日）、NDA_final が 6 件、賃貸借契約書_新が 9 件、見積書_v2 が 5 件、就業規則_2026 改定が 20 件と、比べた記録が変更の件数と色の帯つきで並んでいる" width="660" height="1434" loading="lazy"></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="more-title">
+      <div class="wrap">
+        <h2 class="section-title" id="more-title">細かなところまで、確かめやすく</h2>
+        <div class="cards">
+          <div class="card">
+            <h3>AI の要点（購入者向け）</h3>
+            <p>変更ごとに、金額・期日などの話題と一行の要点を添えます。端末の中のモデルで作り、変更の検出には使わないので、見つかる変更は AI のオン・オフで変わりません。Apple Intelligence に対応した端末で使えます。</p>
+          </div>
+          <div class="card">
+            <h3>条項ごとにまとまる</h3>
+            <p>「第 2 条（報酬）」のように、変更を条項の見出しごとにまとめて表示します。条番号の振り直しで、後ろの条がすべて変更として並ぶこともありません。</p>
+          </div>
+          <div class="card">
+            <h3>種類で絞り込み</h3>
+            <p>追加・削除・変更・未確認だけに絞り込めます。金額や日付など、数値だけが変わった箇所も見分けられます。</p>
+          </div>
+          <div class="card">
+            <h3>ほかのアプリから開く</h3>
+            <p>メールの添付やファイル App の PDF を、共有シートや「このアプリで開く」から、そのまま旧版・新版の枠に入れられます。</p>
+          </div>
+          <div class="card">
+            <h3>スキャンした PDF も（アドオン）</h3>
+            <p>文字の情報を持たない、スキャンした PDF は、文字認識のアドオンで読み取ってから比べられます。文字認識も端末の中で行います。</p>
+          </div>
+          <div class="card">
+            <h3>サンプルで、すぐ試せる</h3>
+            <p>初回の案内から「サンプルで試す」を押すと、同梱のサンプル契約書で比較の流れをひととおり体験できます。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="privacy-title">
+      <div class="wrap reading" style="margin: 0 auto; text-align: center;">
+        <h2 class="section-title" id="privacy-title">比べる文書は、あなたの手元に</h2>
+        <p class="section-lead" style="margin-bottom: 0;">PDF の読み取り・比較・文字認識・AI の要点づくりは、すべて端末の中で行います。開発者のサーバーに文書を送ることはなく、アカウント登録も、解析や広告の仕組みもありません。同期をオンにした場合だけ、比較の記録と変更点の抜粋が、あなた自身の iCloud に保存されます（PDF の本体とファイルの場所は同期しません）。</p>
+      </div>
+    </section>
+
+    <section class="section" id="pricing" aria-labelledby="pricing-title">
+      <div class="wrap">
+        <h2 class="section-title" id="pricing-title">まずは、そのまま試せます</h2>
+        <p class="section-lead">5 組までなら、お支払いなしで比較できます。ページ数の制限はありません。続けて使いたくなったら、買い切りのフル機能アンロックへ。</p>
+        <div class="plans">
+          <div class="plan">
+            <h3>そのまま</h3>
+            <p class="plan-sub">お支払いなしで使える範囲</p>
+            <ul>
+              <li>5 組までの比較（ページ数の制限なし）</li>
+              <li>並べて・文章・PDF 赤字の 3 つの表示</li>
+              <li>了承・差し戻しとメモ</li>
+              <li>表記のゆれを無視する設定、検索、絞り込み</li>
+              <li>比較の記録</li>
+              <li>同梱のサンプルでのお試し（回数に数えません）</li>
+            </ul>
+          </div>
+          <div class="plan featured">
+            <h3>フル機能アンロック</h3>
+            <p class="plan-sub">買い切り（1回のお支払い）</p>
+            <ul>
+              <li>何組でも比較</li>
+              <li>差分を焼き込んだ PDF の書き出し</li>
+              <li>変更サマリーの書き出し（PDF / テキスト）</li>
+              <li>返信文の下書き</li>
+              <li>AI の要点（Apple Intelligence 対応端末）</li>
+              <li>ほかの端末との同期（iCloud・既定はオフ）</li>
+            </ul>
+          </div>
+        </div>
+        <p class="hero-note" style="text-align: center;">スキャンした PDF を比べる文字認識のアドオンは、フル機能アンロックの購入後に追加できます。<br>購入した機能は、同じ Apple アカウントのほかの端末でも「購入を復元」で使えます。</p>
+      </div>
+    </section>
+
+    <section class="cta">
+      <div class="wrap">
+        <img class="app-icon" src="images/icon.png" alt="">
+        <h2>次の契約書から、読み比べをやめよう。</h2>
+        <p>同梱のサンプル契約書で、すぐに試せます。</p>
+        <a class="button store-button" href="https://apps.apple.com/jp/app/id6794534595">App Store で見る</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <nav aria-label="フッター">
+        <a href="support/">サポート</a>
+        <a href="privacy/">プライバシーポリシー</a>
+        <a href="../">ほかのアプリ</a>
+      </nav>
+      <span>© 2026 Kobako Apps</span>
+    </div>
+  </footer>
+</body>
+</html>

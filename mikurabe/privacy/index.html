@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mikurabe プライバシーポリシー</title>
+  <meta name="description" content="iOS / iPadOS アプリ「Mikurabe」のプライバシーポリシー。">
+  <link rel="canonical" href="https://kobako-apps.github.io/mikurabe/privacy/">
+  <link rel="alternate" hreflang="ja" href="https://kobako-apps.github.io/mikurabe/privacy/">
+  <link rel="alternate" hreflang="en" href="https://kobako-apps.github.io/mikurabe/privacy/en/">
+  <link rel="icon" href="../images/icon.png">
+  <link rel="apple-touch-icon" href="../images/apple-touch-icon.png">
+  <link rel="stylesheet" href="../../assets/site.css">
+  <style>
+    :root { --accent: #1f3f95; --accent-soft: #e7ecf8; --bg: #f2f2ef; }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) { --accent: #6f93f0; --accent-soft: #1a2342; --accent-ink: #0e0f11; --bg: #0e0f11; --surface: #1a1b1f; }
+    }
+    :root[data-theme="dark"] { --accent: #6f93f0; --accent-soft: #1a2342; --accent-ink: #0e0f11; --bg: #0e0f11; --surface: #1a1b1f; }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="../"><img src="../images/icon.png" alt="">Mikurabe</a>
+      <nav class="header-nav" aria-label="サイト内">
+        <a href="../support/">サポート</a>
+        <a href="en/" hreflang="en" lang="en">English</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="doc">
+    <article class="wrap reading" style="margin: 0 auto;">
+      <nav class="lang-switch" aria-label="言語">
+        <a href="./" aria-current="true">日本語</a>
+        <a href="en/" hreflang="en" lang="en">English</a>
+      </nav>
+
+      <h1>プライバシーポリシー（Mikurabe）</h1>
+      <p class="doc-meta">開発者: Toshihiro.nakao<br>制定日: 2026年10月16日</p>
+
+      <p>Toshihiro.nakao（以下「当方」といいます）は、iOS / iPadOS アプリ「Mikurabe」（以下「本アプリ」といいます）における利用者の情報の取り扱いについて、以下のとおりプライバシーポリシーを定めます。</p>
+
+      <h2>1. 基本方針</h2>
+      <p>本アプリは、2 つの PDF を比べて、追加・削除・変更された箇所を示すアプリです。PDF の読み取りと比較は利用者の端末の中で行い、利用者の情報は端末の中（同期をオンにした場合は、利用者自身の iCloud）に保存されます。当方が利用者の情報を収集することはありません。</p>
+      <ul>
+        <li>利用者の PDF や比較の結果を、当方のサーバーへ送信しません。当方はサーバーを運用していません。</li>
+        <li>本アプリが通信を行うのは、App Store での購入と購入の復元、および利用者がオンにした場合の iCloud 同期のときだけです。</li>
+        <li>会員登録やログインはありません。</li>
+        <li>広告、利用状況の解析、トラッキングは行いません。</li>
+        <li>外部の会社が提供するライブラリ（SDK）は使用していません。</li>
+      </ul>
+
+      <h2>2. 本アプリで扱う情報</h2>
+      <p>本アプリは、比較のために、利用者が選んだ PDF と、次の情報を扱います。</p>
+      <ul>
+        <li>利用者が選んだ PDF の内容（比較のために端末の中で読み取ります。PDF の本体を本アプリが別の場所へ保存することはありません）</li>
+        <li>比較の記録（比べた 2 つのファイルの名前、ファイルの場所を示す情報、比較の設定、比べた日時、変更の件数、端末を見分けるための識別子）</li>
+        <li>変更点の一覧（変更の種類、ページ番号、条項の見出し、変更前後の文の抜粋）</li>
+        <li>変更ごとに利用者が付けた了承・差し戻しの判断とメモ</li>
+        <li>AI の要点（変更ごとの話題と一行の要点）</li>
+        <li>同じ 2 つのファイルを見分けるために、ファイルの内容から作った識別用の値（お試しの回数を数えるためと、判断・メモを結び付けるために使います）</li>
+        <li>比較のしかたなどの各種の設定</li>
+      </ul>
+      <h3>文書に含まれる第三者の情報について</h3>
+      <p>比べる PDF には、契約の相手方の名前や住所など、利用者以外の方の情報が含まれることがあります。変更点の抜粋にこれらが含まれる場合も、上記と同じく利用者の端末と iCloud の中だけで扱い、当方が受け取ることはありません。</p>
+
+      <h2>3. データの保存場所</h2>
+      <ul>
+        <li>上記の情報は、端末の中の本アプリ専用の領域に保存されます。端末のバックアップに含まれることがあります。</li>
+        <li><strong>iCloud 同期（フル機能アンロック・既定はオフ）</strong>：利用者が設定で同期をオンにした場合だけ、比較の記録（ファイル名、比較の設定、日時、変更の件数、端末の識別子）と変更点の一覧（変更前後の文の抜粋を含みます）が、利用者自身の iCloud アカウントのプライベートな領域（Apple の CloudKit）に保存され、同じ Apple アカウントでサインインした端末の間で同期されます。当方はこの領域の内容を見ることができません。PDF の本体、ファイルの場所を示す情報、判断・メモ、AI の要点は同期しません。</li>
+      </ul>
+
+      <h2>4. 端末の機能へのアクセス</h2>
+      <p>本アプリは、カメラ・写真・位置情報・連絡先・マイクなどへのアクセスを求めません。PDF は、利用者がファイルの選択画面や共有シートで選んだものだけを読み取ります。</p>
+
+      <h2>5. 端末内での処理</h2>
+      <p>PDF の文字の読み取りと比較は、端末の中で行います。スキャンした PDF の文字認識（OCR アドオン）は、端末に組み込まれた Apple の機能で行います。AI の要点は、対応する端末で、端末に組み込まれたオンデバイス AI（Apple Intelligence）を使って作ります。いずれの場合も、PDF の内容や読み取った文が端末の外に送られることはありません。</p>
+
+      <h2>6. 利用者が行う書き出し・共有</h2>
+      <p>本アプリでは、差分を書き込んだ PDF、変更サマリー（PDF・テキスト）、返信文の下書きを作成し、利用者が選んだ方法（メール、ファイルへの保存、ほかのアプリなど）で共有・コピーできます。書き出しのために端末の中に一時的に作ったファイルは、本アプリが削除します。共有は利用者の操作でのみ行われ、共有先での情報の取り扱いは、それぞれのサービスや受け取った方に委ねられます。本アプリが自動で外部へ送ることはありません。</p>
+
+      <h2>7. アプリ内課金</h2>
+      <p>本アプリの有料機能「フル機能アンロック」と「文字認識アドオン」の購入は、Apple の App Store を通じて行われます。お支払いに関する情報は Apple が取り扱い、当方が受け取ることはありません。本アプリは、購入済みかどうかを確かめるために App Store の購入履歴を参照し、その結果を端末の中に記録します。</p>
+
+      <h2>8. 第三者への提供</h2>
+      <p>本アプリで扱う情報は当方に送られないため、当方が第三者に提供することはありません。</p>
+
+      <h2>9. データの削除</h2>
+      <ul>
+        <li>「履歴」タブの「すべて削除」で、比較の記録・変更点の一覧・判断とメモ・AI の要点を削除できます。同期を使っている場合は、iCloud と同期しているほかの端末からも削除されます。PDF の本体は削除されません。</li>
+        <li>「設定」タブの「iCloud から削除」で、利用者の iCloud に保存された情報を、ほかの端末が保存した分も含めてすべて削除し、同期を止められます。</li>
+        <li>本アプリを削除すると、端末に保存された情報は削除されます。iCloud に保存された情報は残ります。iCloud の情報は、iOS の「設定」→ 自分の名前 →「iCloud」の「アカウントのストレージを管理」からも削除できます。</li>
+      </ul>
+
+      <h2>10. 子どもの利用</h2>
+      <p>本アプリは文書の確認のための業務向けのアプリで、13歳未満の子どもを対象としていません。</p>
+
+      <h2>11. 本ポリシーの変更</h2>
+      <p>当方は、必要に応じて本ポリシーを変更することがあります。変更後のポリシーは、このページに掲載した時点から効力を生じます。</p>
+
+      <h2>12. お問い合わせの際に受け取る情報</h2>
+      <p><a href="../support/">サポートページ</a>のお問い合わせフォームは、Google LLC が提供する Google フォームで受け付けています。お問い合わせの際に利用者が入力した情報（返信先のメールアドレス、お問い合わせの内容など）は、当方が受け取ります。</p>
+      <ul>
+        <li>受け取った情報は、お問い合わせへの回答と、不具合の調査・改善のためにのみ使います</li>
+        <li>法令に基づく場合を除き、第三者に提供しません</li>
+        <li>対応が終わり、必要がなくなった情報は削除します</li>
+        <li>フォームでの情報の取り扱いには、Google のプライバシーポリシーも適用されます</li>
+      </ul>
+      <p>これは利用者が自分の意思で送る場合に限られ、本アプリの利用によって情報が当方へ送られることはありません。</p>
+
+      <h2>13. お問い合わせ</h2>
+      <p>本ポリシーまたは本アプリのプライバシーに関するお問い合わせは、<a href="../support/">サポートページ</a>までご連絡ください。</p>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <nav aria-label="フッター">
+        <a href="../">Mikurabe</a>
+        <a href="../support/">サポート</a>
+        <a href="en/" hreflang="en" lang="en">English</a>
+        <a href="../../">ほかのアプリ</a>
+      </nav>
+      <span>© 2026 Kobako Apps</span>
+    </div>
+  </footer>
+</body>
+</html>
