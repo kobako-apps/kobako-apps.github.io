@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fixee - 固定費・サブスクの管理と支払い日リマインダー</title>
+  <meta name="description" content="家賃・通信費・サブスク・保険。毎月の固定費を登録するだけで、今月の合計と残りの支払いがひと目でわかる iPhone・iPad アプリ。引き落としの前日や無料体験の終わりは、フクロウが先回りして知らせます。">
+  <meta name="apple-itunes-app" content="app-id=6757938267">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Fixee - 固定費・サブスクの管理と支払い日リマインダー">
+  <meta property="og:description" content="今月あといくら？がひと目でわかる。引き落としの前日や無料体験の終わりは、フクロウが先回りして知らせます。">
+  <meta property="og:image" content="https://kobako-apps.github.io/fixee/images/icon.png">
+  <meta property="og:url" content="https://kobako-apps.github.io/fixee/">
+  <link rel="canonical" href="https://kobako-apps.github.io/fixee/">
+  <link rel="icon" href="images/icon.png">
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+  <link rel="stylesheet" href="../assets/site.css">
+  <style>
+    /* アプリの琥珀 (黄色の上でも読める文字色) を文字とボタンに、黄色 (合計カードの色) は塗りに黒文字で使う */
+    :root { --accent: #8a5a00; --accent-soft: #fff1cc; --bg: #fbfaf6; --signal: #ffc94a; --on-signal: #1f1b16; }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) { --accent: #f2c25a; --accent-soft: #3a2e12; --accent-ink: #1f1b16; --bg: #13110e; --surface: #1e1b16; --signal: #e0ae3c; }
+    }
+    :root[data-theme="dark"] { --accent: #f2c25a; --accent-soft: #3a2e12; --accent-ink: #1f1b16; --bg: #13110e; --surface: #1e1b16; --signal: #e0ae3c; }
+
+    /* 番号とおすすめの枠は、アプリの合計カードと同じ黄色の地に黒文字 */
+    .points .num { background: var(--signal); color: var(--on-signal); }
+    .plan.featured { box-shadow: var(--shadow), 0 0 0 2px var(--signal); }
+
+    /* 見出しの「いくら？」に、合計カードの黄色のマーカー */
+    .marker { background: linear-gradient(transparent 62%, var(--signal) 62%); padding: 0 2px; }
+
+    /* 今月の合計カードの見本 (アプリのホームと同じ並び) */
+    .total-card { margin: 0 auto; max-width: 520px; background: var(--signal); color: var(--on-signal); border-radius: 28px; box-shadow: var(--shadow); padding: 22px 24px; }
+    .total-card .label { font-size: 13px; font-weight: 700; opacity: .75; }
+    .total-card .amount { font-size: 44px; font-weight: 800; letter-spacing: -1px; line-height: 1.2; margin: 2px 0 12px; }
+    .total-card .amount small { font-size: 22px; font-weight: 400; margin-right: 2px; }
+    .total-card .bar { height: 10px; border-radius: 999px; background: rgba(31, 27, 22, .14); overflow: hidden; }
+    .total-card .bar span { display: block; height: 100%; width: 38%; border-radius: inherit; background: var(--on-signal); }
+    .total-card .legend { display: flex; justify-content: space-between; font-size: 13px; font-weight: 700; margin-top: 8px; }
+    .total-card .legend .left { opacity: .7; }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="./"><img src="images/icon.png" alt="">Fixee</a>
+      <nav class="header-nav" aria-label="サイト内">
+        <a class="optional" href="#features">機能</a>
+        <a class="optional" href="#pricing">料金</a>
+        <a href="support/">サポート</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <div>
+          <span class="eyebrow">固定費・サブスクの管理アプリ</span>
+          <h1>今月、あと<span class="marker">いくら</span>？<br>がひと目でわかる。</h1>
+          <p class="lead">家賃・スマホ・動画や音楽のサブスク・保険。毎月の固定費を登録しておくだけで、今月の合計と、もう払った分・これから出ていく分がひと目でわかります。引き落としの前日や無料体験の終わりは、フクロウが先回りして知らせます。</p>
+          <a class="button store-button" href="https://apps.apple.com/jp/app/id6757938267">App Store で見る</a>
+          <p class="hero-note">iPhone・iPad（iOS 18.1 以上）／アカウント登録は不要です</p>
+        </div>
+        <div class="device">
+          <img src="images/01_home.jpg" alt="ホームの画面。10 月の支払いは 114,620 円で、支払済 14,300 円・残り 100,320 円のバーと、年間合計・月額平均が黄色のカードに並ぶ。下に「もうすぐ」として動画配信（あと 1 日）、スマホ（あと 2 日）、音楽（あと 5 日）の支払いがある" width="660" height="1434">
+        </div>
+      </div>
+    </section>
+
+    <section class="points" aria-label="特長">
+      <div class="wrap">
+        <ul>
+          <li>
+            <span class="num">1</span>
+            <h2>今月の残りが、ひと目で</h2>
+            <p>今月の支払い総額と、支払い済み・残りの金額をバーで表示。近い支払いは、あと何日かと一緒に並びます。</p>
+          </li>
+          <li>
+            <span class="num">2</span>
+            <h2>払い忘れを、フクロウが先回り</h2>
+            <p>引き落としの前日や 3 日前、無料体験が終わる前日に通知。アプリを開けば、フクロウが吹き出しでも教えてくれます。</p>
+          </li>
+          <li>
+            <span class="num">3</span>
+            <h2>どんな周期も、実際の日付で</h2>
+            <p>毎月・数か月ごと・年払い・日数ごと。土日の引き落としのずれや体験期間まで、実際に引き落とされる日で数えます。</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="card-title">
+      <div class="wrap">
+        <h2 class="section-title" id="card-title">開いた瞬間に、今月がわかる</h2>
+        <p class="section-lead">ホームのいちばん上は、今月の合計のカード。月の切り替えで、来月や年をまたいだ先の月も確かめられます。</p>
+        <div class="total-card" role="img" aria-label="10 月の支払い 114,620 円。支払済 14,300 円、残り 100,320 円">
+          <div class="label">10月の支払い</div>
+          <div class="amount"><small>¥</small>114,620</div>
+          <div class="bar"><span></span></div>
+          <div class="legend"><span>● 支払済 ¥14,300</span><span class="left">残り ¥100,320</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="features">
+      <div class="wrap">
+        <h2 class="section-title">固定費を、<br>見守るための機能</h2>
+        <p class="section-lead">家賃・光熱費・通信費・サブスク・保険・ジム・年払いの保険料。毎月の「出ていくお金」をまとめて。</p>
+
+        <article class="feature">
+          <div>
+            <h3>引き落とし日を、<br>カレンダーで先回り</h3>
+            <p>支払いのある日に、カテゴリの色の印が付きます。日付を選ぶと、その日に引き落とされる項目と金額がわかります。</p>
+            <ul>
+              <li>日付順のリストで、今月の支払いを上から確認</li>
+              <li>支払い済みの日と、あと何日かを表示</li>
+              <li>今後 1 年分の支払い日を、iPhone のカレンダーにまとめて登録（登録し直しても重複しません）</li>
+            </ul>
+          </div>
+          <div class="feature-media">
+            <div class="device small"><img src="images/03_schedule.jpg" alt="予定のカレンダーの画面。2026 年 10 月のカレンダーの日付の下にカテゴリ色の点が付き、選んだ 10 月 18 日（日）の欄に動画配信 1,590 円が表示されている" width="660" height="1434" loading="lazy"></div>
+          </div>
+        </article>
+
+        <article class="feature">
+          <div>
+            <h3>払い忘れと解約忘れを、<br>通知で防ぐ</h3>
+            <p>引き落としの当日・前日・3 日前・1 週間前から選んで、好きな時刻に知らせます。無料体験は、終わる前日に別のお知らせが届きます（プレミアム）。</p>
+            <ul>
+              <li>通知の文面を項目ごとに書ける</li>
+              <li>これから届く通知を一覧で確認</li>
+              <li>体験期間中の項目は、体験が終わるまで支払いに数えない</li>
+            </ul>
+          </div>
+          <div class="feature-media">
+            <div class="device small"><img src="images/04_notifications.jpg" alt="予定の通知の画面。AI アシスタントの「無料体験がまもなく終了」が 10 月 19 日 9:00 に、スマホ（前日 9:00）、家賃（3 日前 9:00）、AI アシスタント（前日 9:00）の通知が日付つきで並んでいる" width="660" height="1434" loading="lazy"></div>
+          </div>
+        </article>
+
+        <article class="feature">
+          <div>
+            <span class="tag">3.0 の新機能</span>
+            <h3>毎月も年払いも、<br>どんな周期でも</h3>
+            <p>毎月、2・3・6 か月ごと、年 1 回、日数ごと（例: 14 日ごと）。支払日が月末なら、月の日数に合わせて自動で調整します。</p>
+            <ul>
+              <li>土日の引き落としを、翌平日にずらす設定（口座振替向け）</li>
+              <li>途中から始めた支払いは、利用開始日より前を数えない</li>
+              <li>日数ごとの項目は、月に何回払っても実際の回数で合計</li>
+            </ul>
+          </div>
+          <div class="feature-media">
+            <div class="device small"><img src="images/07_edit.jpg" alt="編集の画面。写真付きの家賃 85,000 円（月換算 85,000 円・年間 1,020,000 円）で、サイクルは毎月、支払日は毎月 27 日、「土日は翌平日に」「途中から始めた」のスイッチ、カテゴリ、3 日前 9:00 のリマインダーが並んでいる" width="660" height="1434" loading="lazy"></div>
+          </div>
+        </article>
+
+        <article class="feature">
+          <div>
+            <h3>1 年の固定費を、<br>グラフでふりかえる</h3>
+            <p>月ごとの支払いを棒グラフで比べます。平均の線より多い月は、年払いの保険料など、その理由になった項目まで表示します。</p>
+            <ul>
+              <li>カテゴリ別の内訳をドーナツグラフで</li>
+              <li>月表示に切り替えると、その月の実際の支払いと平均との差</li>
+              <li>体験期間の終わりや、出費が多くなる月を「気づき」でお知らせ</li>
+            </ul>
+          </div>
+          <div class="feature-media">
+            <div class="device small"><img src="images/05_analytics.jpg" alt="分析の画面。月額平均 117,862 円・年間合計 1,414,340 円の下に 12 か月の棒グラフがあり、11 月に「150,620 円・自動車保険」の吹き出し。カテゴリ別のドーナツグラフで住居 72%、健康 9.1%、通信 7.0% などの内訳が並ぶ" width="660" height="1434" loading="lazy"></div>
+          </div>
+        </article>
+
+        <article class="feature">
+          <div>
+            <h3>写真を付けて、<br>カードで一覧</h3>
+            <p>サービスごとに写真や画像を付けると、ホームをカードで並べられます。人気のサービスはテンプレートから選ぶだけで、名前・金額・周期が入ります。</p>
+            <ul>
+              <li>リスト表示とカード表示を切り替え</li>
+              <li>画像の形は角丸と円から選べる</li>
+              <li>よく使う支払いを、自分のテンプレートとして作れる</li>
+            </ul>
+          </div>
+          <div class="feature-media">
+            <div class="device small"><img src="images/02_home_cards.jpg" alt="ホームのカード表示。今月の合計カードと「もうすぐ」の下に、写真付きの家賃がカードで表示されている" width="660" height="1434" loading="lazy"></div>
+          </div>
+        </article>
+
+        <article class="feature">
+          <div>
+            <h3>月あたりにならして、<br>本当の固定費を知る</h3>
+            <p>「全期間」に切り替えると、年払いや 2 週間ごとの支払いも月あたりに換算した「月額平均」で全体を見渡せます。</p>
+            <ul>
+              <li>年間の合計と、合計に含めている項目の数</li>
+              <li>カテゴリごとの月あたりの小計</li>
+              <li>合計に含めない項目も、一覧には残せる</li>
+            </ul>
+          </div>
+          <div class="feature-media">
+            <div class="device small"><img src="images/09_home_all.jpg" alt="ホームの全期間の表示。月額平均 117,862 円、年間合計 1,414,340 円、有効項目 11 のカードの下に、住居 85,000 円 / 月、通信 8,250 円 / 月とカテゴリごとの小計が並ぶ" width="660" height="1434" loading="lazy"></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="more-title">
+      <div class="wrap">
+        <h2 class="section-title" id="more-title">毎日の確認を、もっと手軽に</h2>
+        <div class="cards">
+          <div class="card">
+            <h3>ウィジェット</h3>
+            <p>ホーム画面とロック画面に、今月の合計・残り・次の支払いを表示します。アプリを開かなくても、支払日を過ぎるたびに残りが減っていきます。</p>
+          </div>
+          <div class="card">
+            <h3>ショートカット</h3>
+            <p>「今月の合計」「次の支払い」を、ショートカットからたずねられます。</p>
+          </div>
+          <div class="card">
+            <h3>ほかの端末と同期（プレミアム）</h3>
+            <p>同じ Apple アカウントの iPhone と iPad で、項目と画像を同期します。</p>
+          </div>
+          <div class="card">
+            <h3>バックアップと復元（プレミアム）</h3>
+            <p>すべてのデータを JSON ファイルに書き出し、機種変更のときなどに読み込めます。</p>
+          </div>
+          <div class="card">
+            <h3>日本語・英語、3 つの通貨</h3>
+            <p>アプリの中で日本語と英語を切り替えられます。金額は円・ドル・ユーロで表示できます。</p>
+          </div>
+          <div class="card">
+            <h3>サンプルで、すぐ試せる</h3>
+            <p>初回の案内で「サンプルデータで試す」を選ぶと、見本の固定費で使い方をひととおり体験できます。サンプルはいつでも削除できます。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="privacy-title">
+      <div class="wrap reading" style="margin: 0 auto; text-align: center;">
+        <h2 class="section-title" id="privacy-title">家計のことは、あなたの手元に</h2>
+        <p class="section-lead" style="margin-bottom: 0;">登録した固定費は、端末の中に保存されます。開発者のサーバーに送ることはなく、アカウント登録も、解析や広告の仕組みもありません。プレミアムで同期する場合だけ、あなた自身の iCloud に保存されます。</p>
+      </div>
+    </section>
+
+    <section class="section" id="pricing" aria-labelledby="pricing-title">
+      <div class="wrap">
+        <h2 class="section-title" id="pricing-title">まずは、そのまま試せます</h2>
+        <p class="section-lead">5 件までなら、お支払いなしで登録できます。続けて使いたくなったら、買い切りのプレミアムへ。</p>
+        <div class="plans">
+          <div class="plan">
+            <h3>そのまま</h3>
+            <p class="plan-sub">お支払いなしで使える範囲</p>
+            <ul>
+              <li>5 件までの登録（サンプルは数えません）</li>
+              <li>今月の合計・支払い済み・残りの表示</li>
+              <li>予定のカレンダーとリスト、分析</li>
+              <li>カレンダーへの支払い日の登録</li>
+              <li>ウィジェット、フクロウのお知らせ</li>
+              <li>テンプレート、写真付きのカード表示</li>
+            </ul>
+          </div>
+          <div class="plan featured">
+            <h3>プレミアム</h3>
+            <p class="plan-sub">買い切り（1 回のお支払い）</p>
+            <ul>
+              <li>登録数の上限なし</li>
+              <li>支払いのリマインダー通知</li>
+              <li>無料体験が終わる前日のお知らせ</li>
+              <li>ほかの端末との同期（iCloud）</li>
+              <li>データのバックアップと復元</li>
+            </ul>
+          </div>
+        </div>
+        <p class="hero-note" style="text-align: center;">定期的な請求はありません。購入した機能は、同じ Apple アカウントのほかの端末でも「購入を復元」で使えます。</p>
+      </div>
+    </section>
+
+    <section class="cta">
+      <div class="wrap">
+        <img class="app-icon" src="images/icon.png" alt="">
+        <h2>固定費を、見守る。</h2>
+        <p>サンプルデータで、すぐに試せます。</p>
+        <a class="button store-button" href="https://apps.apple.com/jp/app/id6757938267">App Store で見る</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <nav aria-label="フッター">
+        <a href="support/">サポート</a>
+        <a href="privacy/">プライバシーポリシー</a>
+        <a href="../">ほかのアプリ</a>
+      </nav>
+      <span>© 2026 Kobako Apps</span>
+    </div>
+  </footer>
+</body>
+</html>
