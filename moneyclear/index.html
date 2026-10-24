@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MoneyClear - 家計簿と資産予測</title>
+  <meta name="description" content="毎月の収支を記録するだけで、今月の残りから65歳時点の資産まで見えてくる家計簿アプリ。今のお金と未来のお金を、ひとつのアプリでつなげます。">
+  <meta name="apple-itunes-app" content="app-id=6757387742">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="MoneyClear - 家計簿と資産予測">
+  <meta property="og:description" content="今のお金も、未来のお金も。今月の残りがひと目でわかり、利回りと毎月の積立から将来の資産を予測します。">
+  <meta property="og:image" content="https://kobako-apps.github.io/moneyclear/images/icon.png">
+  <meta property="og:url" content="https://kobako-apps.github.io/moneyclear/">
+  <link rel="canonical" href="https://kobako-apps.github.io/moneyclear/">
+  <link rel="icon" href="images/icon.png">
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+  <link rel="stylesheet" href="../assets/site.css">
+  <style>
+    /* アプリの主色はアイコンの地のイエロー。文字とボタンは読める濃さの茶色、イエローは塗りに茶色の文字で使う */
+    :root { --accent: #7a4f00; --accent-soft: #fff3d1; --bg: #f7f5ef; --signal: #fdc93e; --on-signal: #3e2723; }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) { --accent: #fdc93e; --accent-soft: #2a2210; --accent-ink: #1a1408; --bg: #0f0e0b; --surface: #1b1914; }
+    }
+    :root[data-theme="dark"] { --accent: #fdc93e; --accent-soft: #2a2210; --accent-ink: #1a1408; --bg: #0f0e0b; --surface: #1b1914; }
+
+    .points .num { background: var(--signal); color: var(--on-signal); }
+    .plan.featured { box-shadow: var(--shadow), 0 0 0 2px var(--accent); }
+
+    /* 料金は 無料・プレミアム・同期プラン の3つを並べる */
+    .plans.three { grid-template-columns: repeat(3, 1fr); max-width: var(--content); }
+    @media (max-width: 820px) { .plans.three { grid-template-columns: 1fr; } }
+
+    /* お金の行き先の 4 色 (アプリの収支画面と同じ) */
+    .swatches { list-style: none; padding: 0; margin: 12px 0 0; display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 15px; color: var(--ink-sub); }
+    .swatches li::before { content: ""; display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; background: var(--dot); }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="./"><img src="images/icon.png" alt="">MoneyClear</a>
+      <nav class="header-nav" aria-label="サイト内">
+        <a class="optional" href="#features">機能</a>
+        <a class="optional" href="#future">資産予測</a>
+        <a class="optional" href="#pricing">料金</a>
+        <a href="support/">サポート</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <div>
+          <span class="eyebrow">家計簿と資産予測のアプリ</span>
+          <h1>今のお金も、<br>未来のお金も。</h1>
+          <p class="lead">「今月、あといくら使えるんだろう」「このまま積み立てて、老後は足りるのかな」。MoneyClear は、毎月の収支を記録するだけで、今月の残りから65歳時点の資産まで見えてくる家計簿です。</p>
+          <a class="button store-button" href="https://apps.apple.com/jp/app/id6757387742">App Store で見る</a>
+          <p class="hero-note">iPhone・iPad（iOS 18 以上）／アカウント登録は不要です</p>
+        </div>
+        <div class="device">
+          <img src="images/01_cashflow.jpg" alt="収支の画面。10月の残り 126,000 円が大きく表示され、蓄財率 16%、前月より +2,000 円。支出・投資・残りの割合を示す1本のバーと、収入 320,000 円・純収入 270,000 円・支出＋蓄財 194,000 円が並び、下に家賃・食費・光熱費の支出が続く" width="660" height="1434">
+        </div>
+      </div>
+    </section>
+
+    <section class="points" aria-label="特長">
+      <div class="wrap">
+        <ul>
+          <li>
+            <span class="num">1</span>
+            <h2>今月の残りがすぐわかる</h2>
+            <p>収入から支出・貯蓄・投資を引いた「残り」を、いちばん大きく表示。収入の行き先は1本のバーでわかります。</p>
+          </li>
+          <li>
+            <span class="num">2</span>
+            <h2>65歳の資産が見える</h2>
+            <p>口座ごとの利回りと毎月の積立から、引退後まで資産がどう動くかを計算します。</p>
+          </li>
+          <li>
+            <span class="num">3</span>
+            <h2>記録はテンキーでさっと</h2>
+            <p>種類を選んで金額を打つだけ。家賃や給料は繰り返しにしておけば、先の月にも予定として入ります。</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" id="features">
+      <div class="wrap">
+        <h2 class="section-title">毎月の記録が、<br>そのまま将来の見通しに</h2>
+        <p class="section-lead">家計簿と資産のシミュレーションが、同じデータでつながっています。記録した口座の残高と利回りから、この先を計算します。</p>
+
+        <article class="feature">
+          <div>
+            <h3>収入がどこへ行ったか、<br>1本のバーで</h3>
+            <p>収支の画面では、今月の収入を支出・貯蓄・投資・残りの4色に分けて1本のバーで表します。蓄財率や前月との差も並ぶので、使いすぎた月にすぐ気づけます。</p>
+            <ul class="swatches">
+              <li style="--dot: #ffbc45">支出</li>
+              <li style="--dot: #00c7c3">貯蓄</li>
+              <li style="--dot: #ffa5eb">投資</li>
+              <li style="--dot: #ffe600">残り</li>
+            </ul>
+          </div>
+          <div class="feature-media">
+            <div class="device small"><img src="images/08_cashflow_dark.jpg" alt="ダークモードの収支の画面。今月の残りと、支出・投資・残りに分かれた1本のバー、収入・純収入・支出＋蓄財の金額が並ぶ" width="660" height="1434" loading="lazy"></div>
+          </div>
+        </article>
+
+        <article class="feature">
+          <div>
+            <h3>記録は、テンキーでさっと</h3>
+            <p>収入・支出・貯蓄・投資を選んで、金額を打つだけ。前に使った内容はボタンで選べて、支払いに使った口座もタップで切り替えられます。</p>
+            <ul>
+              <li>毎月決まったお金は繰り返しにして、先の月にも予定として登録</li>
+              <li>記録する月は、横に並んだ月のボタンから選ぶだけ</li>
+            </ul>
+          </div>
+          <div class="feature-media">
+            <div class="device small"><img src="images/04_record.jpg" alt="記録する画面。収入・支出・貯蓄・投資の切り替え、金額の欄、月のボタン、内容の候補（光熱費・食費・家賃）、支払元の口座、繰り返しの設定、大きなテンキーが並ぶ" width="660" height="1434" loading="lazy"></div>
+          </div>
+        </article>
+
+        <article class="feature">
+          <div>
+            <h3>増えた資産が、線で見える</h3>
+            <p>推移の画面では、資産総額の動きを、これまでの実績と、記録した予定から計算したこの先を1本のグラフで表示します。月ごとの収支も4色のバーで並ぶので、残りが少なかった月がすぐに見つかります。</p>
+          </div>
+          <div class="feature-media">
+            <div class="device small"><img src="images/03_timeline.jpg" alt="推移の画面。資産総額 456 万円のグラフで、10月までの実績が実線、その先の予定が点線。下に月ごとの収支が支出・貯蓄・投資・残りの色のバーと、残りの金額で並ぶ" width="660" height="1434" loading="lazy"></div>
+          </div>
+        </article>
+
+        <article class="feature">
+          <div>
+            <span class="tag">プレミアム</span>
+            <h3>何にいくら？<br>項目ごとの変化も</h3>
+            <p>家賃・食費・光熱費など、内容ごとの金額を月ごと・年ごとの棒グラフで見られます。棒を押すと、その月の内訳と割合が下に並びます。推移の画面を年ごとに切り替えると、長い期間の収支も確かめられます。</p>
+          </div>
+          <div class="feature-media">
+            <div class="device small"><img src="images/07_category_trend.jpg" alt="カテゴリ別推移の画面。今月の支出 144,000 円と、月ごとの支出の棒グラフ。下に 2026年10月の内訳として家賃 90,000 円（62%）、食費 42,000 円（29%）、光熱費 12,000 円（8%）が並ぶ" width="660" height="1434" loading="lazy"></div>
+          </div>
+        </article>
+
+        <article class="feature">
+          <div>
+            <h3>預金も運用も、ひとつの画面に</h3>
+            <p>現金・銀行口座・証券口座・クレジットカードなどを口座ごとに管理し、預金・運用・負債と純資産を一覧で確かめられます。口座ごとに利回りを決めておくと、資産予測に使われます。</p>
+            <ul>
+              <li>口座を開くと、月末残高の推移と月ごとの入出金（プレミアム）</li>
+            </ul>
+          </div>
+          <div class="feature-media">
+            <div class="device small"><img src="images/05_assets.jpg" alt="資産の画面。純資産の合計と先月からの増減、預金と運用の割合のバー、口座ごとの残高と利回りの一覧が並ぶ" width="660" height="1434" loading="lazy"></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="future" aria-labelledby="future-title">
+      <div class="wrap">
+        <h2 class="section-title" id="future-title">65歳の資産を、いま知る</h2>
+        <p class="section-lead">未来の画面では、口座の利回りと毎月の積立から、引退後までの資産の動きを計算します。結果は前提から計算した目安です。</p>
+
+        <article class="feature">
+          <div>
+            <span class="tag">プレミアム</span>
+            <h3>引退の年齢や取り崩し方を、<br>その場で変えて見比べる</h3>
+            <p>引退年齢をスライダーで動かし、引退後の取り崩しを「資産の何%（定率）」か「毎月いくら（定額）」から選ぶと、グラフと65歳時点の資産がすぐに変わります。何歳まで資産が残るかも表示します。</p>
+          </div>
+          <div class="feature-media">
+            <div class="device small"><img src="images/02_future.jpg" alt="未来の画面。65歳時点の資産 1,267 万円と「95歳まで資産が残る」の表示、引退 65 歳の線が入った資産と元本のグラフ、引退年齢のスライダーと取り崩しの定率・定額の切り替えが並ぶ" width="660" height="1434" loading="lazy"></div>
+          </div>
+        </article>
+
+        <article class="feature">
+          <div>
+            <span class="tag">プレミアム</span>
+            <h3>値動きも考えて、<br>資産の幅を予測</h3>
+            <p>「値動きを考慮」に切り替えると、口座ごとの値動きの大きさをもとに 500 回の試行を行い、資産の中央値と、80% の確率で収まる範囲を示します。何歳まで資産が残る確率と、悲観的なケースの結果もわかります。</p>
+          </div>
+          <div class="feature-media">
+            <div class="device small"><img src="images/06_future_montecarlo.jpg" alt="未来の画面の「値動きを考慮」。65歳時点の資産の中央値 1,051 万円、80% の確率で 519 万円〜2,373 万円、95歳まで残る確率 100%。中央値の線と 80% の範囲の帯のグラフが並ぶ" width="660" height="1434" loading="lazy"></div>
+          </div>
+        </article>
+
+        <article class="feature">
+          <div>
+            <span class="tag">プレミアム</span>
+            <h3>期間と口座を絞って見る</h3>
+            <p>資産推移グラフでは、5年・10年・20年・引退まで・寿命までと期間を選び、運用中と引退後の資産を色分けして表示します。対象にする口座を選んで、気になる口座だけで将来を確かめることもできます。</p>
+          </div>
+          <div class="feature-media">
+            <div class="device small"><img src="images/09_asset_chart.jpg" alt="資産推移グラフの画面。開始・最終・増減の金額のカードと、30歳から95歳までの資産を運用中はピンク、引退後はオレンジで示す棒グラフ、期間のボタンと開始・終了年齢の設定が並ぶ" width="660" height="1434" loading="lazy"></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="more-title">
+      <div class="wrap">
+        <h2 class="section-title" id="more-title">続けやすくするための工夫</h2>
+        <div class="cards">
+          <div class="card">
+            <h3>サンプルデータで試せる</h3>
+            <p>はじめて開いたときに、サンプルの口座と過去6か月分の記録を入れて各画面を試せます。サンプルは、あとで設定からまとめて消せます。</p>
+          </div>
+          <div class="card">
+            <h3>ダークモードと好きな色</h3>
+            <p>ダークモードに切り替えられ、ボタンの色も選べます。左上のアプリのアイコンの表示も設定できます。</p>
+          </div>
+          <div class="card">
+            <h3>バックアップを書き出す</h3>
+            <p>記録をファイルに書き出して保管し、あとからそのファイルで復元できます。機種変更の前の控えにも。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="privacy-title">
+      <div class="wrap reading" style="margin: 0 auto; text-align: center;">
+        <h2 class="section-title" id="privacy-title">お金の記録は、あなたの手元に</h2>
+        <p class="section-lead" style="margin-bottom: 0;">記録した収支や口座の情報は、端末の中と、同期プランで同期する場合はあなた自身の iCloud にだけ保存されます。開発者のサーバーへ送ることはなく、銀行や証券会社につないで残高を取りに行くこともありません。アカウント登録は不要で、解析や広告の仕組みも入っていません。</p>
+      </div>
+    </section>
+
+    <section class="section" id="pricing" aria-labelledby="pricing-title">
+      <div class="wrap">
+        <h2 class="section-title" id="pricing-title">まずは無料で</h2>
+        <p class="section-lead">毎月の記録と今月の残りは、無料で使えます。将来の資産を見たくなったらプレミアム、ほかの端末でも使うなら同期プランを。どちらも買い切りです。</p>
+        <div class="plans three">
+          <div class="plan">
+            <h3>無料</h3>
+            <p class="plan-sub">お支払いなしで使える範囲</p>
+            <ul>
+              <li>収入・支出・貯蓄・投資の記録と繰り返し</li>
+              <li>今月の残りと、収入の行き先のバー</li>
+              <li>資産総額の推移と月ごとの収支</li>
+              <li>口座ごとの残高と純資産</li>
+              <li>サンプルデータ、ダークモード、表示の設定</li>
+              <li>バックアップの書き出しと復元</li>
+            </ul>
+          </div>
+          <div class="plan featured">
+            <h3>プレミアム</h3>
+            <p class="plan-sub">買い切り（1回のお支払い）</p>
+            <ul>
+              <li>将来の資産の予測（未来の画面）</li>
+              <li>値動きを考慮した予測</li>
+              <li>期間と口座を絞った資産推移グラフ</li>
+              <li>年ごとの推移</li>
+              <li>カテゴリ別推移</li>
+              <li>口座ごとの履歴</li>
+            </ul>
+          </div>
+          <div class="plan">
+            <h3>同期プラン</h3>
+            <p class="plan-sub">買い切り（1回のお支払い）</p>
+            <ul>
+              <li>同じ Apple アカウントの端末の間で、記録を自動で同期</li>
+              <li>入れ直したときや新しい端末でも、iCloud から記録が戻る</li>
+              <li>記録は自分の iCloud にだけ保存</li>
+            </ul>
+          </div>
+        </div>
+        <p class="hero-note" style="text-align: center;">購入したプランは、同じ Apple アカウントのほかの端末でも「購入の復元」で使えます。同期には端末の iCloud へのサインインが必要です。</p>
+      </div>
+    </section>
+
+    <section class="cta">
+      <div class="wrap">
+        <img class="app-icon" src="images/icon.png" alt="">
+        <h2>今月の残りを、今日から。</h2>
+        <p>サンプルデータを入れて、すぐに試せます。</p>
+        <a class="button store-button" href="https://apps.apple.com/jp/app/id6757387742">App Store で見る</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <nav aria-label="フッター">
+        <a href="support/">サポート</a>
+        <a href="privacy/">プライバシーポリシー</a>
+        <a href="../">ほかのアプリ</a>
+      </nav>
+      <span>© 2026 Kobako Apps</span>
+    </div>
+  </footer>
+</body>
+</html>
