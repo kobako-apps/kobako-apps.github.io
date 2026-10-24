@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kiroq - 飲食店の衛生管理記録簿</title>
+  <meta name="description" content="小さな飲食店の衛生管理の記録を、毎日30秒ほどで。開店前・営業中・閉店後の帳面に判子を押して締め、記録は A4 の PDF にまとめて保健所の方にそのまま見せられます。">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Kiroq - 飲食店の衛生管理記録簿">
+  <meta property="og:description" content="毎日の衛生記録を、判子ひとつで。点検は30秒、保健所にはPDFで。">
+  <meta property="og:image" content="https://kobako-apps.github.io/kiroq/images/icon.png">
+  <meta property="og:url" content="https://kobako-apps.github.io/kiroq/">
+  <link rel="canonical" href="https://kobako-apps.github.io/kiroq/">
+  <link rel="icon" href="images/icon.png">
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+  <link rel="stylesheet" href="../assets/site.css">
+  <style>
+    /* アプリの色は判子の朱。地は和紙、良の ○ は藍（アプリの帳面と同じ） */
+    :root { --accent: #C8102E; --accent-soft: #F9E1E4; --bg: #F7F3EA; --surface: #FFFDF8; --ai: #1F3A68; }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) { --accent: #FF6B7A; --accent-soft: #3A1A1F; --accent-ink: #15140F; --bg: #15140F; --surface: #1F1D18; --ai: #9DB4E8; }
+    }
+    :root[data-theme="dark"] { --accent: #FF6B7A; --accent-soft: #3A1A1F; --accent-ink: #15140F; --bg: #15140F; --surface: #1F1D18; --ai: #9DB4E8; }
+
+    /* 判子の形の番号 */
+    .points .num { background: transparent; color: var(--accent); border: 3px solid var(--accent); }
+    .plan.featured { box-shadow: var(--shadow), 0 0 0 2px var(--accent); }
+    .plans.three { grid-template-columns: repeat(3, 1fr); max-width: var(--content); }
+    @media (max-width: 820px) { .plans.three { grid-template-columns: 1fr; } }
+
+    /* 開店前・営業中・閉店後の3枚の帳面 */
+    .slots { list-style: none; padding: 0; margin: 14px 0 0; display: flex; flex-wrap: wrap; gap: 8px; }
+    .slots li { padding: 4px 14px; border-radius: 999px; background: var(--accent-soft); color: var(--ink); font-size: 15px; }
+    .marks { list-style: none; padding: 0; margin: 12px 0 0; display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 15px; color: var(--ink-sub); }
+    .marks b { color: var(--ai); margin-right: 4px; }
+    .marks b.bad { color: var(--accent); }
+
+    /* 公開前は App Store へのリンクを出さない */
+    .soon { display: inline-flex; align-items: center; min-height: 52px; padding: 0 26px; border-radius: 999px;
+            background: var(--accent-soft); color: var(--ink); font-size: 17px; font-weight: 600; }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="./"><img src="images/icon.png" alt="">Kiroq</a>
+      <nav class="header-nav" aria-label="サイト内">
+        <a class="optional" href="#features">機能</a>
+        <a class="optional" href="#staff">スタッフと分担</a>
+        <a class="optional" href="#pricing">料金</a>
+        <a href="support/">サポート</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <div>
+          <span class="eyebrow">飲食店の衛生管理記録簿</span>
+          <h1>毎日の衛生記録を、<br>判子ひとつで。</h1>
+          <p class="lead">紙の記録表をもらったものの、忙しい日が続いて止まってしまった。保健所の方が来たら、どこにあるか探す。Kiroq（キロク）は、小さな飲食店が HACCP の考え方を取り入れた衛生管理の記録を、毎日30秒ほどで続けるためのアプリです。</p>
+          <span class="soon">App Store で近日公開</span>
+          <p class="hero-note">iPhone・iPad（iOS 26 以上）／アカウント登録は不要です</p>
+        </div>
+        <div class="device">
+          <img src="images/00_stamp.jpg" alt="開店前の帳面を締める前の確認の画面。「開店前を締めます」の見出しと、温度 2・項目 3 がすべて良の要約、記録者の朱の判子「田中 10.24 10:00」、営業中の帳面は 11:00 ごろに開く案内、「戻る」と「判子を押す」のボタンが並ぶ" width="660" height="1434">
+        </div>
+      </div>
+    </section>
+
+    <section class="points" aria-label="特長">
+      <div class="wrap">
+        <ul>
+          <li>
+            <span class="num">1</span>
+            <h2>ふだんは30秒で終わる</h2>
+            <p>「残りを良」でまとめて良に。手を止めるのは、問題があったときだけです。</p>
+          </li>
+          <li>
+            <span class="num">2</span>
+            <h2>保健所にそのまま見せられる</h2>
+            <p>衛生管理計画書と記録表を A4 の PDF に。白黒で印刷しても区別できる印です。</p>
+          </li>
+          <li>
+            <span class="num">3</span>
+            <h2>店主は週に一度の確認印</h2>
+            <p>記録はスタッフ、確認は店主。台帳を見て、確認印を押すだけです。</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" id="features">
+      <div class="wrap">
+        <h2 class="section-title">紙の記録表の流れのまま、<br>手間だけを減らす</h2>
+        <p class="section-lead">一日を開店前・営業中・閉店後の3枚の帳面に分け、記録した人の判子を押して締めます。紙の記録表と同じ感覚で、毎日の記録が残ります。</p>
+
+        <article class="feature">
+          <div>
+            <h3>押すのは2つだけ。<br>「残りを良」と「押印して締める」</h3>
+            <p>点検の項目は業態に合わせて用意されていて、ふだんは「残りを良」を押して判子で締めるだけ。否のときだけ、何があってどうしたかを書きます。よく使う対応は候補から選べます。</p>
+            <ul class="slots">
+              <li>開店前</li>
+              <li>営業中</li>
+              <li>閉店後</li>
+            </ul>
+            <ul>
+              <li>押し忘れた帳面は「未押印」と出るので、あとから締められます</li>
+              <li>1人営業のお店は、開店前の1枚だけで記録することもできます</li>
+            </ul>
+          </div>
+          <div class="feature-media">
+            <div class="device small"><img src="images/01_today.jpg" alt="今日の帳面の画面。開店前の帳面が開いていて、残り1つの表示と、項目ごとの良・否のボタンが並ぶ" width="660" height="1434" loading="lazy"></div>
+          </div>
+        </article>
+
+        <article class="feature">
+          <div>
+            <h3>温度は大きな数字で。<br>濡れた手でも打てる</h3>
+            <p>冷蔵庫・冷凍庫の温度は、大きなキーパッドで入力します。前回の値を見ながら打てて、基準を外れたらその場で知らせます。</p>
+            <ul>
+              <li>カメラで温度計の表示を読み取って入力（決めるのは人です）</li>
+              <li>機器に貼った NFC タグにかざすと、その機器の温度入力が開く</li>
+              <li>機器は台数の上限なし</li>
+            </ul>
+          </div>
+          <div class="feature-media">
+            <div class="device small"><img src="images/02_keypad.jpg" alt="温度入力のシート。冷凍庫1 の −18.5℃ が大きく表示され、基準 −15℃以下を示すバーと、0〜9 の大きなキー、決定のボタンが並ぶ" width="660" height="1434" loading="lazy"></div>
+          </div>
+        </article>
+
+        <article class="feature">
+          <div>
+            <h3>台帳は、紙の記録表と同じ並び</h3>
+            <p>1週間の記録が、項目×日付の表で並びます。区切りごとに、締めた人の判子も残ります。月の画面では、つけ忘れの日・否の日・未確認の週がカレンダーですぐに見つかります。</p>
+            <ul class="marks">
+              <li><b>○</b>良</li>
+              <li><b class="bad">✕</b>否</li>
+              <li><b>●</b>記録済み</li>
+              <li><b class="bad">▲</b>否あり</li>
+              <li><b>―</b>休業日</li>
+            </ul>
+          </div>
+          <div class="feature-media">
+            <div class="device small"><img src="images/03_ledger.jpg" alt="台帳の記録表。10/19〜10/25 の1週間について、冷蔵庫・冷凍庫の温度と、項目ごとの ○ が日付ごとに並び、区切りごとに記録者の判子の行がある。今日の列は黄色" width="660" height="1434" loading="lazy"></div>
+          </div>
+        </article>
+
+        <article class="feature">
+          <div>
+            <span class="tag">購入で使えます</span>
+            <h3>記録を A4 の PDF に。<br>印刷も保存もすぐ</h3>
+            <p>衛生管理計画書・一般的衛生管理の実施記録・重要管理点の実施記録・温度記録表・振り返り記録を、A4 の PDF にまとめて出力します。CSV（表計算ソフトで開ける形式）でも出せます。</p>
+          </div>
+          <div class="feature-media">
+            <div class="device small"><img src="images/08_export.jpg" alt="書類の出力の画面。衛生管理計画書・一般的衛生管理の実施記録・重要管理点の実施記録・温度記録表・振り返り記録のトグルと、最初の月・最後の月の選択が並ぶ" width="660" height="1434" loading="lazy"></div>
+          </div>
+        </article>
+
+        <article class="feature">
+          <div>
+            <h3>保健所の方には、<br>この画面を見せるだけ</h3>
+            <p>保健所に見せるモードでは、直近14日の記録表、30日の否と対応、週次確認、計画の要約を、編集できない状態で大きく表示します。</p>
+          </div>
+          <div class="feature-media">
+            <div class="device small"><img src="images/07_inspector.jpg" alt="保健所に見せるモードの画面。店名と業態、直近30日の記録率、計画の版、最後の見直しの日が並び、下に直近14日の記録表が続く" width="660" height="1434" loading="lazy"></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="staff" aria-labelledby="staff-title">
+      <div class="wrap">
+        <h2 class="section-title" id="staff-title">記録はスタッフ、確認は店主</h2>
+        <p class="section-lead">店主がすべてを書く必要はありません。週に一度、記録を表で確かめて確認印を押し、月末に振り返ります。</p>
+
+        <article class="feature">
+          <div>
+            <h3>週に一度、確認印を押す</h3>
+            <p>1週間の区切りごとの判子が表で並び、記録漏れがひと目で分かります。確認印か指の署名で確定します。記録した人と確認する人が同じときは、注意を出します。</p>
+          </div>
+          <div class="feature-media">
+            <div class="device small"><img src="images/05_weekly.jpg" alt="週次確認の画面。10/12〜10/18 の7日について、開店前・営業中・閉店後の判子が表に並び、確認する人の選択と確認印の欄、「確認印を押して確定」のボタンがある" width="660" height="1434" loading="lazy"></div>
+          </div>
+        </article>
+
+        <article class="feature">
+          <div>
+            <h3>月末の振り返りは、集計から始まる</h3>
+            <p>記録した日・未記録・否の件数と、否の内訳を自動で集計します。同じ項目で否が繰り返したときは目立たせるので、原因と対策を書いて確定するだけです。</p>
+          </div>
+          <div class="feature-media">
+            <div class="device small"><img src="images/06_monthly.jpg" alt="月次振り返りの画面。2026年9月の記録した日 22/23日、未記録 1日、否 2件などの集計と、冷蔵庫1の温度の否のグラフ、「月2回（繰り返し）」の表示、原因と今後の対策の入力欄が並ぶ" width="660" height="1434" loading="lazy"></div>
+          </div>
+        </article>
+
+        <div class="cards">
+          <div class="card">
+            <h3>スタッフの端末で記録</h3>
+            <p>店舗を共有すると、招待したスタッフが自分の iPhone で記録できます。スタッフ側の購入は不要です。</p>
+          </div>
+          <div class="card">
+            <h3>役割を分ける</h3>
+            <p>管理者・確認者・記録者の役割と、閲覧のみの共有に対応。計画の編集や書類の出力は店主の端末で行います。</p>
+          </div>
+          <div class="card">
+            <h3>記録画面の言語を選べる</h3>
+            <p>スタッフごとに、やさしい日本語・英語・ベトナム語を選べます。PDF などの書類は日本語のままです。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="more-title">
+      <div class="wrap">
+        <h2 class="section-title" id="more-title">続けられる工夫</h2>
+        <div class="cards">
+          <div class="card">
+            <h3>業態のテンプレート</h3>
+            <p>居酒屋・食堂、カフェ・喫茶、ラーメン、弁当・惣菜、パン・菓子と、その他の飲食店。項目はお店に合わせて編集できます。</p>
+          </div>
+          <div class="card">
+            <h3>リマインドとウィジェット</h3>
+            <p>開店前のリマインドと、閉店後の押し忘れの通知。ホーム画面とロック画面で、今日の帳面の残りが分かります。</p>
+          </div>
+          <div class="card">
+            <h3>記録は消えない</h3>
+            <p>日々の記録は削除できません。締めたあとの修正は、修正履歴として自動で残ります。計画を変えても、過去の記録は当時の計画のままです。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="privacy-title">
+      <div class="wrap reading" style="margin: 0 auto; text-align: center;">
+        <h2 class="section-title" id="privacy-title">お店の記録は、お店の手元に</h2>
+        <p class="section-lead" style="margin-bottom: 0;">記録は端末の中と、お使いのアカウントの iCloud にだけ保存され、同じアカウントの端末と自動で同期します。開発者のサーバーへ送ることはありません。アカウント登録は不要で、広告や解析の仕組みも入っていません。</p>
+      </div>
+    </section>
+
+    <section class="section" id="pricing" aria-labelledby="pricing-title">
+      <div class="wrap">
+        <h2 class="section-title" id="pricing-title">記録と閲覧は、ずっと無料で</h2>
+        <p class="section-lead">毎日の記録・台帳・カレンダー・バックアップは、購入しなくても期限なく使えます。書類を出したくなったら本体を、スタッフと分担するならスタッフ共有を。どちらも買い切りです。</p>
+        <div class="plans three">
+          <div class="plan">
+            <h3>無料</h3>
+            <p class="plan-sub">お支払いなしで使える範囲</p>
+            <ul>
+              <li>3枚の帳面の記録と判子、修正履歴</li>
+              <li>温度の入力（キーパッド・カメラ・NFC タグ）</li>
+              <li>台帳・カレンダー</li>
+              <li>直近14日の週次確認・振り返りの確定</li>
+              <li>保健所に見せるモード</li>
+              <li>開店前のリマインド</li>
+              <li>バックアップ（JSON）の作成と復元</li>
+            </ul>
+          </div>
+          <div class="plan featured">
+            <h3>Kiroq 本体</h3>
+            <p class="plan-sub">買い切り（1回のお支払い）</p>
+            <ul>
+              <li>PDF・CSV の出力</li>
+              <li>14日より前の週次確認・振り返りの確定</li>
+              <li>ホーム画面・ロック画面のウィジェット</li>
+              <li>通知の時刻の変更</li>
+            </ul>
+          </div>
+          <div class="plan">
+            <h3>スタッフ共有</h3>
+            <p class="plan-sub">買い切り（店主だけの購入）</p>
+            <ul>
+              <li>店舗をスタッフと共有し、スタッフの端末で記録</li>
+              <li>役割と閲覧のみの共有</li>
+              <li>招待したスタッフの購入は不要</li>
+            </ul>
+          </div>
+        </div>
+        <p class="hero-note" style="text-align: center;">購入は同じ Apple アカウントのほかの端末でも「購入を復元」で使えます。ファミリー共有に対応しています。</p>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="note-title">
+      <div class="wrap reading" style="margin: 0 auto;">
+        <h2 class="section-title" id="note-title" style="font-size: 20px;">ご注意</h2>
+        <p style="color: var(--ink-sub);">Kiroq は日々の衛生管理の記録を助けるアプリです。HACCP の認証や、法令への対応の完了を保証するものではありません。衛生管理の方法は、業界団体の手引書や、お近くの保健所の指導に沿って決めてください。</p>
+      </div>
+    </section>
+
+    <section class="cta">
+      <div class="wrap">
+        <img class="app-icon" src="images/icon.png" alt="">
+        <h2>今日の帳面から、はじめよう。</h2>
+        <p>業態を選ぶだけで、衛生管理計画ができます。</p>
+        <span class="soon">App Store で近日公開</span>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <nav aria-label="フッター">
+        <a href="support/">サポート</a>
+        <a href="privacy/">プライバシーポリシー</a>
+        <a href="../">ほかのアプリ</a>
+      </nav>
+      <span>© 2026 Kobako Apps</span>
+    </div>
+  </footer>
+</body>
+</html>
