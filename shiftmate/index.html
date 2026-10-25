@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Shiftmate - シフト表作成・シフト管理</title>
-  <meta name="description" content="紙より速く組める、お店の勤務表。スタッフ数名〜20名ほどの小さなお店のための、設定いらずのシフト管理アプリです。足りない日と時間帯がひと目でわかり、できたシフト表はアプリを持っていないスタッフにもリンク1本で届けられます。">
+  <meta name="description" content="紙より速く組める、お店の勤務表。スタッフ数名〜20名ほどの小さなお店のための、設定いらずのシフト管理アプリです。足りない日と時間帯がひと目でわかり、できたシフト表はアプリを持っていないスタッフにもリンク1本で届けられます。PC の大きな画面でも組めます。">
   <meta name="apple-itunes-app" content="app-id=6779656148">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Shiftmate - シフト表作成・シフト管理">
@@ -22,6 +22,16 @@
     /* 料金は 無料・プレミアム・Shiftmate リンク の3つを並べる */
     .plans.three { grid-template-columns: repeat(3, 1fr); max-width: var(--content); }
     @media (max-width: 820px) { .plans.three { grid-template-columns: 1fr; } }
+    /* 「PC で使う」: 文の下に、ブラウザの枠に入れた広い画面の写真 */
+    .feature.wide { grid-template-columns: 1fr; gap: 24px; }
+    .feature.wide .feature-media { order: 0; }
+    .browser { max-width: 960px; margin: 0 auto; border-radius: 14px; overflow: hidden; background: #fff;
+      border: 1px solid var(--hairline); box-shadow: var(--shadow); }
+    .browser::before { content: ""; display: block; height: 26px; background:
+      radial-gradient(circle at 16px 13px, #ff5f57 5px, transparent 5.5px),
+      radial-gradient(circle at 34px 13px, #febc2e 5px, transparent 5.5px),
+      radial-gradient(circle at 52px 13px, #28c840 5px, transparent 5.5px), #eceef3; }
+    .browser img { display: block; width: 100%; height: auto; }
   </style>
 </head>
 <body>
@@ -213,6 +223,23 @@
           </div>
         </article>
 
+        <article class="feature wide">
+          <div>
+            <span class="tag">Shiftmate リンク</span>
+            <h3>PC の大きな画面で、週のシフト表を組む</h3>
+            <p>iPhone の「PC で使う」で、PC のブラウザに出た QR を読み取るだけ。アカウントは要りません。週の表を見ながらシフトを足したり時間を変えたり、届いた希望を承認したりできます。直した内容は iPhone が受け取って確かめ、保存します。</p>
+            <ul>
+              <li>ホームで、今月の見通し・決めること・今日の配置・次に足りない日をひと目で</li>
+              <li>ウィンドウの幅に合わせて並びが変わり、iPad やスマホのブラウザでも使えます</li>
+              <li>中身は iPhone とブラウザの中で暗号化。開発者も読めません</li>
+              <li>プレミアムでは、同じ画面を見るだけ試せます</li>
+            </ul>
+          </div>
+          <div class="feature-media">
+            <div class="browser"><img src="images/ja/11_webAdmin.jpg?v=1.6.0" alt="PC のブラウザで開いた Shiftmate の Web 管理画面。スタッフ×曜日の週のシフト表と、選んだシフトの種類・テンプレート・時間・休憩を直す欄" width="1600" height="1000" loading="lazy"></div>
+          </div>
+        </article>
+
         <div class="cards">
           <div class="card">
             <h3>開発者も中身を読めない</h3>
@@ -267,7 +294,7 @@
     <section class="section" aria-labelledby="privacy-title">
       <div class="wrap reading" style="margin: 0 auto; text-align: center;">
         <h2 class="section-title" id="privacy-title">データはお店の端末の中に</h2>
-        <p class="section-lead" style="margin-bottom: 0;">アカウント登録は不要。データは端末の中に保存され、電波が届かない場所でも使えます（Shiftmate リンクの送受信を除く）。リンクで送る内容は暗号化され、開発者も読めません。解析や広告の仕組みも入っていません。</p>
+        <p class="section-lead" style="margin-bottom: 0;">アカウント登録は不要。データは端末の中に保存され、電波が届かない場所でも使えます（Shiftmate リンクの送受信を除く）。リンクや「PC で使う」で送る内容は暗号化され、開発者も読めません。解析や広告の仕組みも入っていません。</p>
       </div>
     </section>
 
@@ -296,6 +323,7 @@
               <li>端末間の同期とバックアップ</li>
               <li>自動シフト作成</li>
               <li>画像・PDF・カレンダー・CSV の書き出し</li>
+              <li>PC のブラウザで見る（見るだけ）</li>
             </ul>
           </div>
           <div class="plan">
@@ -306,6 +334,7 @@
               <li>シフト表をリンクで配る（いつも最新）</li>
               <li>希望をリンクで集める・届いたら通知</li>
               <li>全員で見るシフト表の QR コード</li>
+              <li>PC のブラウザで組む（PC で使う）</li>
             </ul>
           </div>
         </div>

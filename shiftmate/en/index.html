@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Shiftmate - Shift Scheduler</title>
-  <meta name="description" content="A work schedule maker for small shops. Tap AM or PM and the week fills in, short-staffed days and hours stand out at a glance, and staff without the app get the schedule with one link. No account needed.">
+  <meta name="description" content="A work schedule maker for small shops. Tap AM or PM and the week fills in, short-staffed days and hours stand out at a glance, and staff without the app get the schedule with one link. No account needed. You can build it on a computer too.">
   <meta name="apple-itunes-app" content="app-id=6779656148">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Shiftmate - Shift Scheduler">
@@ -22,6 +22,16 @@
     /* Three plans side by side: Free, Premium and Shiftmate Link */
     .plans.three { grid-template-columns: repeat(3, 1fr); max-width: var(--content); }
     @media (max-width: 820px) { .plans.three { grid-template-columns: 1fr; } }
+    /* Use on a PC: a wide screenshot in a browser frame, below the text */
+    .feature.wide { grid-template-columns: 1fr; gap: 24px; }
+    .feature.wide .feature-media { order: 0; }
+    .browser { max-width: 960px; margin: 0 auto; border-radius: 14px; overflow: hidden; background: #fff;
+      border: 1px solid var(--hairline); box-shadow: var(--shadow); }
+    .browser::before { content: ""; display: block; height: 26px; background:
+      radial-gradient(circle at 16px 13px, #ff5f57 5px, transparent 5.5px),
+      radial-gradient(circle at 34px 13px, #febc2e 5px, transparent 5.5px),
+      radial-gradient(circle at 52px 13px, #28c840 5px, transparent 5.5px), #eceef3; }
+    .browser img { display: block; width: 100%; height: auto; }
   </style>
 </head>
 <body>
@@ -213,6 +223,23 @@
           </div>
         </article>
 
+        <article class="feature wide">
+          <div>
+            <span class="tag">Shiftmate Link</span>
+            <h3>Build the week on a big screen</h3>
+            <p>Use on a PC on your iPhone: scan the QR code in your computer's browser and you're in. No account. See the week, add shifts, change times and approve requests right there. Your iPhone takes each change in, checks it and saves it.</p>
+            <ul>
+              <li>Home shows the month's outlook, what to decide, today's staffing and the next short days at a glance</li>
+              <li>The layout follows the window, so it works in an iPad or phone browser too</li>
+              <li>Encrypted on your iPhone and in the browser, so even we can't read it</li>
+              <li>With Premium, you can try the same pages view-only</li>
+            </ul>
+          </div>
+          <div class="feature-media">
+            <div class="browser"><img src="../images/en/11_webAdmin.jpg?v=1.6.0" alt="Shiftmate's web admin in a computer's browser: the week by staff and day, and a panel to change the selected shift's type, template, time and break" width="1600" height="1000" loading="lazy"></div>
+          </div>
+        </article>
+
         <div class="cards">
           <div class="card">
             <h3>Even we can't read it</h3>
@@ -268,7 +295,7 @@
     <section class="section" aria-labelledby="privacy-title">
       <div class="wrap reading" style="margin: 0 auto; text-align: center;">
         <h2 class="section-title" id="privacy-title">Your data stays on your device</h2>
-        <p class="section-lead" style="margin-bottom: 0;">No sign-up. Your data is stored on your device and works without a connection (except sending and receiving Shiftmate Link). What you share by link is encrypted, so even we can't read it. There's no analytics or advertising inside.</p>
+        <p class="section-lead" style="margin-bottom: 0;">No sign-up. Your data is stored on your device and works without a connection (except sending and receiving Shiftmate Link). What you share by link or with Use on a PC is encrypted, so even we can't read it. There's no analytics or advertising inside.</p>
       </div>
     </section>
 
@@ -297,6 +324,7 @@
               <li>Sync and backup across your devices</li>
               <li>Automatic scheduling</li>
               <li>Image, PDF, calendar and CSV export</li>
+              <li>View the schedule on a PC (view only)</li>
             </ul>
           </div>
           <div class="plan">
@@ -307,6 +335,7 @@
               <li>Share the schedule by link, always up to date</li>
               <li>Collect requests by link, with notifications</li>
               <li>A QR code for the shared schedule</li>
+              <li>Build the schedule on a PC (Use on a PC)</li>
             </ul>
           </div>
         </div>
