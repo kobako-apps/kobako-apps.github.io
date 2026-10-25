@@ -31,7 +31,7 @@
       </nav>
 
       <h1>Privacy Policy (Shiftmate)</h1>
-      <p class="doc-meta">Effective date: June 13, 2026 / Last updated: October 22, 2026<br>Developer: Toshihiro.nakao</p>
+      <p class="doc-meta">Effective date: June 13, 2026 / Last updated: October 25, 2026<br>Developer: Toshihiro.nakao</p>
 
       <p>Toshihiro.nakao ("we", "us") has established this Privacy Policy to explain how the iOS / iPadOS app "Shiftmate" (the "App") handles your information.</p>
 
@@ -70,6 +70,7 @@
       <ul>
         <li><strong>Calendar (write only)</strong>: Used to add confirmed shifts to your device's calendar. The App never reads your calendar.</li>
         <li><strong>Notifications</strong>: Used for the day-before shift reminder (a local notification on your device) and, with "Shiftmate Link", to tell you when requests arrive and when a deadline is near. Request notifications arrive as Apple push notifications, and staff names are filled in on your device.</li>
+        <li><strong>Camera</strong>: Used only in "Use on a PC" to scan the QR code shown in a PC's browser. The image is read on your device and never stored or sent.</li>
         <li><strong>Biometrics (Face ID / Touch ID)</strong>: Used only if you turn on biometric unlock for the manager screens. iOS performs the authentication; the App never receives biometric data.</li>
       </ul>
       <p>Also, only when you tap to contact a staff member, the App opens your device's Phone or Messages app with the phone number you entered. The App does not send the number anywhere.</p>
@@ -84,24 +85,33 @@
       <h3>What "Shiftmate Link" keeps on our server</h3>
       <p>The following applies only if you use the optional "Shiftmate Link" subscription. If you don't, none of this information is sent.</p>
       <ul>
-        <li><strong>What is sent</strong>: For a schedule link, the business name, staff names and colors, and the dates, times and breaks of confirmed shifts and days off. For a request link, the business name, the person's name, the period, the names and times of shift templates, and whether each day has plans plus the current request. For each staff member's page, the business name, the person's name and color, and the keys that open the two links above. Requests your staff send (their choice for each day). Wages, labor cost, phone numbers, notes, PINs and availability are never sent.</li>
+        <li><strong>What is sent</strong>: For a schedule link, the business name, staff names and colors, and the dates, times and breaks of confirmed shifts and days off. For a request link, the business name, the person's name, the period, the names and times of shift templates, and whether each day has plans plus the current request. For each staff member's page, the business name, the person's name and color, and the keys that open the two links above. Requests your staff send (their choice for each day). Wages, labor cost, phone numbers, notes, PINs and availability are never sent (except with the "Web Admin" below).</li>
         <li><strong>Encryption</strong>: All of this is encrypted with AES-256-GCM in the App or in the staff member's browser before it is sent. The key is only in the part of the link after "#", which browsers never send to the server, so neither we nor the hosting company can read the content. Anyone who has a link can read its content, so share links only with the people they are meant for.</li>
         <li><strong>Where it is kept</strong>: A server we operate on Cloudflare, Inc. (United States) services (Cloudflare Workers and D1). Servers may be located outside your country.</li>
         <li><strong>Also stored</strong>: The link ID, creation and update times, a time showing how current the content is, the expiry, the deadline, a secret value that authorizes updates (as a hash only), a random value identifying where to send notifications, and a value used to verify those notifications.</li>
         <li><strong>How long it is kept</strong>: Schedule links and staff pages are deleted 35 days after their last update; request links 7 days after the deadline (or 31 days after the last update if there is no deadline). Staff requests are deleted from the server as soon as the App receives them. Content is also deleted when you stop a link, delete a business, or use "Delete All Data".</li>
         <li><strong>Server logs</strong>: IP addresses are used in the moment to limit repeated requests and are not stored. Server logs never contain the content sent, IP addresses or headers.</li>
-        <li><strong>Purchase verification</strong>: The server also checks your subscription using the purchase record signed by Apple. The record is only checked, never stored.</li>
+        <li><strong>Purchase verification</strong>: The server also checks your subscription (or, to view the Web Admin with Premium, your Premium purchase) using the purchase record signed by Apple. The record is only checked, never stored.</li>
         <li><strong>Staff browsers</strong>: A staff page stores the chosen name and sent requests only in that browser (they can be cleared in the browser's settings).</li>
+      </ul>
+      <h3>What the "Web Admin" (Use on a PC) keeps on our server</h3>
+      <p>The following applies only if you use the "Web Admin", the part of "Shiftmate Link" that lets the manager see and change shifts in a PC's browser (with Premium only, the same pages are view-only and handled the same way). If you don't, none of this information is sent.</p>
+      <ul>
+        <li><strong>What is sent</strong>: The business's name, time zone, currency, staffing needs and closed days; shift templates; staff (an identifier, name, color, roles, weekly limit and wage); shifts and pending requests from 35 days ago to 62 days ahead; and the results of changes received from the PC. From the PC's browser: requests to add, change or delete shifts and to approve or decline requests. Phone numbers, notes and PINs are never sent.</li>
+        <li><strong>Encryption</strong>: All of this is encrypted with AES-256-GCM in the App and in the connected PC's browser before it is sent. The key is handed over sealed with a key the App and the browser make on the spot (ECDH key agreement), so neither we nor the hosting company can read the content. The PC's browser keeps the key only inside that browser, in a form that can't be exported, and forgets it after 30 days of not being used.</li>
+        <li><strong>Also stored</strong>: The admin link's ID, update times, a secret value that lets the browser read and send changes (as a hash only), until when the purchase is valid, whether it is view-only, and a random value identifying where to send notifications. While connecting, the browser's and the App's public keys and a code to type are kept, and deleted once connected or after 5 minutes.</li>
+        <li><strong>How long it is kept</strong>: Deleted 35 days after the last update. Requests from the PC are deleted as soon as the App receives them. Content is also deleted when you stop using the Web Admin, delete a business, or use "Delete All Data". "Disconnect All PCs" in the App makes every connected browser unable to read it.</li>
+        <li><strong>The PC's browser</strong>: Keeps the key and a record of changes it sent only inside that browser. "Disconnect this PC" removes them. On a shared PC, disconnect when you're done.</li>
       </ul>
       <h3>Apple services</h3>
       <ul>
-        <li><strong>CloudKit public database</strong> (when collecting requests with "Shiftmate Link"): To notify your device that requests have arrived, the App places an "arrived" marker containing only a meaningless random value and a time. It is deleted after 7 days.</li>
+        <li><strong>CloudKit public database</strong> (when collecting requests with "Shiftmate Link"): To notify your device that requests have arrived, the App places an "arrived" marker containing only a meaningless random value and a time. It is deleted after 7 days. With the "Web Admin", a marker of the same kind tells the App that changes from the PC have arrived (nothing is shown on your device; it is only used to take the changes in).</li>
         <li><strong>App Store public information</strong>: To check for a new version, the App queries Apple's lookup API at most once a day, sending only the App's ID and your country.</li>
       </ul>
       <p>Apple services are provided under Apple's Privacy Policy and terms.</p>
 
       <h2>7. In-App Purchases</h2>
-      <p>Premium is a one-time (non-consumable) purchase, and "Shiftmate Link" is an auto-renewable subscription. Apple (the App Store) handles all purchasing, billing and cancellation; we never receive your credit card or other payment details. The App only learns whether you have purchased. For "Shiftmate Link", the server receives the purchase record signed by Apple to confirm it is active, and does not store it.</p>
+      <p>Premium is a one-time (non-consumable) purchase, and "Shiftmate Link" is an auto-renewable subscription. Apple (the App Store) handles all purchasing, billing and cancellation; we never receive your credit card or other payment details. The App only learns whether you have purchased. For "Shiftmate Link", and for viewing the Web Admin with Premium, the server receives the purchase record signed by Apple to confirm it is active, and does not store it.</p>
 
       <h2>8. Sharing With Third Parties</h2>
       <p>We do not share or sell your data to third parties, except where required by law. The only thing sent to our server is the encrypted content of "Shiftmate Link", if you use it (Section 6).</p>
@@ -109,7 +119,7 @@
       <h2>9. Deleting Your Data</h2>
       <ul>
         <li>You can delete data with "Delete All Data" in the App's settings, or by deleting staff or businesses. The on-device search index is updated at the same time.</li>
-        <li>Content kept on our server for "Shiftmate Link" is deleted after the periods in Section 6, and also when you stop a link, delete a business, or delete all data.</li>
+        <li>Content kept on our server for "Shiftmate Link" is deleted after the periods in Section 6, and also when you stop a link, delete a business, or delete all data. Web Admin content is also deleted when you stop using the Web Admin.</li>
         <li>Deleting the App removes its data from your device. You can manage and delete data in iCloud from your device's iCloud settings.</li>
         <li>To keep shifts out of your device's search and Siri, turn off Siri (Siri &amp; Search) for the App in iOS Settings.</li>
       </ul>
