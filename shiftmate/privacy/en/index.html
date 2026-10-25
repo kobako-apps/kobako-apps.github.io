@@ -40,7 +40,7 @@
         <li>Your data is stored on your device. We cannot read the data you enter in the App.</li>
         <li>There is no account or sign-in.</li>
         <li>We do not show ads, analyze usage or track you, and the App contains no third-party SDKs for those purposes.</li>
-        <li>Only if you use the optional "Shiftmate Link" subscription, content encrypted in the App and in your staff's browsers is kept temporarily on a server we operate. We do not hold the keys to it and cannot read it (Section 6).</li>
+        <li>Only if you use the optional "Shiftmate Link" subscription (or view the Web Admin with Premium), content encrypted in the App and in the browser is kept temporarily on a server we operate. We do not hold the keys to it and cannot read it (Section 6).</li>
       </ul>
 
       <h2>2. Information the App Handles</h2>
@@ -91,7 +91,7 @@
         <li><strong>Also stored</strong>: The link ID, creation and update times, a time showing how current the content is, the expiry, the deadline, a secret value that authorizes updates (as a hash only), a random value identifying where to send notifications, and a value used to verify those notifications.</li>
         <li><strong>How long it is kept</strong>: Schedule links and staff pages are deleted 35 days after their last update; request links 7 days after the deadline (or 31 days after the last update if there is no deadline). Staff requests are deleted from the server as soon as the App receives them. Content is also deleted when you stop a link, delete a business, or use "Delete All Data".</li>
         <li><strong>Server logs</strong>: IP addresses are used in the moment to limit repeated requests and are not stored. Server logs never contain the content sent, IP addresses or headers.</li>
-        <li><strong>Purchase verification</strong>: The server also checks your subscription (or, to view the Web Admin with Premium, your Premium purchase) using the purchase record signed by Apple. The record is only checked, never stored.</li>
+        <li><strong>Purchase verification</strong>: The server also checks your subscription (or, to view the Web Admin with Premium, your Premium purchase) using the purchase record signed by Apple. The record is only checked, never stored. To count how many links are created per day, only a hash of the purchase's transaction number (which can't be turned back into the number) is kept, for up to 2 days.</li>
         <li><strong>Staff browsers</strong>: A staff page stores the chosen name and sent requests only in that browser (they can be cleared in the browser's settings).</li>
       </ul>
       <h3>What the "Web Admin" (Use on a PC) keeps on our server</h3>
@@ -101,7 +101,7 @@
         <li><strong>Encryption</strong>: All of this is encrypted with AES-256-GCM in the App and in the connected PC's browser before it is sent. The key is handed over sealed with a key the App and the browser make on the spot (ECDH key agreement), so neither we nor the hosting company can read the content. The PC's browser keeps the key only inside that browser, in a form that can't be exported, and forgets a business's key the next time the page is opened after 30 days without reading it (or at once with "Disconnect this PC" in the browser). The record of changes sent from the PC (names and dates) is also kept only in that browser, for 7 days.</li>
         <li><strong>Also stored</strong>: The admin link's ID, update times, a secret value that lets the browser read and send changes (as a hash only), until when the purchase is valid, whether it is view-only, and a random value identifying where to send notifications. While connecting, the browser's and the App's public keys (and, when connecting by code, a hash of the App's public key) and a code to type are kept; they are deleted once connected, stop working after 5 minutes if not, and are deleted within a day. We also keep when the App last checked for change requests (so the PC can say the iPhone hasn't checked in).</li>
         <li><strong>How long it is kept</strong>: Deleted 35 days after the last update. Requests from the PC are deleted as soon as the App receives them. Content is also deleted when you stop using the Web Admin, delete a business, or use "Delete All Data". "Disconnect All PCs" in the App makes every connected browser unable to read it.</li>
-        <li><strong>The PC's browser</strong>: Keeps the key and a record of changes it sent only inside that browser. "Disconnect this PC" removes them. On a shared PC, disconnect when you're done.</li>
+        <li><strong>The PC's browser</strong>: Keeps the key, the names of connected businesses and a record of changes it sent only inside that browser. "Disconnect this PC" removes them. Display settings (appearance, language, time until the PC locks, the last time it was used, and whether it is locked) are also kept in that browser and stay after disconnecting (clearing the browser's site data removes them). On a shared PC, disconnect when you're done.</li>
       </ul>
       <h3>Apple services</h3>
       <ul>
@@ -114,7 +114,7 @@
       <p>Premium is a one-time (non-consumable) purchase, and "Shiftmate Link" is an auto-renewable subscription. Apple (the App Store) handles all purchasing, billing and cancellation; we never receive your credit card or other payment details. The App only learns whether you have purchased. For "Shiftmate Link", and for viewing the Web Admin with Premium, the server receives the purchase record signed by Apple to confirm it is active, and does not store it.</p>
 
       <h2>8. Sharing With Third Parties</h2>
-      <p>We do not share or sell your data to third parties, except where required by law. The only thing sent to our server is the encrypted content of "Shiftmate Link", if you use it (Section 6).</p>
+      <p>We do not share or sell your data to third parties, except where required by law. The only things sent to our server are the encrypted content of "Shiftmate Link" (or of the Web Admin viewed with Premium), if you use it, and what is needed to check the purchase (Section 6).</p>
 
       <h2>9. Deleting Your Data</h2>
       <ul>
