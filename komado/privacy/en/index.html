@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Komado Privacy Policy</title>
+  <meta name="description" content="Privacy Policy for the iOS / iPadOS app Komado.">
+  <link rel="canonical" href="https://kobako-apps.github.io/komado/privacy/en/">
+  <link rel="alternate" hreflang="ja" href="https://kobako-apps.github.io/komado/privacy/">
+  <link rel="alternate" hreflang="en" href="https://kobako-apps.github.io/komado/privacy/en/">
+  <link rel="icon" href="../../images/icon.png?v=1.0">
+  <link rel="apple-touch-icon" href="../../images/apple-touch-icon.png?v=1.0">
+  <link rel="stylesheet" href="../../../assets/site.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="../../support/#en"><img src="../../images/icon.png?v=1.0" alt="">Komado</a>
+      <nav class="header-nav" aria-label="Site">
+        <a href="../../support/#en">Support</a>
+        <a href="../" hreflang="ja" lang="ja">日本語</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="doc">
+    <article class="wrap reading" style="margin: 0 auto;">
+      <nav class="lang-switch" aria-label="Language">
+        <a href="../" hreflang="ja" lang="ja">日本語</a>
+        <a href="./" aria-current="true">English</a>
+      </nav>
+
+    <h1>Komado Privacy Policy</h1>
+    <p class="doc-meta">Developer: Toshihiro.nakao<br>Effective date: October 31, 2026</p>
+
+    <p>Toshihiro.nakao ("we", "us") has established this Privacy Policy to explain how the iOS / iPadOS app "Komado" (the "App") handles your information. The App is for shop owners: it manages bookings and publishes a web booking page for the shop's customers. How we handle what customers enter on a booking page is set out separately in the booking page's privacy policy.</p>
+
+    <h2>1. Our Approach</h2>
+    <ul>
+      <li>Your bookings, customer records and shop settings are kept on your device and in your own iCloud. We cannot read them.</li>
+      <li>The shop details you enter for your booking page (shop name, phone number, menus, free times and so on) are published so that the booking page can show them (see "2. Information the App Handles").</li>
+      <li>Bookings made on your booking page reach you encrypted with a key that exists only on your devices. We cannot read their contents.</li>
+      <li>There is no account to register.</li>
+      <li>The App uses no advertising, no usage analytics, no tracking and no third-party SDKs.</li>
+    </ul>
+
+    <h2>2. Information the App Handles</h2>
+    <h3>What you enter and keep</h3>
+    <p>Your shop's details (name, phone number, opening hours, days off, menus and prices, how bookings are taken), bookings (date and time, menus, price, status, notes) and customer records (name, phonetic name, phone number, email address, notes, things to be careful about, visit history).</p>
+    <h3>Your customers' personal information</h3>
+    <p>The App lets you enter and keep personal information about your shop's customers. It is stored only on your devices and in your own iCloud, and is never sent to us. As the shop, you are responsible for managing your customers' personal information.</p>
+    <h3>What is published for your booking page</h3>
+    <p>To show your booking page, the App stores the following in Apple's CloudKit public database. Anyone who knows your booking page's address can see it.</p>
+    <ul>
+      <li>Your shop name, phone number, menus and prices, and the text you write for the booking page (a message, directions, notes, links to social media and so on)</li>
+      <li>Your free times (the times not taken by bookings; they contain nothing about the customers who booked)</li>
+      <li>Your booking settings, the date your plan is valid until, and the public key used to encrypt bookings</li>
+    </ul>
+    <p>For bookings made on the web, the App also stores a record that lets the customer check their booking (its status, date and time, and menu name). This record contains no customer name or contact details, and the App deletes it 90 days after the booking's date.</p>
+    <h3>Bookings from your booking page</h3>
+    <p>What a customer enters on your booking page reaches you encrypted with a key that exists only on your devices, and the App decrypts it on your device. Once it has been received, the encrypted original is deleted from the booking server (anything never received is deleted after 60 days).</p>
+
+    <h2>3. Where Your Data Is Stored</h2>
+    <ul>
+      <li>Bookings, customer records and shop settings are stored on your device and in the private area of your own iCloud, and are synced between devices signed in to the same Apple ID. We have no access to this area.</li>
+      <li>The keys used to read bookings are stored in iCloud Keychain and synced between devices signed in to the same Apple ID.</li>
+      <li>A summary (such as your next customer and the number of requests waiting for a reply) is stored in an area on your device reserved for the App, so that the Home Screen and Lock Screen widgets can show it.</li>
+      <li>Deleting the App deletes the data on your device. Data stored in iCloud remains available on your other devices and if you reinstall the App.</li>
+    </ul>
+
+    <h2>4. Access to Device Features</h2>
+    <ul>
+      <li>Notifications: used to tell you that a new booking has arrived from your booking page. If you do not allow them, new bookings are still brought in when you open the App.</li>
+      <li>Adding to Photos: used only when you save your booking page's QR code to Photos. The App never reads your photos. If you do not allow it, you can still share the QR code or copy the address.</li>
+    </ul>
+
+    <h2>5. Third-Party Services</h2>
+    <h3>Apple iCloud (CloudKit)</h3>
+    <p>Used to store and sync your data, to store what is published for your booking page, and to notify you of new bookings. See Apple's privacy policy at <a href="https://www.apple.com/legal/privacy/">https://www.apple.com/legal/privacy/</a>.</p>
+    <h3>Booking server (Cloudflare)</h3>
+    <p>The booking server we operate runs on services provided by Cloudflare, Inc. The App contacts it to confirm that a booking has been received, to free a booked time when a booking is cancelled or moved, and to check whether a new version is available. What it sends is your booking page's address, the date, time and slot details of the booking concerned, and a signature made with your shop's key; it never sends customers' names or contact details. When the App connects, Cloudflare processes information such as IP addresses to provide its service. See Cloudflare's privacy policy at <a href="https://www.cloudflare.com/privacypolicy/">https://www.cloudflare.com/privacypolicy/</a>.</p>
+
+    <h2>6. In-App Purchases</h2>
+    <p>Plans for the App (auto-renewable subscriptions) are purchased through Apple's App Store. We never receive credit card or other payment details. Apple tells the App the status of your plan, which the App uses to decide whether your booking page takes bookings.</p>
+
+    <h2>7. Sharing With Third Parties</h2>
+    <p>We do not share your information with third parties, except where required by law. For the services the App uses, see "5. Third-Party Services".</p>
+
+    <h2>8. Deleting Your Data</h2>
+    <ul>
+      <li>You can delete bookings and customer records in the App at any time.</li>
+      <li>Deleting a shop deletes its bookings, menus, opening hours, days off, published booking page information and keys.</li>
+      <li>"Delete all data and reset" deletes all of the App's data, including what is stored in iCloud.</li>
+      <li>You can also delete data stored in iCloud from the iCloud settings in your device's Settings app.</li>
+    </ul>
+
+    <h2>9. Children</h2>
+    <p>The App is a tool for running a shop and is not directed at children under 13.</p>
+
+    <h2>10. Changes to This Policy</h2>
+    <p>We may update this Privacy Policy as needed. The updated policy takes effect when it is posted on this page.</p>
+
+    <h2>11. Information We Receive When You Contact Us</h2>
+    <p>The contact form on the support page is provided by Google Forms (Google LLC). What you enter there (such as your name, the email address to reply to and your message) is used only to respond to you and to investigate and fix problems, and is not shared with third parties except where required by law. We delete it once we no longer need it. Google's privacy policy also applies to the form. Using the App never sends this information to us.</p>
+
+    <h2>12. Contact</h2>
+    <p>For questions about this Privacy Policy or the App's privacy, please contact us through the <a href="https://kobako-apps.github.io/komado/support/">support page</a>.</p>
+  
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <nav aria-label="Footer">
+        <a href="../../support/#en">Support</a>
+        <a href="../" hreflang="ja" lang="ja">日本語</a>
+        <a href="../../../">More apps</a>
+      </nav>
+      <span>© 2026 Kobako Apps</span>
+    </div>
+  </footer>
+</body>
+</html>
