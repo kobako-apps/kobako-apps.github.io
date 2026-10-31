@@ -9,11 +9,18 @@
   <link rel="icon" href="../images/icon.png?v=1.0">
   <link rel="apple-touch-icon" href="../images/apple-touch-icon.png?v=1.0">
   <link rel="stylesheet" href="../../assets/site.css">
+  <style>
+    /* Komado の色（LP と同じ）。黄色は文字には薄いので、文字は琥珀、ボタンは黄色に墨の文字 */
+    :root { --accent: #9A5B00; --accent-soft: #FFF2D2; --accent-ink: #17181B; }
+    @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --accent: #FFC94F; --accent-soft: #3A2E12; --accent-ink: #17181B; } }
+    :root[data-theme="dark"] { --accent: #FFC94F; --accent-soft: #3A2E12; --accent-ink: #17181B; }
+    .button { background: #FFC94F; color: #17181B; }
+  </style>
 </head>
 <body>
   <header class="site-header">
     <div class="wrap">
-      <a class="brand" href="./"><img src="../images/icon.png?v=1.0" alt="">Komado</a>
+      <a class="brand" href="../"><img src="../images/icon.png?v=1.0" alt="">Komado</a>
       <nav class="header-nav" aria-label="サイト内 / Site">
         <a href="#ja" aria-current="true">日本語</a>
         <a href="#en" hreflang="en" lang="en">English</a>
@@ -180,6 +187,7 @@
   <footer class="site-footer">
     <div class="wrap">
       <nav aria-label="フッター / Footer">
+        <a href="../">Komado</a>
         <a href="../privacy/">プライバシーポリシー</a>
         <a href="../privacy/en/" lang="en">Privacy Policy</a>
         <a href="../../">ほかのアプリ / More apps</a>
