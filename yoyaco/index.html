@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Yoyaco - サロン・クリニックの予約台帳</title>
+  <meta name="description" content="受付でお客さまを待たせながら、紙の台帳をめくらない。今日の流れと空き枠がひと目でわかり、予約も呼び出しも数タップで終わる、個人のサロン・クリニック・お店のための予約管理アプリです。">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Yoyaco - サロン・クリニックの予約台帳">
+  <meta property="og:description" content="台帳をめくらず、空き枠がわかる。少人数のお店の受付を、iPhone と iPad で。">
+  <meta property="og:image" content="https://kobako-apps.github.io/yoyaco/images/icon.png">
+  <meta property="og:url" content="https://kobako-apps.github.io/yoyaco/">
+  <link rel="canonical" href="https://kobako-apps.github.io/yoyaco/">
+  <link rel="icon" href="images/icon.png?v=1.2.0">
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png?v=1.2.0">
+  <link rel="stylesheet" href="../assets/site.css">
+  <style>
+    /* アプリの色はアイコンの青紫。文字のアクセントは白地で読める濃さに、差し色はくちばしのオレンジ */
+    :root { --accent: #4757C9; --accent-soft: #ECEEFF; --accent-ink: #FFFFFF; --bg: #F4F5FB; --surface: #FFFFFF;
+            --beak: #F9B96B; --beak-ink: #7A4300; }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) { --accent: #A3AFFF; --accent-soft: #23284A; --accent-ink: #0E1231; --bg: #0F1018; --surface: #1A1B25; --beak-ink: #F9B96B; }
+    }
+    :root[data-theme="dark"] { --accent: #A3AFFF; --accent-soft: #23284A; --accent-ink: #0E1231; --bg: #0F1018; --surface: #1A1B25; --beak-ink: #F9B96B; }
+
+    .hero h1 em { font-style: normal; color: var(--accent); }
+
+    /* 公開前は App Store へのリンクを出さない */
+    .soon { display: inline-flex; align-items: center; min-height: 52px; padding: 0 26px; border-radius: 999px;
+            background: var(--accent); color: var(--accent-ink); font-size: 17px; font-weight: 600; }
+
+    /* 空き枠の見本（埋まっている時刻は斜線、選べる時刻だけ） */
+    .slots { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; padding: 0; list-style: none; }
+    .slots li { min-width: 72px; text-align: center; padding: 6px 12px; border-radius: 999px; font-variant-numeric: tabular-nums;
+                background: var(--surface); box-shadow: 0 0 0 1px var(--hairline); font-size: 15px; }
+    .slots li.off { color: var(--ink-sub); opacity: .55;
+                    background: repeating-linear-gradient(135deg, transparent 0 6px, var(--hairline) 6px 12px); }
+    .slots li.on { background: var(--accent); color: var(--accent-ink); box-shadow: none; font-weight: 700; }
+    .feature .slots + ul { margin-top: 16px; }
+
+    .premium { display: inline-block; margin-left: 6px; padding: 1px 10px; border-radius: 999px; vertical-align: 2px;
+               font-size: 12px; font-weight: 700; color: var(--beak-ink); background: rgba(249, 185, 107, .22); }
+
+    /* iPad の予約表 */
+    .tablet { margin: 32px auto 0; max-width: 760px; border-radius: 34px; padding: 12px; background: #111;
+              box-shadow: var(--shadow), 0 0 0 1px var(--hairline); }
+    .tablet img { width: 100%; border-radius: 24px; }
+
+    .plans.two { grid-template-columns: repeat(2, 1fr); max-width: 820px; margin: 0 auto; }
+    @media (max-width: 820px) { .plans.two { grid-template-columns: 1fr; } }
+
+    .story { background: var(--surface); border-radius: 24px; padding: 32px; box-shadow: var(--shadow); }
+    .story p { margin: 0; }
+    .story p + p { margin-top: 1em; }
+    @media (max-width: 600px) { .story { padding: 24px 20px; } }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="./"><img src="images/icon.png?v=1.2.0" alt="">Yoyaco</a>
+      <nav class="header-nav" aria-label="サイト内">
+        <a class="optional" href="#features">機能</a>
+        <a class="optional" href="#privacy-title">データの保存</a>
+        <a class="optional" href="#pricing">料金</a>
+        <a href="support/">サポート</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <div>
+          <span class="eyebrow">サロン・クリニック・個人店の予約台帳</span>
+          <h1>台帳をめくらず、<br><em>空き枠</em>がわかる。</h1>
+          <p class="lead">お客さまを待たせながら、紙の台帳やカレンダーをめくって空いている時間を探す。Yoyaco（よやこ）は、1人から数人で営むサロン・クリニック・お店の受付のための予約管理アプリです。今日の流れと空き枠がひと目でわかり、予約も呼び出しも数タップで終わります。</p>
+          <span class="soon">App Store で近日公開</span>
+          <p class="hero-note">iPhone・iPad／アカウントの登録は不要です</p>
+        </div>
+        <div class="device">
+          <img src="images/01_today.jpg" alt="「本日」の画面。10月31日 土曜日、2/8件 来店済み・あと14件入る。担当の絞り込み、対応中の小林陽菜さま（残り20分）、次の来店 10:00 山口恵さま（仮予約）と「来店」ボタン、「13:00 に空きができました」の繰り上げの提案、この後の予約4件が並ぶ" width="660" height="1434">
+        </div>
+      </div>
+    </section>
+
+    <section class="points" aria-label="特長">
+      <div class="wrap">
+        <ul>
+          <li>
+            <span class="num">1</span>
+            <h2>空いている時刻だけを表示</h2>
+            <p>メニューの長さ・担当・休憩まで見て、入れられる時刻だけを出します。</p>
+          </li>
+          <li>
+            <span class="num">2</span>
+            <h2>番号を打つだけで呼び出し</h2>
+            <p>会員番号を1桁打つごとに、お客さまの候補が絞れます。</p>
+          </li>
+          <li>
+            <span class="num">3</span>
+            <h2>データは端末の中に</h2>
+            <p>会員登録も通信も要りません。広告や解析の仕組みも入っていません。</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" id="features">
+      <div class="wrap">
+        <h2 class="section-title">受付の手数を、<br>いちばん少なく</h2>
+        <p class="section-lead">予約を入れる、呼び出す、来店を記録する。受付で毎日くり返すことを、迷わず数タップで終わるように作りました。</p>
+
+        <article class="feature">
+          <div>
+            <h3>今日の受付は、<br>この1画面で</h3>
+            <p>「本日」を開くと、対応中の予約・次の来店・この後の予約が並びます。お客さまが来たら「来店」を押すだけで、進み具合と、あと何件入るかが更新されます。</p>
+            <ul>
+              <li>来店の時刻を過ぎても来ていない人は、遅れとして残ります</li>
+              <li>キャンセルで空いた枠に、後ろの予約を前へ詰められることをお知らせします<span class="premium">プレミアム</span></li>
+            </ul>
+          </div>
+          <div class="feature-media">
+            <div class="device small"><img src="images/01_today.jpg" alt="「本日」の画面。対応中の予約、次の来店と「来店」ボタン、繰り上げの提案、この後の予約が並ぶ" width="660" height="1434" loading="lazy"></div>
+          </div>
+        </article>
+
+        <article class="feature">
+          <div>
+            <h3>空いている時間だけ、<br>選べばいい</h3>
+            <p>お客さま・メニュー・担当を選ぶと、その長さで続けて空いている開始時刻だけが出ます。担当の休みと入れる時間、休憩、予約の前後の準備と片付け、同時に受けられる人数まで見て計算するので、ダブルブッキングを防げます。</p>
+            <ul class="slots" aria-label="空き枠の見本">
+              <li class="off">9:00</li><li class="on">10:00</li><li>10:30</li><li class="off">12:00</li><li>13:00</li><li>14:30</li>
+            </ul>
+            <ul>
+              <li>指名なしの予約も、手の空いている担当の人数を超えないように確かめます</li>
+              <li>確定の前に「日時・メニュー・担当・お名前」を1文で確認できます</li>
+              <li>決めきれないときは「仮で押さえる」で仮予約にできます</li>
+            </ul>
+          </div>
+          <div class="feature-media">
+            <div class="device small"><img src="images/02_newReservation.jpg" alt="「新しい予約」の画面。高橋由美さま、メニューのカット 60分、スタッフの佐々木、日にちの 10月31日、9時から18時の帯で埋まっている時間が斜線になり、開始時刻 10:00 を選んでいる。「60分続けて空いている時刻だけ・10通り」の表示と「仮で押さえる」「予約を確定」のボタン" width="660" height="1434" loading="lazy"></div>
+          </div>
+        </article>
+
+        <article class="feature">
+          <div>
+            <h3>会員番号を打つだけで、<br>すぐ呼び出し</h3>
+            <p>「顧客」を開くと数字キーから始まります。会員番号を1桁打つごとに候補が絞れ、名前・カナ・電話番号でも探せます。次の人の番号も、すぐに打ち始められます。</p>
+            <ul>
+              <li>業種に合わせて「会員番号」「診察券番号」などの呼び方が変わります</li>
+              <li>空白やハイフンは気にせず探せます（「山田花子」「09012345678」でも当たります）</li>
+            </ul>
+          </div>
+          <div class="feature-media">
+            <div class="device small"><img src="images/06_lookup.jpg" alt="「顧客」の画面。検索欄に 040 と打たれ、「番号が一致・2名」として 0408 山田花子さまと 0409 佐藤美咲さまが並び、下に大きな数字キーがある" width="660" height="1434" loading="lazy"></div>
+          </div>
+        </article>
+
+        <article class="feature">
+          <div>
+            <h3>来店もキャンセルも、<br>ワンタップで</h3>
+            <p>予約の詳細では、次に選ぶことの多い「来店済み」「キャンセル」「無断キャンセル」を大きなボタンにしました。間違えても、画面の下の「元に戻す」ですぐ戻せます。</p>
+            <ul>
+              <li>あとからでも、設定の「操作の履歴」から戻せます</li>
+              <li>iPad のキーボードでは ⌘Z でも戻せます</li>
+            </ul>
+          </div>
+          <div class="feature-media">
+            <div class="device small"><img src="images/03_reservationDetail.jpg" alt="予約の詳細。高橋由美さま（ご来店7回目・確定）、11月2日(月) 10:00〜10:45、ヘッドスパ、スタッフ佐々木。「来店済み」「キャンセル」「無断キャンセル」の大きなボタンと「予約を編集する」「次回のおすすめ日で予約する」が並ぶ" width="660" height="1434" loading="lazy"></div>
+          </div>
+        </article>
+
+        <article class="feature">
+          <div>
+            <h3>次に来る日が、<br>リズムでわかる<span class="premium">プレミアム</span></h3>
+            <p>実際に来店した回の間隔から、次に来そうな日と、その日の空き枠を提案します。電話の折り返しや、お会計のときの次回予約にそのまま使えます。</p>
+            <ul>
+              <li>お客さまの画面に、次の予約・来店の回数・メモ・これまでの予約をまとめて表示します</li>
+            </ul>
+          </div>
+          <div class="feature-media">
+            <div class="device small"><img src="images/04_customerDetail.jpg" alt="お客さまの画面。会員番号 0411 高橋由美さま、電話番号と来店6回、「予約する」ボタン、次の予約 11月2日 月曜日 10:00、平均21日おきの来店のリズムのグラフと次回 11/2、メモが並ぶ" width="660" height="1434" loading="lazy"></div>
+          </div>
+        </article>
+
+        <article class="feature">
+          <div>
+            <h3>混み具合も、<br>その日の予約も</h3>
+            <p>カレンダーの月の表で、予約の入っている日と担当の色、日ごとの残り枠がすぐわかります。日を選ぶと、その日の予約と空き枠が並びます。</p>
+            <ul>
+              <li>予約一覧では、期間・状態・担当・名前で絞り込み、まとめて変更できます</li>
+              <li>まとめて変えた操作も、1回の「元に戻す」で全部戻ります</li>
+            </ul>
+          </div>
+          <div class="feature-media">
+            <div class="device small"><img src="images/05_calendar.jpg" alt="その日の予約の画面。11月5日 木曜日、空き16枠・予約5件。9:00 加藤誠さまのカットから 14:00 吉田真央さまのヘッドスパまで5件が担当つきで並び、下に空き枠と「この日に新規予約」のボタン" width="660" height="1434" loading="lazy"></div>
+          </div>
+        </article>
+
+        <article class="feature">
+          <div>
+            <h3>お店の決まりを、<br>そのまま設定</h3>
+            <p>営業時間や休みだけでなく、お店ごとの細かい決まりも入れられます。入れた決まりは、そのまま空き枠の計算に使われます。</p>
+            <ul>
+              <li>メニューをグループにまとめ、オプションを付けられます</li>
+              <li>スタッフごとに、曜日ごとの入れる時間と担当できるメニュー</li>
+              <li>予約の前後の準備と片付けの時間（メニューごとにも）</li>
+              <li>複数の休憩、臨時休業日、祝日の休み、「第2火曜日」のような毎月の休み、臨時の営業日</li>
+              <li>予約枠の刻み（5分〜3時間）と、同時に受けられる人数</li>
+            </ul>
+          </div>
+          <div class="feature-media">
+            <div class="device small"><img src="images/10_settings.jpg" alt="「設定」の画面。サロンはなみずき、よく使う「臨時休業を追加」「スタッフの休み」「操作の履歴」、予約の受け方として営業時間 毎日 9:00〜18:00、休業日、予約枠 30分刻み・同時に3名、人とメニューとしてスタッフ3名・メニュー6件が並ぶ" width="660" height="1434" loading="lazy"></div>
+          </div>
+        </article>
+
+        <h3 class="section-title" style="margin-top: 40px; font-size: clamp(21px, 2.8vw, 26px);">カウンターの iPad では、<br>担当ごとの予約表に</h3>
+        <p class="section-lead" style="margin-bottom: 0;">大きな画面では、担当ごとの予約を時間の流れに沿って並べます。いまの時刻の線と、次に来るお客さまがひと目でわかります。</p>
+        <div class="tablet">
+          <img src="images/11_ipad_today.jpg" alt="iPad の「本日」の画面。左にサイドバー、上に今日の進み具合・対応中・この後・あと入る件数、繰り上げの提案のカード、下に佐々木・岡田・藤井の3人の担当ごとの予約表が 9:00 から 18:00 まで並び、9:40 の現在時刻の線が引かれている" width="1100" height="1466" loading="lazy">
+        </div>
+
+        <div class="cards" style="margin-top: 48px;">
+          <div class="card">
+            <h3>声や検索からも</h3>
+            <p>Siri・ショートカット・Spotlight から、今日の予約を確かめたり、予約を探したりできます。iOS 27 では、声で頼んだ予約も空きと重なりを確かめ、内容を読み上げてから保存します。</p>
+          </div>
+          <div class="card">
+            <h3>サンプルで、すぐ試せる</h3>
+            <p>業種（サロン・クリニック・一般店舗）ごとのサンプルデータを入れて、使い方を試せます。サンプルだけを、あとから消せます。</p>
+          </div>
+          <div class="card">
+            <h3>カウンターとバックヤードで<span class="premium">プレミアム</span></h3>
+            <p>同じ Apple アカウントでサインインした iPhone・iPad の間で、予約・お客さま・設定を同期します。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="privacy-title">
+      <div class="wrap reading" style="margin: 0 auto; text-align: center;">
+        <h2 class="section-title" id="privacy-title">お客さまの情報は、<br>お店の端末の中に</h2>
+        <p class="section-lead" style="margin-bottom: 0;">予約やお客さまの情報は端末の中に保存され、開発者のサーバーには送られません。会員登録も要らず、通信がなくても使えます。同期を使うときも、保存先は店主ご自身の iCloud です。広告や解析の仕組みも入っていません（<a href="privacy/">プライバシーポリシー</a>）。</p>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="story-title">
+      <div class="wrap reading" style="margin: 0 auto;">
+        <h2 class="section-title" id="story-title">紙の台帳の、<br>次の一冊に</h2>
+        <div class="story">
+          <p>紙の台帳は、開けばすぐ書けて、誰にでも分かる。でも、空いている時間を探すにはページをめくり、メニューの長さや担当の休みを頭の中で足し引きしなければなりません。前に来たのはいつだったかを探すのも、ひと苦労です。</p>
+          <p>Yoyaco は、受付で台帳がしていたことを、そのまま速くすることを目指しました。空いている時刻はアプリが数え、お客さまは番号で呼び出せます。美容室やネイル、整体や治療院、個人のクリニックまで、予約で動く小さなお店で、業種を問わずお使いいただけます。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="pricing" aria-labelledby="pricing-title">
+      <div class="wrap">
+        <h2 class="section-title" id="pricing-title">まずは無料で、<br>足りなくなったら一度の購入で</h2>
+        <p class="section-lead">予約の管理に必要な機能は、無料でお使いいただけます。登録の上限を外したいとき、提案や同期を使いたいときは、プレミアム（一度の購入。月額ではありません）をどうぞ。</p>
+        <div class="plans two">
+          <div class="plan">
+            <h3>無料</h3>
+            <p class="plan-sub">すべての基本機能</p>
+            <ul>
+              <li>空き枠の計算・予約の作成・本日・カレンダー・予約一覧</li>
+              <li>番号での呼び出し、元に戻す</li>
+              <li>お客さま 30名・担当 1名・メニュー 3件まで</li>
+              <li>今日以降の予約 10件まで（済んだ予約とキャンセルは数えません）</li>
+            </ul>
+          </div>
+          <div class="plan featured">
+            <h3>プレミアム</h3>
+            <p class="plan-sub">一度の購入</p>
+            <ul>
+              <li>お客さま・担当・メニュー・予約を、上限なく登録</li>
+              <li>次回のおすすめ日</li>
+              <li>キャンセル枠の繰り上げ提案</li>
+              <li>同じ Apple アカウントの iPhone・iPad で同期</li>
+            </ul>
+          </div>
+        </div>
+        <p class="hero-note" style="text-align: center;">料金はアプリの購入画面でご確認ください。購入は同じ Apple アカウントの端末で復元できます。</p>
+      </div>
+    </section>
+
+    <section class="cta">
+      <div class="wrap">
+        <img class="app-icon" src="images/icon.png?v=1.2.0" alt="">
+        <h2>受付の台帳を、今日から。</h2>
+        <p>営業時間とメニューを入れるだけで、空き枠の計算が始まります。</p>
+        <span class="soon">App Store で近日公開</span>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <nav aria-label="フッター">
+        <a href="support/">サポート</a>
+        <a href="privacy/">プライバシーポリシー</a>
+        <a href="../">ほかのアプリ</a>
+      </nav>
+      <span>© 2026 Kobako Apps</span>
+    </div>
+  </footer>
+</body>
+</html>
