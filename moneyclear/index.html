@@ -4,11 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>MoneyClear - 家計簿と資産予測</title>
-  <meta name="description" content="毎月の収支を記録するだけで、今月の残りから65歳時点の資産まで見えてくる家計簿アプリ。今のお金と未来のお金を、ひとつのアプリでつなげます。">
+  <meta name="description" content="毎月の収支を記録するだけで、今月の残りから65歳時点の資産まで見えてくる家計簿アプリ。住宅や車のローンを買う前に試算して将来の資産と比べたり、選んだ口座を家族と共有したりもできます。">
   <meta name="apple-itunes-app" content="app-id=6757387742">
   <meta property="og:type" content="website">
   <meta property="og:title" content="MoneyClear - 家計簿と資産予測">
-  <meta property="og:description" content="今のお金も、未来のお金も。今月の残りがひと目でわかり、利回りと毎月の積立から将来の資産を予測します。">
+  <meta property="og:description" content="今のお金も、未来のお金も。今月の残りがひと目でわかり、利回りと毎月の積立から将来の資産を予測します。ローンの試算や家族との共有にも対応。">
   <meta property="og:image" content="https://kobako-apps.github.io/moneyclear/images/icon.png">
   <meta property="og:url" content="https://kobako-apps.github.io/moneyclear/">
   <link rel="canonical" href="https://kobako-apps.github.io/moneyclear/">
@@ -26,9 +26,9 @@
     .points .num { background: var(--signal); color: var(--on-signal); }
     .plan.featured { box-shadow: var(--shadow), 0 0 0 2px var(--accent); }
 
-    /* 料金は 無料・プレミアム・同期プラン の3つを並べる */
-    .plans.three { grid-template-columns: repeat(3, 1fr); max-width: var(--content); }
-    @media (max-width: 820px) { .plans.three { grid-template-columns: 1fr; } }
+    /* 料金は 無料・プレミアム・同期プラン・家族共有プラン の4つを 2列で並べる */
+    .plans.four { grid-template-columns: repeat(2, 1fr); max-width: var(--content); }
+    @media (max-width: 820px) { .plans.four { grid-template-columns: 1fr; } }
 
     /* お金の行き先の 4 色 (アプリの収支画面と同じ) */
     .swatches { list-style: none; padding: 0; margin: 12px 0 0; display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 15px; color: var(--ink-sub); }
@@ -42,6 +42,8 @@
       <nav class="header-nav" aria-label="サイト内">
         <a class="optional" href="#features">機能</a>
         <a class="optional" href="#future">資産予測</a>
+        <a class="optional" href="#plans">計画</a>
+        <a class="optional" href="#family">家族共有</a>
         <a class="optional" href="#pricing">料金</a>
         <a href="support/">サポート</a>
       </nav>
@@ -54,12 +56,12 @@
         <div>
           <span class="eyebrow">家計簿と資産予測のアプリ</span>
           <h1>今のお金も、<br>未来のお金も。</h1>
-          <p class="lead">「今月、あといくら使えるんだろう」「このまま積み立てて、老後は足りるのかな」。MoneyClear は、毎月の収支を記録するだけで、今月の残りから65歳時点の資産まで見えてくる家計簿です。</p>
+          <p class="lead">「今月、あといくら使えるんだろう」「ローンを組んだら、老後は足りるのかな」。MoneyClear は、毎月の収支を記録するだけで、今月の残りから65歳時点の資産まで見えてくる家計簿です。</p>
           <a class="button store-button" href="https://apps.apple.com/jp/app/id6757387742">App Store で見る</a>
           <p class="hero-note">iPhone・iPad（iOS 18 以上）／アカウント登録は不要です</p>
         </div>
         <div class="device">
-          <img src="images/01_cashflow.jpg" alt="収支の画面。10月の残り 126,000 円が大きく表示され、蓄財率 16%、前月より +2,000 円。支出・投資・残りの割合を示す1本のバーと、収入 320,000 円・純収入 270,000 円・支出＋蓄財 194,000 円が並び、下に家賃・食費・光熱費の支出が続く" width="660" height="1434">
+          <img src="images/01_cashflow.jpg" alt="収支の画面。11月の残り 126,000 円が大きく表示され、黒字率 55%、前月より +2,000 円。支出・投資・残りの割合を示す1本のバーと、収入 320,000 円・使えるお金 270,000 円・支出＋蓄財 194,000 円が並び、下に家賃・食費・光熱費の支出が続く" width="660" height="1434">
         </div>
       </div>
     </section>
@@ -79,8 +81,8 @@
           </li>
           <li>
             <span class="num">3</span>
-            <h2>記録はテンキーでさっと</h2>
-            <p>種類を選んで金額を打つだけ。家賃や給料は繰り返しにしておけば、先の月にも予定として入ります。</p>
+            <h2>ローンも、買う前に試算</h2>
+            <p>住宅や車のローンの返済と利息を計算し、組んだ場合と組まない場合の将来の資産を見比べられます。</p>
           </li>
         </ul>
       </div>
@@ -93,8 +95,23 @@
 
         <article class="feature">
           <div>
-            <h3>収入がどこへ行ったか、<br>1本のバーで</h3>
-            <p>収支の画面では、今月の収入を支出・貯蓄・投資・残りの4色に分けて1本のバーで表します。蓄財率や前月との差も並ぶので、使いすぎた月にすぐ気づけます。</p>
+            <h3>記録は、テンキーでさっと</h3>
+            <p>収入・支出・貯蓄・投資・振替を選んで、金額を打つだけ。前に使った内容はボタンで選べて、支払いに使った口座もタップで切り替えられます。</p>
+            <ul>
+              <li>カードの引き落としなど口座どうしのお金の移動は「振替」で記録し、収支には数えません</li>
+              <li>毎月決まったお金は繰り返しにして、先の月にも予定として登録</li>
+              <li>声やショートカットからも、記録や今月の収支の確認ができます</li>
+            </ul>
+          </div>
+          <div class="feature-media">
+            <div class="device small"><img src="images/06_record.jpg" alt="記録する画面。収入・支出・貯蓄・投資・振替の切り替え、金額の欄、月のボタン、内容の候補（光熱費・食費・家賃）、支払元の口座、繰り返しの設定、大きなテンキーが並ぶ" width="660" height="1434" loading="lazy"></div>
+          </div>
+        </article>
+
+        <article class="feature">
+          <div>
+            <h3>増えた資産が、線で見える</h3>
+            <p>推移の画面では、純資産の動きを、これまでの実績と、記録した予定から計算したこの先を1本のグラフで表示します。月ごとの収支も4色のバーで並ぶので、残りが少なかった月がすぐに見つかります。</p>
             <ul class="swatches">
               <li style="--dot: #ffbc45">支出</li>
               <li style="--dot: #00c7c3">貯蓄</li>
@@ -103,31 +120,7 @@
             </ul>
           </div>
           <div class="feature-media">
-            <div class="device small"><img src="images/08_cashflow_dark.jpg" alt="ダークモードの収支の画面。今月の残りと、支出・投資・残りに分かれた1本のバー、収入・純収入・支出＋蓄財の金額が並ぶ" width="660" height="1434" loading="lazy"></div>
-          </div>
-        </article>
-
-        <article class="feature">
-          <div>
-            <h3>記録は、テンキーでさっと</h3>
-            <p>収入・支出・貯蓄・投資を選んで、金額を打つだけ。前に使った内容はボタンで選べて、支払いに使った口座もタップで切り替えられます。</p>
-            <ul>
-              <li>毎月決まったお金は繰り返しにして、先の月にも予定として登録</li>
-              <li>記録する月は、横に並んだ月のボタンから選ぶだけ</li>
-            </ul>
-          </div>
-          <div class="feature-media">
-            <div class="device small"><img src="images/04_record.jpg" alt="記録する画面。収入・支出・貯蓄・投資の切り替え、金額の欄、月のボタン、内容の候補（光熱費・食費・家賃）、支払元の口座、繰り返しの設定、大きなテンキーが並ぶ" width="660" height="1434" loading="lazy"></div>
-          </div>
-        </article>
-
-        <article class="feature">
-          <div>
-            <h3>増えた資産が、線で見える</h3>
-            <p>推移の画面では、資産総額の動きを、これまでの実績と、記録した予定から計算したこの先を1本のグラフで表示します。月ごとの収支も4色のバーで並ぶので、残りが少なかった月がすぐに見つかります。</p>
-          </div>
-          <div class="feature-media">
-            <div class="device small"><img src="images/03_timeline.jpg" alt="推移の画面。資産総額 456 万円のグラフで、10月までの実績が実線、その先の予定が点線。下に月ごとの収支が支出・貯蓄・投資・残りの色のバーと、残りの金額で並ぶ" width="660" height="1434" loading="lazy"></div>
+            <div class="device small"><img src="images/05_timeline.jpg" alt="推移の画面。純資産 416 万円のグラフで、11月までの実績が実線、その先の予定が点線。下に月ごとの収支が支出・貯蓄・投資・残りの色のバーと、残りの金額で並ぶ" width="660" height="1434" loading="lazy"></div>
           </div>
         </article>
 
@@ -138,7 +131,7 @@
             <p>家賃・食費・光熱費など、内容ごとの金額を月ごと・年ごとの棒グラフで見られます。棒を押すと、その月の内訳と割合が下に並びます。推移の画面を年ごとに切り替えると、長い期間の収支も確かめられます。</p>
           </div>
           <div class="feature-media">
-            <div class="device small"><img src="images/07_category_trend.jpg" alt="カテゴリ別推移の画面。今月の支出 144,000 円と、月ごとの支出の棒グラフ。下に 2026年10月の内訳として家賃 90,000 円（62%）、食費 42,000 円（29%）、光熱費 12,000 円（8%）が並ぶ" width="660" height="1434" loading="lazy"></div>
+            <div class="device small"><img src="images/09_category_trend.jpg" alt="カテゴリ別推移の画面。今月の支出 144,000 円と、月ごとの支出の棒グラフ。下に 2026年11月の内訳として家賃 90,000 円（62%）、食費 42,000 円（29%）、光熱費 12,000 円（8%）が並ぶ" width="660" height="1434" loading="lazy"></div>
           </div>
         </article>
 
@@ -151,7 +144,7 @@
             </ul>
           </div>
           <div class="feature-media">
-            <div class="device small"><img src="images/05_assets.jpg" alt="資産の画面。純資産の合計と先月からの増減、預金と運用の割合のバー、口座ごとの残高と利回りの一覧が並ぶ" width="660" height="1434" loading="lazy"></div>
+            <div class="device small"><img src="images/07_assets.jpg" alt="資産の画面。純資産 4,162,000 円と先月からの増減、預金と運用の割合のバー、預金・運用・負債に分かれた口座ごとの残高と利回りの一覧が並ぶ" width="660" height="1434" loading="lazy"></div>
           </div>
         </article>
       </div>
@@ -166,10 +159,10 @@
           <div>
             <span class="tag">プレミアム</span>
             <h3>引退の年齢や取り崩し方を、<br>その場で変えて見比べる</h3>
-            <p>引退年齢をスライダーで動かし、引退後の取り崩しを「資産の何%（定率）」か「毎月いくら（定額）」から選ぶと、グラフと65歳時点の資産がすぐに変わります。何歳まで資産が残るかも表示します。</p>
+            <p>引退年齢を動かし、引退後の取り崩しを「資産の何%（定率）」か「毎月いくら（定額）」から選ぶと、グラフと65歳時点の資産がすぐに変わります。検討中の大きな支出の計画も、点線で重ねて表示します。</p>
           </div>
           <div class="feature-media">
-            <div class="device small"><img src="images/02_future.jpg" alt="未来の画面。65歳時点の資産 1,267 万円と「95歳まで資産が残る」の表示、引退 65 歳の線が入った資産と元本のグラフ、引退年齢のスライダーと取り崩しの定率・定額の切り替えが並ぶ" width="660" height="1434" loading="lazy"></div>
+            <div class="device small"><img src="images/02_future.jpg" alt="未来の画面。65歳時点の資産 1,228 万円と「計画を含めると 907 万円」の表示、引退 65 歳の線が入った資産のグラフに、今の予定の実線と検討中の計画を含む点線。下に車の買い替えと大学の学費の計画が並ぶ" width="660" height="1434" loading="lazy"></div>
           </div>
         </article>
 
@@ -178,20 +171,63 @@
             <span class="tag">プレミアム</span>
             <h3>値動きも考えて、<br>資産の幅を予測</h3>
             <p>「値動きを考慮」に切り替えると、口座ごとの値動きの大きさをもとに 500 回の試行を行い、資産の中央値と、80% の確率で収まる範囲を示します。何歳まで資産が残る確率と、悲観的なケースの結果もわかります。</p>
+            <ul>
+              <li>資産推移グラフでは、期間と対象の口座を絞って将来を確かめられます</li>
+            </ul>
           </div>
           <div class="feature-media">
-            <div class="device small"><img src="images/06_future_montecarlo.jpg" alt="未来の画面の「値動きを考慮」。65歳時点の資産の中央値 1,051 万円、80% の確率で 519 万円〜2,373 万円、95歳まで残る確率 100%。中央値の線と 80% の範囲の帯のグラフが並ぶ" width="660" height="1434" loading="lazy"></div>
+            <div class="device small"><img src="images/08_future_montecarlo.jpg" alt="未来の画面の「値動きを考慮」。65歳時点の資産の中央値 1,242 万円、80% の確率で 578 万円〜3,462 万円、計画を含めると 921 万円。中央値の線と 80% の範囲の帯、計画を含む点線のグラフが並ぶ" width="660" height="1434" loading="lazy"></div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="section" id="plans" aria-labelledby="plans-title">
+      <div class="wrap">
+        <h2 class="section-title" id="plans-title">大きな支出を、<br>買う前に計画</h2>
+        <p class="section-lead">住宅ローン・車のローン・学費のようなまとまった支出を、条件を入れるだけで試算します。検討中の計画は将来の予測に重ねて、組んだ場合と組まない場合を見比べられます。</p>
+
+        <article class="feature">
+          <div>
+            <span class="tag">プレミアム</span>
+            <h3>毎月の返済も、完済の年齢も、<br>その場で</h3>
+            <p>価格・頭金・金利・期間を入れると、毎月の返済、返済の合計とうち利息、収入に対する返済の割合、完済する年齢がすぐに出ます。諸費用も借りるか、頭金をどの口座から出すかも選べます。</p>
+          </div>
+          <div class="feature-media">
+            <div class="device small"><img src="images/03_plan_estimate.jpg" alt="車のローンの計画の画面。毎月の返済 44,810 円、2026年12月から2031年11月までの 60 回、返済の合計 269 万円、うち利息 19 万円、返済比率 10.7%、35 歳で完済。下に車両価格・頭金・諸費用・借入額の入力欄が並ぶ" width="660" height="1434" loading="lazy"></div>
           </div>
         </article>
 
         <article class="feature">
           <div>
             <span class="tag">プレミアム</span>
-            <h3>期間と口座を絞って見る</h3>
-            <p>資産推移グラフでは、5年・10年・20年・引退まで・寿命までと期間を選び、運用中と引退後の資産を色分けして表示します。対象にする口座を選んで、気になる口座だけで将来を確かめることもできます。</p>
+            <h3>その買い物で、<br>将来はどう変わる？</h3>
+            <p>計画あり・なしの資産を1つのグラフに重ねて、65歳時点の資産がどれだけ変わるか、いちばん少なくなるのは何歳かを示します。契約したら毎月の返済が記録として入り、金利の見直しや繰上返済にも対応します。</p>
           </div>
           <div class="feature-media">
-            <div class="device small"><img src="images/09_asset_chart.jpg" alt="資産推移グラフの画面。開始・最終・増減の金額のカードと、30歳から95歳までの資産を運用中はピンク、引退後はオレンジで示す棒グラフ、期間のボタンと開始・終了年齢の設定が並ぶ" width="660" height="1434" loading="lazy"></div>
+            <div class="device small"><img src="images/04_plan_impact.jpg" alt="資産への影響の画面。計画なしの資産の線と、車の買い替えを含む点線のグラフ。65歳時点の資産は計画なし 1,228 万円、車の買い替えあり 907 万円（-321 万円）。下に毎月の返済や利息などの条件の比較が並ぶ" width="660" height="1434" loading="lazy"></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="family" aria-labelledby="family-title">
+      <div class="wrap">
+        <h2 class="section-title" id="family-title">家族と一緒に、<br>同じ家計を</h2>
+
+        <article class="feature">
+          <div>
+            <span class="tag">家族共有プラン</span>
+            <h3>選んだ口座だけを、<br>家族と共有</h3>
+            <p>共有したい口座を選んで家族を招待すると、その口座の記録を家族と一緒に付けられます。選ばなかった口座は家族には見えません。</p>
+            <ul>
+              <li>買うのは共有を始める方だけ。招待された家族は追加の購入なしで参加できます</li>
+              <li>共有はいつでも止められ、口座は自分の手元に戻ります</li>
+            </ul>
+          </div>
+          <div class="feature-media">
+            <div class="device small"><img src="images/10_settings.jpg" alt="設定の画面。バージョン 3.1.0、記録 28 件・口座 4 件・記録した月 6 か月。プランの欄にプレミアム（有効）、その下に「iCloud 同期を使う」と「家族と共有する」のボタンが並ぶ" width="660" height="1434" loading="lazy"></div>
           </div>
         </article>
       </div>
@@ -206,12 +242,24 @@
             <p>はじめて開いたときに、サンプルの口座と過去6か月分の記録を入れて各画面を試せます。サンプルは、あとで設定からまとめて消せます。</p>
           </div>
           <div class="card">
-            <h3>ダークモードと好きな色</h3>
-            <p>ダークモードに切り替えられ、ボタンの色も選べます。左上のアプリのアイコンの表示も設定できます。</p>
+            <h3>アイコンと色を選べる</h3>
+            <p>ホーム画面のアプリのアイコンを選べ、ダークモードやボタンの色も切り替えられます。</p>
           </div>
           <div class="card">
             <h3>バックアップを書き出す</h3>
             <p>記録をファイルに書き出して保管し、あとからそのファイルで復元できます。機種変更の前の控えにも。</p>
+          </div>
+          <div class="card">
+            <h3>声やショートカットで記録</h3>
+            <p>声やショートカットから、記録を足したり、今月の収支を確かめたりできます。</p>
+          </div>
+          <div class="card">
+            <h3>種類と口座を提案</h3>
+            <p>記録の内容から種類と口座を提案し、推移の画面では月の振り返りを文章で表示します。処理は端末の中で行います（対応する端末のみ）。</p>
+          </div>
+          <div class="card">
+            <h3>別の端末と同期</h3>
+            <p>同期プランなら、iPhone と iPad など複数の端末で記録を自動で同期。入れ直したときも記録が戻ります。</p>
           </div>
         </div>
       </div>
@@ -220,20 +268,20 @@
     <section class="section" aria-labelledby="privacy-title">
       <div class="wrap reading" style="margin: 0 auto; text-align: center;">
         <h2 class="section-title" id="privacy-title">お金の記録は、あなたの手元に</h2>
-        <p class="section-lead" style="margin-bottom: 0;">記録した収支や口座の情報は、端末の中と、同期プランで同期する場合はあなた自身の iCloud にだけ保存されます。開発者のサーバーへ送ることはなく、銀行や証券会社につないで残高を取りに行くこともありません。アカウント登録は不要で、解析や広告の仕組みも入っていません。</p>
+        <p class="section-lead" style="margin-bottom: 0;">記録した収支や口座の情報は、端末の中と、同期プランで同期する場合はあなた自身の iCloud にだけ保存されます。家族共有では、あなたが選んだ口座だけが招待した家族に共有されます。開発者のサーバーへ送ることはなく、銀行や証券会社につないで残高を取りに行くこともありません。アカウント登録は不要で、解析や広告の仕組みも入っていません。</p>
       </div>
     </section>
 
     <section class="section" id="pricing" aria-labelledby="pricing-title">
       <div class="wrap">
         <h2 class="section-title" id="pricing-title">まずは無料で</h2>
-        <p class="section-lead">毎月の記録と今月の残りは、無料で使えます。将来の資産を見たくなったらプレミアム、ほかの端末でも使うなら同期プランを。どちらも買い切りです。</p>
-        <div class="plans three">
+        <p class="section-lead">毎月の記録と今月の残りは、無料で使えます。将来の資産やローンの計画を見たくなったらプレミアム、ほかの端末でも使うなら同期プラン、家族と使うなら家族共有プランを。どれも買い切りです。</p>
+        <div class="plans four">
           <div class="plan">
             <h3>無料</h3>
             <p class="plan-sub">お支払いなしで使える範囲</p>
             <ul>
-              <li>収入・支出・貯蓄・投資の記録と繰り返し</li>
+              <li>収入・支出・貯蓄・投資・振替の記録と繰り返し</li>
               <li>今月の残りと、収入の行き先のバー</li>
               <li>資産総額の推移と月ごとの収支</li>
               <li>口座ごとの残高と純資産</li>
@@ -246,6 +294,7 @@
             <p class="plan-sub">買い切り（1回のお支払い）</p>
             <ul>
               <li>将来の資産の予測（未来の画面）</li>
+              <li>大きな支出の計画（ローンの試算と資産への影響）</li>
               <li>値動きを考慮した予測</li>
               <li>期間と口座を絞った資産推移グラフ</li>
               <li>年ごとの推移</li>
@@ -262,8 +311,17 @@
               <li>記録は自分の iCloud にだけ保存</li>
             </ul>
           </div>
+          <div class="plan">
+            <h3>家族共有プラン</h3>
+            <p class="plan-sub">買い切り（共有を始める方だけ）</p>
+            <ul>
+              <li>選んだ口座だけを家族と共有して、一緒に記録</li>
+              <li>選ばなかった口座は家族には見えない</li>
+              <li>招待された家族は追加の購入なしで参加</li>
+            </ul>
+          </div>
         </div>
-        <p class="hero-note" style="text-align: center;">購入したプランは、同じ Apple アカウントのほかの端末でも「購入の復元」で使えます。同期には端末の iCloud へのサインインが必要です。</p>
+        <p class="hero-note" style="text-align: center;">購入したプランは、同じ Apple アカウントのほかの端末でも「購入の復元」で使えます。同期と家族共有には、端末の iCloud へのサインインが必要です。</p>
       </div>
     </section>
 

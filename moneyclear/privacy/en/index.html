@@ -38,12 +38,12 @@
       </nav>
 
       <h1>Privacy Policy (MoneyClear)</h1>
-      <p class="doc-meta">Developer: Toshihiro.nakao<br>Effective date: October 24, 2026</p>
+      <p class="doc-meta">Developer: Toshihiro.nakao<br>Effective date: November 2, 2026</p>
 
       <p>Toshihiro.nakao ("we", "us") has established this Privacy Policy to explain how the iOS / iPadOS app "MoneyClear" (the "App") handles your information.</p>
 
       <h2>1. Our Approach</h2>
-      <p>The App keeps the budget and asset information you enter only on your device and in your own iCloud. We never receive this information.</p>
+      <p>The App keeps the budget and asset information you enter only on your device and in your own iCloud. If you use family sharing, the accounts you choose and their entries are also shared with the family members you invite. We never receive this information.</p>
       <ul>
         <li>The App does not send information to any server we operate.</li>
         <li>There is no account registration or sign-in.</li>
@@ -55,43 +55,55 @@
       <p>The App stores the following information that you enter:</p>
       <ul>
         <li>Accounts (name, icon, starting balance, expected return, and volatility)</li>
-        <li>Entries (year and month, type — income, expense, savings, or investment — description, amount, account used, and repeat settings)</li>
+        <li>Entries (year and month, type — income, expense, savings, investment, or transfer — description, amount, the account used and the source account, and repeat settings)</li>
         <li>Forecast assumptions (current age, retirement age, life expectancy, withdrawal method, and which accounts to include)</li>
-        <li>Display settings (such as dark mode and button color) and a log of sync status</li>
+        <li>Large-expense plans (plan name and kind, amounts, down payment, interest rate, repayment term, the account payments come from, and whether the plan is under consideration or contracted)</li>
+        <li>Display settings (such as dark mode, button color, and app icon) and a log of sync status</li>
       </ul>
       <p>The App has no fields for your name, contact details, bank or brokerage login credentials, or account numbers, and it never connects to financial institutions to retrieve balances or transactions.</p>
+      <h3>If You Use Family Sharing</h3>
+      <p>With family sharing, each entry in a shared account stores an iCloud user identifier so the App can tell who recorded it. The list of participants also shows each participant's iCloud name (or email address if no name is available). This information is handled by iCloud's sharing system, and we never receive it.</p>
 
       <h2>3. Where Your Data Is Stored</h2>
       <ul>
         <li><strong>On your device</strong>: The information you enter is stored on your device.</li>
-        <li><strong>iCloud</strong>: Only if you have purchased the Sync plan and are signed in to iCloud on your device, the information you enter is also stored in the private area of your own iCloud through Apple's CloudKit, and synced across devices signed in with the same Apple Account. Only you can access this area; we cannot see its contents. Apple's Privacy Policy applies to how iCloud handles your data.</li>
-        <li><strong>Backup export</strong>: Using "Export backup" in Settings saves your records as a JSON file to a location you choose. You manage the exported file, and it is never sent to us.</li>
+        <li><strong>iCloud</strong>: Only if you purchase the Sync plan and are signed in to iCloud, your information is also stored through Apple's CloudKit in the private area of your own iCloud and synced across devices signed in with the same Apple Account. Only you can use this area; we cannot see its contents.</li>
+        <li><strong>Family sharing</strong>: If you start sharing with the Family Sharing plan, the accounts you choose and their entries are stored in the iCloud of the person who started sharing and synced with invited family members' devices through CloudKit sharing. Accounts you do not choose, and their entries, are not shared. Transfers between a shared account and an unshared one are shown to family members with the other account's name hidden. We cannot see the shared contents.</li>
+        <li><strong>Exported backups</strong>: Using "Export Backup" in Settings saves your entries as a JSON file to a location you choose. You manage that file yourself, and it is never sent to us.</li>
       </ul>
-      <p>Deleting the App removes the data stored on your device. Data stored in iCloud remains after you delete the App (see "6. Deleting Your Data" for how to remove it).</p>
+      <p>Apple's Privacy Policy applies to how iCloud handles your data. Deleting the App removes the data on your device. Data stored in iCloud remains even after the App is deleted (see "7. Deleting Your Data" for how to remove it).</p>
 
-      <h2>4. In-App Purchases</h2>
-      <p>The App offers one-time in-app purchases that unlock paid features. Purchases and payments are processed by Apple's App Store, and we never receive payment information such as credit card numbers. The App only receives your purchase records from the App Store to check whether a feature has been purchased.</p>
-
-      <h2>5. Sharing With Third Parties</h2>
-      <p>We do not share your information with third parties, except where disclosure is required by law.</p>
-
-      <h2>6. Deleting Your Data</h2>
+      <h2>4. On-Device Processing</h2>
       <ul>
-        <li>"Delete all data" in Settings removes your entries and accounts from this device. If you sync with the Sync plan, it also removes them from every device synced with the same iCloud. This cannot be undone.</li>
-        <li>"Remove sample data" in Settings removes only the accounts and entries that were added as sample data.</li>
-        <li>You can also delete the App's data stored in iCloud from iCloud storage management in the Settings app on your device.</li>
+        <li><strong>Siri, Shortcuts, and search</strong>: So you can add entries and check your cash flow and balances from Siri or Shortcuts, the App adds your accounts and entries (name, description, amount, month, and so on) to the on-device search index. Entries with amounts are set not to appear in search results. This index is built on your device and is never sent to us.</li>
+        <li><strong>Suggestions and monthly look-backs</strong>: On supported devices, the App uses Apple's on-device language model to suggest an entry's type and account and to write a look-back of the month. This processing happens on your device, and your entries are never sent to us or to any outside service.</li>
       </ul>
 
-      <h2>7. Children</h2>
+      <h2>5. In-App Purchases</h2>
+      <p>The App offers one-time in-app purchases (Premium, the Sync plan, and the Family Sharing plan) that unlock paid features. Purchases and payments are processed by Apple's App Store, and we never receive payment information such as credit card numbers. The App only receives purchase records from the App Store to confirm what you have bought.</p>
+
+      <h2>6. Sharing With Third Parties</h2>
+      <p>We do not share your information with third parties, except when disclosure is required by law. When you share accounts and entries you have chosen with family members you have invited, that sharing happens at your own direction.</p>
+
+      <h2>7. Deleting Your Data</h2>
+      <ul>
+        <li>"Delete All Data" in Settings removes entries and accounts from this device. If you sync with the Sync plan, they are also removed from every device synced with the same iCloud. Accounts you are sharing with family remain. This cannot be undone.</li>
+        <li>The person who started sharing can stop sharing individual accounts, or end sharing entirely, under "Share with Family" in Settings. Accounts that are no longer shared, and their entries, disappear from family members' devices and stay on this device.</li>
+        <li>An invited family member who chooses "Leave Sharing" removes the shared accounts and entries from their own device. The data of the person who started sharing and of other family members is not deleted.</li>
+        <li>"Delete Sample Data" in Settings removes only the accounts and entries added as sample data.</li>
+        <li>Data stored in iCloud can also be deleted from iCloud storage management in your device's Settings app.</li>
+      </ul>
+
+      <h2>8. Children</h2>
       <p>The App is not directed to children under 13, and we do not knowingly collect information from children under 13.</p>
 
-      <h2>8. Changes to This Policy</h2>
-      <p>We may update this Policy as needed. The updated Policy takes effect when it is posted on this page.</p>
+      <h2>9. Changes to This Policy</h2>
+      <p>We may update this Policy as needed. Any changes take effect when the updated Policy is posted on this page.</p>
 
-      <h2>9. Information We Receive When You Contact Us</h2>
-      <p>Inquiries through the support page are received using Google Forms (Google LLC). The information you enter when contacting us (such as your name, email address, and message) is used only to respond to you and to improve the App, and is never shared with third parties. We delete it once it is no longer needed after we respond. Google's Privacy Policy also applies when you submit an inquiry.</p>
+      <h2>10. Information We Receive When You Contact Us</h2>
+      <p>Inquiries through the support page are received with Google Forms (Google LLC). The information you enter when contacting us (such as your name, email address, and message) is used only to respond to you and to improve the App, and is never shared with third parties. We delete it once it is no longer needed after we respond. Google's Privacy Policy also applies when you submit an inquiry.</p>
 
-      <h2>10. Contact</h2>
+      <h2>11. Contact</h2>
       <p>For questions about this Privacy Policy or the App's privacy, please contact us through the <a href="../../support/">support page</a>.</p>
     </article>
   </main>
