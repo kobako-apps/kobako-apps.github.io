@@ -166,6 +166,9 @@
   footer { padding-block: 28px 40px; font-size: 14px; color: var(--muted); }
   footer .wrap { display: flex; flex-wrap: wrap; gap: 10px 24px; justify-content: space-between; align-items: center; }
   .foot-nav { display: flex; flex-wrap: wrap; gap: 8px 22px; }
+  .top-links { display: flex; align-items: center; gap: 18px; }
+  .top-link { font-weight: 700; font-size: 15px; text-decoration: none; }
+  @media (max-width: 420px) { .top-link { display: none; } }
 
   h2 { font-size: clamp(30px, 4vw, 44px); margin-top: 10px; }
   .head-block { display: grid; gap: 14px; }
@@ -204,7 +207,7 @@
   <div class="wrap">
     <header class="top">
       <a class="brand" href="./"><img src="images/icon.png?v=2.4.0" alt="">Clockee</a>
-      <a class="cta small" href="https://apps.apple.com/jp/app/id6758564232">App Store で見る</a>
+      <span class="top-links"><a class="top-link" href="support/">サポート</a><a class="cta small" href="https://apps.apple.com/jp/app/id6758564232">App Store で見る</a></span>
     </header>
 
     <div class="hero">
@@ -428,7 +431,7 @@
   <div class="wrap">
     <nav class="foot-nav" aria-label="フッター">
       <a href="privacy/">プライバシーポリシー</a>
-      <a href="https://forms.gle/1JADyi5qZypxxDHM8">お問い合わせ</a>
+      <a href="support/">サポート・お問い合わせ</a>
       <a href="../">ほかのアプリ</a>
     </nav>
     <span>© 2026 Kobako Apps</span>
