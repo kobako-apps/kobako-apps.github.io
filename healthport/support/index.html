@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HealthPort サポート</title>
+  <meta name="description" content="HealthPort のよくある質問とお問い合わせ。">
+  <link rel="canonical" href="https://kobako-apps.github.io/healthport/support/">
+  <link rel="icon" href="../images/icon.png">
+  <link rel="apple-touch-icon" href="../images/apple-touch-icon.png">
+  <link rel="stylesheet" href="../../assets/site.css">
+  <style>
+    :root { --accent: #007c85; --accent-soft: #dff5f6; --bg: #f1f6f7; }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) { --accent: #3fd0d8; --accent-soft: #10292b; --accent-ink: #0b0d11; --bg: #0b0e10; --surface: #151a1c; }
+    }
+    :root[data-theme="dark"] { --accent: #3fd0d8; --accent-soft: #10292b; --accent-ink: #0b0d11; --bg: #0b0e10; --surface: #151a1c; }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="../"><img src="../images/icon.png" alt="">HealthPort</a>
+      <nav class="header-nav" aria-label="サイト内">
+        <a href="../privacy/">プライバシーポリシー</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="doc">
+    <div class="wrap reading" style="margin: 0 auto;">
+      <h1>サポート</h1>
+      <p class="doc-meta">HealthPort のよくある質問とお問い合わせ</p>
+
+      <div class="panel">
+        <h2 style="margin-top: 0;">お問い合わせ</h2>
+        <p>不具合のご報告・ご要望・ご質問は、お問い合わせフォームからお送りください。返信までに数日いただくことがあります。</p>
+        <p>不具合のときは、次の内容を書いていただくと早く調べられます。</p>
+        <ul>
+          <li>アプリのバージョン（iPhone の「設定」→「一般」→「iPhone ストレージ」→「HealthPort」で確かめられます）</li>
+          <li>端末の機種と iOS のバージョン</li>
+          <li>どの画面で、何をしたら、どうなったか</li>
+        </ul>
+        <p>血圧の値や病名・お薬の名前などの健康に関する情報は、フォームに書かないでください。</p>
+        <p><a class="button" href="https://forms.gle/9RnmPR5dhnm4dGi29" target="_blank" rel="noopener">お問い合わせフォームを開く</a></p>
+        <p style="font-size: 14px; color: var(--ink-sub);">フォームは Google フォームで受け付けています。いただいた内容は、お問い合わせへの返信のためにだけ使います（<a href="../privacy/">プライバシーポリシー</a>）。</p>
+      </div>
+
+      <h2>よくある質問</h2>
+      <div class="faq">
+        <details>
+          <summary>はじめに何をすればいいですか？</summary>
+          <div>
+            <p>はじめて開いたときの案内で、ヘルスケアのデータの読み取りを許可してください。あとは「データ出力」の画面で「血圧手帳」と期間を選び、右下の出力ボタンを押すと PDF ができあがります。</p>
+            <p>許可をやり直したいときは、「設定」の「初期設定をもう一度見る」から案内をもう一度たどれます。</p>
+          </div>
+        </details>
+        <details>
+          <summary>レポートに血圧などの値が出ません</summary>
+          <div>
+            <ul>
+              <li>ヘルスケアに、その期間の記録があるか確かめてください。HealthPort はヘルスケアに記録されたデータからレポートを作ります</li>
+              <li>ヘルスケアのデータの読み取りが許可されているか確かめてください。ヘルスケア App の右上のアイコン →「プライバシー」の「App」→「HealthPort」で、項目ごとにオン / オフを切り替えられます</li>
+              <li>「設定」→「データ設定」→「データ元」で、記録を入れたアプリや機器がオフになっていないか確かめてください</li>
+            </ul>
+          </div>
+        </details>
+        <details>
+          <summary>血圧計がヘルスケアと連携していません</summary>
+          <div>
+            <p>「データ出力」の画面の「血圧を記録」から、最高血圧・最低血圧・脈拍（任意）を入力できます。入力した値はヘルスケアに保存され、そのまま血圧手帳に反映されます。続けて 2 回目の測定も入力できます。</p>
+          </div>
+        </details>
+        <details>
+          <summary>入力した血圧を直したい・消したい</summary>
+          <div>
+            <p>入力した値はヘルスケアに保存されています。修正や削除は、ヘルスケア App の「血圧」→「すべてのデータを表示」から行ってください。</p>
+          </div>
+        </details>
+        <details>
+          <summary>朝と晩の値は、どうやって決めていますか？</summary>
+          <div>
+            <p>正午より前の測定を朝、正午以降の測定を晩として扱います。朝は起床後の測定を取るため各日の最初の 2 回、晩は就寝前の測定を取るため最後の 2 回の平均を採用します。脈拍は、血圧の測定の前後 5 分以内の記録を対応づけます。</p>
+          </div>
+        </details>
+        <details>
+          <summary>同じ測定が二重に入っています</summary>
+          <div>
+            <p>血圧計のアプリと手入力など、複数のアプリや機器から同じ記録がヘルスケアに入っている可能性があります。「設定」→「データ設定」→「データ元」で、出力に使わないアプリや機器をオフにしてください。オフにしたデータ元だけを除くため、あとから追加した機器の記録は自動的に対象になります。</p>
+          </div>
+        </details>
+        <details>
+          <summary>無料でどこまで使えますか？</summary>
+          <div>
+            <p>直近 7 日間の血圧手帳（血圧・心拍数・体重）の PDF、血圧の手入力、測定リマインダー、体調・服薬メモ、英語のレポート、レポート履歴をお使いいただけます。</p>
+            <p>HealthPort Pro（買い切り）では、出力期間の制限がなくなり、詳細グラフの PDF・CSV の書き出し・37 種類すべての項目の出力・直前の期間との比較・血圧の目標値の変更・氏名の印字・ショートカットでの期間の指定が使えるようになります。</p>
+          </div>
+        </details>
+        <details>
+          <summary>購入した Pro 版を、別の端末や入れ直したアプリで使いたい</summary>
+          <div>
+            <p>「設定」の「Pro版へアップグレード」を開き、「購入を復元する」を押してください。購入したときと同じ Apple アカウントで App Store にサインインしていれば、追加の支払いなしで使えます。</p>
+          </div>
+        </details>
+        <details>
+          <summary>レポートを印刷したい</summary>
+          <div>
+            <p>レポートを出力すると、プレビューの画面が開きます。右上のプリンタのボタンから、そのまま印刷できます。共有のボタンから、ファイルとして保存したり送ったりすることもできます。作成したレポートは「レポート履歴」から開き直して印刷できます。</p>
+          </div>
+        </details>
+        <details>
+          <summary>英語のレポートを作りたい</summary>
+          <div>
+            <p>「設定」→「PDF レポート」の「レポートの言語」を英語に切り替えてください。PDF だけが英語になり、CSV とアプリの画面は日本語のままです。入力したメモやお薬の名前は翻訳されません。</p>
+          </div>
+        </details>
+        <details>
+          <summary>お薬の記録をレポートに入れたい</summary>
+          <div>
+            <p>「設定」→「PDF レポート」の「メモ・服薬を PDF に含める」をオンにし、「服薬データへのアクセスを許可」を押してください。ヘルスケアの画面で選んだお薬の記録が、次の血圧手帳から反映されます。体調・服薬メモで「服薬済み」にした記録も、日付ごとにレポートに入ります。</p>
+          </div>
+        </details>
+        <details>
+          <summary>測定リマインダーの通知が届きません</summary>
+          <div>
+            <ul>
+              <li>「設定」→「測定リマインダー」で、朝・晩の通知がオンになっているか確認してください</li>
+              <li>iPhone の「設定」→「通知」→「HealthPort」で、通知が許可されているか確認してください</li>
+              <li>集中モードの間は、通知が表示されないことがあります</li>
+            </ul>
+          </div>
+        </details>
+        <details>
+          <summary>データはどこに保存されますか？ アプリを削除すると消えますか？</summary>
+          <div>
+            <p>体調・服薬メモ、設定、作成したレポートは端末の中にだけ保存され、開発者のサーバーには送られません。アプリを削除すると、これらは消えます。必要なレポートは、共有のボタンから「ファイル」などに保存しておいてください。</p>
+            <p>血圧などの測定値はヘルスケアに保存されているため、アプリを削除しても消えません。入れ直せば、もう一度レポートを作れます。</p>
+          </div>
+        </details>
+        <details>
+          <summary>HealthPort は医療機器ですか？</summary>
+          <div>
+            <p>いいえ。HealthPort は記録をまとめて見やすくするためのアプリで、医療機器ではありません。診断や治療の判断は、必ず医師にご相談ください。</p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <nav aria-label="フッター">
+        <a href="../">HealthPort</a>
+        <a href="../privacy/">プライバシーポリシー</a>
+        <a href="../../">ほかのアプリ</a>
+      </nav>
+      <span>© 2026 Kobako Apps</span>
+    </div>
+  </footer>
+</body>
+</html>

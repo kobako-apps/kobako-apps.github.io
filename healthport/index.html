@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HealthPort - 血圧手帳を PDF に。通院用のレポート作成アプリ</title>
+  <meta name="description" content="ヘルスケアに記録された血圧・脈拍・体重を、主治医にそのまま渡せる血圧手帳の PDF にまとめるアプリ。期間を選んでボタンを押すだけで、朝・晩の測定値とグラフが日付順に並んだレポートができあがります。">
+  <meta name="apple-itunes-app" content="app-id=6757977349">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="HealthPort - 血圧手帳を PDF に。通院用のレポート作成アプリ">
+  <meta property="og:description" content="血圧の記録を、診察で渡せる一枚に。期間を選ぶだけで、朝・晩の血圧とグラフが並んだ血圧手帳の PDF ができあがります。">
+  <meta property="og:image" content="https://kobako-apps.github.io/healthport/images/icon.png">
+  <meta property="og:url" content="https://kobako-apps.github.io/healthport/">
+  <link rel="canonical" href="https://kobako-apps.github.io/healthport/">
+  <link rel="icon" href="images/icon.png">
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+  <link rel="stylesheet" href="../assets/site.css">
+  <style>
+    /* アプリの主色 (アイコンのティール)。白地の文字で読めるよう、文字とボタンには少し濃くした色を使う */
+    :root { --accent: #007c85; --accent-soft: #dff5f6; --bg: #f1f6f7; }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) { --accent: #3fd0d8; --accent-soft: #10292b; --accent-ink: #0b0d11; --bg: #0b0e10; --surface: #151a1c; }
+    }
+    :root[data-theme="dark"] { --accent: #3fd0d8; --accent-soft: #10292b; --accent-ink: #0b0d11; --bg: #0b0e10; --surface: #151a1c; }
+
+    /* 「測る → 選ぶ → 渡す」の流れ */
+    .flow { list-style: none; margin: 0 auto; padding: 0; max-width: var(--content); display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .flow li { background: var(--surface); border-radius: var(--radius-card); box-shadow: var(--shadow); padding: 20px; }
+    .flow .step { display: inline-block; font-size: 12px; font-weight: 700; color: var(--accent); background: var(--accent-soft); border-radius: 999px; padding: 2px 10px; margin-bottom: 8px; }
+    .flow h3 { margin: 0 0 6px; font-size: 17px; }
+    .flow p { margin: 0; color: var(--ink-sub); font-size: 15px; }
+    @media (max-width: 820px) { .flow { grid-template-columns: 1fr; } }
+
+    /* 見出しは文節の切れ目 (<wbr>) でだけ折り返し、「に。」だけの行を作らない */
+    .hero h1 { word-break: keep-all; overflow-wrap: anywhere; }
+
+    .notice { max-width: var(--reading); margin: 24px auto 0; font-size: 14px; color: var(--ink-sub); text-align: center; }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="./"><img src="images/icon.png" alt="">HealthPort</a>
+      <nav class="header-nav" aria-label="サイト内">
+        <a class="optional" href="#features">機能</a>
+        <a class="optional" href="#pricing">Pro 版</a>
+        <a href="support/">サポート</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <div>
+          <span class="eyebrow">通院のための血圧手帳アプリ</span>
+          <h1>血圧の記録を、<br>診察で渡せる<wbr>一枚に。</h1>
+          <p class="lead">「次の診察までに、血圧の記録をまとめてきてください」。そう言われて、毎日の数値を手書きで写していませんか。HealthPort は、ヘルスケアに記録された血圧・脈拍・体重を、主治医にそのまま渡せる「血圧手帳」の PDF にまとめるアプリです。期間を選んでボタンを押すだけで、レポートができあがります。</p>
+          <a class="button store-button" href="https://apps.apple.com/jp/app/id6757977349">App Store で見る</a>
+          <p class="hero-note">iPhone（iOS 26.2 以上）／アカウント登録は不要です</p>
+        </div>
+        <div class="device">
+          <img src="images/01_home.jpg" alt="HealthPort のデータ出力の画面。レポート形式として血圧手帳・詳細グラフ・CSV データが並び、血圧手帳が選ばれている。期間は 2026/10/14 から 2026/11/12 で、7 日・30 日・90 日・前回以降のボタン、「血圧を記録」「体調・服薬メモ」のボタン、出力項目として最高血圧・最低血圧・心拍数・体重が表示されている" width="660" height="1434">
+        </div>
+      </div>
+    </section>
+
+    <section class="points" aria-label="特長">
+      <div class="wrap">
+        <ul>
+          <li>
+            <span class="num">1</span>
+            <h2>書き写しが、いらなくなる</h2>
+            <p>ヘルスケアにたまった血圧を、朝・晩に分けて日付順に並べます。紙の手帳に写す手間も、画面を医師に見せる手間もありません。</p>
+          </li>
+          <li>
+            <span class="num">2</span>
+            <h2>家庭血圧の測り方に合わせて</h2>
+            <p>朝は各日の最初の 2 回、晩は最後の 2 回の測定を平均。前後 5 分以内の脈拍も自動で対応づけます。</p>
+          </li>
+          <li>
+            <span class="num">3</span>
+            <h2>健康データは、端末の中だけ</h2>
+            <p>レポートの作成はすべて端末の中で行います。外部のサーバーへデータを送ることはなく、アカウント登録もいりません。</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="flow-title">
+      <div class="wrap">
+        <h2 class="section-title" id="flow-title">診察の前に、3 つの手順で</h2>
+        <p class="section-lead">普段は血圧を測るだけ。まとめるのは、診察の前に 1 回だけです。</p>
+        <ol class="flow">
+          <li>
+            <span class="step">1. 測る</span>
+            <h3>いつもの血圧計で測る</h3>
+            <p>ヘルスケアと連携した血圧計ならそのまま。連携していない血圧計でも、測った値をアプリから入力できます。</p>
+          </li>
+          <li>
+            <span class="step">2. 選ぶ</span>
+            <h3>期間を選んで出力</h3>
+            <p>前回の診察以降、直近 30 日など、まとめたい期間を選んでボタンを押すだけで、血圧手帳の PDF ができあがります。</p>
+          </li>
+          <li>
+            <span class="step">3. 渡す</span>
+            <h3>印刷して、診察へ</h3>
+            <p>プレビューからそのまま印刷できます。ファイルのまま共有したり、あとから履歴で開き直したりもできます。</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section" id="features">
+      <div class="wrap">
+        <h2 class="section-title">通院に必要な記録を、<br>これ 1 つで</h2>
+        <p class="section-lead">血圧手帳の PDF を中心に、入力・お知らせ・体調のメモまでそろっています。</p>
+
+        <article class="feature">
+          <div>
+            <h3>朝と晩の血圧が、<br>ひと目でわかる手帳</h3>
+            <p>朝・晩の血圧を日付ごとに並べた一覧と、血圧・体重の推移グラフを同じページにまとめます。A4 横で、1 ページに 16 日分です。</p>
+            <ul>
+              <li>血圧の目標値（初期値 135/85）をグラフに破線で表示</li>
+              <li>測定時刻・脈拍・体重も同じ列に</li>
+              <li>体調メモと服薬の記録を、日付ごとに添付</li>
+            </ul>
+          </div>
+          <div class="feature-media">
+            <div class="device small"><img src="images/02_bp_report.jpg" alt="血圧手帳の PDF のプレビュー。日付ごとに朝と晩の血圧の棒グラフと体重の折れ線グラフが並び、その下に朝・晩の血圧、脈拍、体重、測定時刻の表がある。上部に朝の平均 131/82、晩の平均 125/77、記録日数 16/16 などが表示されている" width="660" height="1434" loading="lazy"></div>
+          </div>
+        </article>
+
+        <article class="feature">
+          <div>
+            <h3>30 日の傾向を、<br>1 ページに要約</h3>
+            <p>血圧手帳の先頭に、期間全体のまとめのページが付きます。医師が最初に見たい数字を、1 枚目に集めました。</p>
+            <ul>
+              <li>朝・晩の平均と、目標値以上だった日数</li>
+              <li>期間中の最高値・最低値と、その日時</li>
+              <li>直前の同じ長さの期間との比較（Pro 版）</li>
+            </ul>
+          </div>
+          <div class="feature-media">
+            <div class="device small"><img src="images/04_bp_summary.jpg" alt="血圧サマリーのページ。朝の平均 130/81、晩の平均 123/76、記録日数 30/30、目標値 135/85 以上だった日数のバー、測定値の範囲、前の期間との比較が並び、その下に日付ごとの体調・服薬メモの詳細のページが続いている" width="660" height="1434" loading="lazy"></div>
+          </div>
+        </article>
+
+        <article class="feature">
+          <div>
+            <span class="tag">1.4 の新機能</span>
+            <h3>測ったその場で、<br>数値を入力するだけ</h3>
+            <p>血圧計がヘルスケアと連携していなくても大丈夫です。最高血圧・最低血圧・脈拍を入力すると、ヘルスケアに保存され、そのまま血圧手帳に反映されます。</p>
+            <ul>
+              <li>続けて 2 回目の測定も入力できます</li>
+              <li>朝と晩の測定時刻を、毎日の通知でお知らせ（時刻は自由に変更できます）</li>
+            </ul>
+          </div>
+          <div class="feature-media">
+            <div class="device small"><img src="images/05_bp_entry.jpg" alt="血圧を記録する画面。測定日時 2026/11/12 20:52、最高血圧 128 mmHg、最低血圧 82 mmHg、脈拍 68 bpm が入力され、その下に「ヘルスケアに保存」ボタンがある" width="660" height="1434" loading="lazy"></div>
+          </div>
+        </article>
+
+        <article class="feature">
+          <div>
+            <h3>その日の体調も、<br>数値と一緒に伝える</h3>
+            <p>数値だけではわからない「その日の様子」を、タグと短いメモで残せます。服薬したかどうかも記録でき、レポートに日付ごとに添えられます。</p>
+            <ul>
+              <li>頭痛・めまい・動悸・むくみ・飲酒・睡眠不足・塩分多め・ストレス などのタグ</li>
+              <li>メモとタグで検索</li>
+            </ul>
+          </div>
+          <div class="feature-media">
+            <div class="device small"><img src="images/07_journal.jpg" alt="体調・服薬メモの画面。日付ごとに記録が並び、11 月 12 日 7:05 は服薬済み・運動のタグと「よく眠れた。朝の散歩を 30 分。」、11 月 11 日 21:40 は服薬済み・塩分多めのタグと「夕食は外食。味の濃いものが多かった。」のメモがある" width="660" height="1434" loading="lazy"></div>
+          </div>
+        </article>
+
+        <article class="feature">
+          <div>
+            <span class="tag">Pro 版</span>
+            <h3>歩数も睡眠も体重も、<br>推移をグラフで</h3>
+            <p>選んだ項目を 1 ページずつグラフにした PDF を作れます。平均・最小 / 最大・記録日数もページごとにまとめます。</p>
+            <ul>
+              <li>血中酸素・血糖値・体温・心拍変動など 37 種類の項目</li>
+              <li>測定ごとの値を CSV で書き出し、表計算ソフトで開けます</li>
+            </ul>
+          </div>
+          <div class="feature-media">
+            <div class="device small"><img src="images/03_graph_report.jpg" alt="詳細グラフの PDF のプレビュー。歩数のページに日ごとの棒グラフと期間の平均 7,174 歩、睡眠のページに日ごとの睡眠時間の棒グラフと平均 6.81 時間、続いて体重のページが並んでいる" width="660" height="1434" loading="lazy"></div>
+          </div>
+        </article>
+
+        <article class="feature">
+          <div>
+            <h3>作ったレポートは、<br>いつでも開き直せる</h3>
+            <p>作成した PDF・CSV は、作成日時と期間つきでレポート履歴に残ります。前回の診察で渡したものを見返したり、もう一度印刷したりするのもすぐです。</p>
+            <ul>
+              <li>レポートの種類で絞り込み</li>
+              <li>30 日より前のレポートや、すべてのレポートをまとめて削除</li>
+            </ul>
+          </div>
+          <div class="feature-media">
+            <div class="device small"><img src="images/09_history.jpg" alt="レポート履歴の画面。すべて・血圧手帳・詳細グラフ・CSV データの切り替えの下に、血圧手帳（2026年10月14日〜2026年11月12日）、詳細グラフ、CSV データなどのレポートが作成日時つきで新しい順に並んでいる" width="660" height="1434" loading="lazy"></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="more-title">
+      <div class="wrap">
+        <h2 class="section-title" id="more-title">毎日の通院を支える、細かな機能</h2>
+        <div class="cards">
+          <div class="card">
+            <h3>英語のレポート</h3>
+            <p>設定を切り替えるだけで、同じ内容の PDF を英語で出力。海外の医療機関や渡航先での提出に使えます。</p>
+          </div>
+          <div class="card">
+            <h3>プレビューから印刷</h3>
+            <p>できあがったレポートは、プレビューの画面から直接プリンタで印刷できます。ファイルとして共有することもできます。</p>
+          </div>
+          <div class="card">
+            <h3>ショートカットに対応</h3>
+            <p>ショートカットから「血圧レポートを作成」を呼び出して、血圧手帳を作れます。Pro 版では「直近 30 日間」「先月」も指定できます。</p>
+          </div>
+          <div class="card">
+            <h3>目標値を自分に合わせて</h3>
+            <p>主治医から指示された血圧の目標値に変えると、グラフの破線とサマリーの「目標値以上の日数」に反映されます（Pro 版）。</p>
+          </div>
+          <div class="card">
+            <h3>期間をワンタップで</h3>
+            <p>7 日・30 日・90 日に加えて「前回以降」を用意。前回レポートにした期間の翌日から今日までを、すぐに選べます。</p>
+          </div>
+          <div class="card">
+            <h3>画面の明るさを選べる</h3>
+            <p>画面の外観は、端末に合わせる「自動」のほか、「ライト」「ダーク」から選べます。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="privacy-title">
+      <div class="wrap reading" style="margin: 0 auto; text-align: center;">
+        <h2 class="section-title" id="privacy-title">健康データは、あなたの手元に</h2>
+        <p class="section-lead" style="margin-bottom: 0;">ヘルスケアから読み取ったデータでのレポートの作成は、すべて端末の中で行います。開発者のサーバーへデータを送ることはなく、アカウント登録も、解析や広告の仕組みもありません。読み取る項目は、ヘルスケアの設定で 1 つずつ選べます。</p>
+      </div>
+    </section>
+
+    <section class="section" id="pricing" aria-labelledby="pricing-title">
+      <div class="wrap">
+        <h2 class="section-title" id="pricing-title">まずは、そのまま使えます</h2>
+        <p class="section-lead">直近 7 日間の血圧手帳は、お支払いなしで作れます。長い期間やほかの項目もまとめたくなったら、買い切りの HealthPort Pro へ。</p>
+        <div class="plans">
+          <div class="plan">
+            <h3>そのまま</h3>
+            <p class="plan-sub">お支払いなしで使える範囲</p>
+            <ul>
+              <li>直近 7 日間の血圧手帳（血圧・心拍数・体重）の PDF</li>
+              <li>朝・晩の平均と目標値以上の日数のサマリー</li>
+              <li>血圧の手入力と測定リマインダー</li>
+              <li>体調・服薬メモ</li>
+              <li>英語のレポート、プレビューからの印刷</li>
+              <li>レポート履歴</li>
+            </ul>
+          </div>
+          <div class="plan featured">
+            <h3>HealthPort Pro</h3>
+            <p class="plan-sub">買い切り（1 回のお支払い）</p>
+            <ul>
+              <li>出力期間の制限なし（30 日・90 日・任意の期間）</li>
+              <li>詳細グラフの PDF（歩数・睡眠・体重など）</li>
+              <li>CSV の書き出し</li>
+              <li>37 種類の項目をすべて出力</li>
+              <li>サマリーに直前の期間との比較を表示</li>
+              <li>血圧の目標値の変更と、レポートへの氏名の印字</li>
+              <li>ショートカットで「直近 30 日間」「先月」を指定</li>
+            </ul>
+          </div>
+        </div>
+        <p class="hero-note" style="text-align: center;">購入した HealthPort Pro は、同じ Apple アカウントのほかの端末でも「購入を復元する」で使えます。</p>
+        <p class="notice">HealthPort は医療機器ではありません。診断や治療の判断は、必ず医師にご相談ください。</p>
+      </div>
+    </section>
+
+    <section class="cta">
+      <div class="wrap">
+        <img class="app-icon" src="images/icon.png" alt="">
+        <h2>次の診察から、血圧手帳を PDF で。</h2>
+        <p>期間を選んでボタンを押すだけで、できあがります。</p>
+        <a class="button store-button" href="https://apps.apple.com/jp/app/id6757977349">App Store で見る</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <nav aria-label="フッター">
+        <a href="support/">サポート</a>
+        <a href="privacy/">プライバシーポリシー</a>
+        <a href="../">ほかのアプリ</a>
+      </nav>
+      <span>© 2026 Kobako Apps</span>
+    </div>
+  </footer>
+</body>
+</html>
