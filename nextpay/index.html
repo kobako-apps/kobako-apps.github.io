@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NextPay - 給与と昇給の記録。年収・賞与・退職金の推移をグラフで</title>
+  <meta name="description" content="毎月の給与と賞与を記録して、昇給の積み重ねをひと目で確かめられるアプリ。年度ごとの年収、月額の昇給率、手取りの概算、退職金の見込みまでまとめて見えます。給与明細の PDF もフォルダごと取り込めます。">
+  <meta name="apple-itunes-app" content="app-id=6760904159">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="NextPay - 給与と昇給の記録">
+  <meta property="og:description" content="昇給の積み重ねが、ひと目でわかる。年収・賞与・退職金の推移を、グラフでまとめて確認できます。">
+  <meta property="og:image" content="https://kobako-apps.github.io/nextpay/images/icon.png">
+  <meta property="og:url" content="https://kobako-apps.github.io/nextpay/">
+  <link rel="canonical" href="https://kobako-apps.github.io/nextpay/">
+  <link rel="icon" href="images/icon.png">
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+  <link rel="stylesheet" href="../assets/site.css">
+  <style>
+    /* アプリの主色はアイコンと画面の黄色。白地で読めるよう、文字とボタンには濃い琥珀色を使う */
+    :root { --accent: #8a5a00; --accent-soft: #fff1c2; --bg: #fffaea; }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) { --accent: #ffd12e; --accent-soft: #2e2604; --accent-ink: #1a1400; --bg: #100e06; --surface: #1c1a10; }
+    }
+    :root[data-theme="dark"] { --accent: #ffd12e; --accent-soft: #2e2604; --accent-ink: #1a1400; --bg: #100e06; --surface: #1c1a10; }
+
+    /* 「記録する → 振り返る → 先を見る」の流れ */
+    .flow { list-style: none; margin: 0 auto; padding: 0; max-width: var(--content); display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .flow li { background: var(--surface); border-radius: var(--radius-card); box-shadow: var(--shadow); padding: 20px; }
+    .flow .step { display: inline-block; font-size: 12px; font-weight: 700; color: var(--accent); background: var(--accent-soft); border-radius: 999px; padding: 2px 10px; margin-bottom: 8px; }
+    .flow h3 { margin: 0 0 6px; font-size: 17px; }
+    .flow p { margin: 0; color: var(--ink-sub); font-size: 15px; }
+    @media (max-width: 820px) { .flow { grid-template-columns: 1fr; } }
+
+    /* 見出しは文節の切れ目 (<wbr>) でだけ折り返す */
+    .hero h1 { word-break: keep-all; overflow-wrap: anywhere; }
+
+    .notice { max-width: var(--reading); margin: 24px auto 0; font-size: 14px; color: var(--ink-sub); text-align: center; }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="./"><img src="images/icon.png" alt="">NextPay</a>
+      <nav class="header-nav" aria-label="サイト内">
+        <a class="optional" href="#features">機能</a>
+        <a class="optional" href="#pricing">Pro 版</a>
+        <a href="support/">サポート</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <div>
+          <span class="eyebrow">給与と昇給の記録アプリ</span>
+          <h1>昇給の積み重ねが、<br>ひと目で<wbr>わかる。</h1>
+          <p class="lead">「去年より、どれくらい給料は上がったんだろう？」。毎年の給与明細を見比べなくても、NextPay なら年度ごとの年収と月額の昇給率がすぐにわかります。毎月の給与と賞与を記録するだけで、手取りの概算や数年先の見込み、退職金の見込みまで、自分のお金の推移がまとめて見えるようになります。</p>
+          <a class="button store-button" href="https://apps.apple.com/jp/app/id6760904159">App Store で見る</a>
+          <p class="hero-note">iPhone・iPad（iOS 18 以上）／アカウント登録は不要です</p>
+        </div>
+        <div class="device">
+          <img src="images/01_history.jpg" alt="NextPay の推移の画面。2026 年度の総年収 4,241,608 円と手取り約 3,362,421 円、前年度からの月額昇給 +6,500 円（2.36 %）、毎月の給与 3,418,000 円、賞与・評価 823,608 円が表示され、その下に 2025 年度、2024 年度のカードが続いている" width="660" height="1434">
+        </div>
+      </div>
+    </section>
+
+    <section class="points" aria-label="特長">
+      <div class="wrap">
+        <ul>
+          <li>
+            <span class="num">1</span>
+            <h2>昇給率を、自動で計算</h2>
+            <p>前年の 1 月と比べた月額の昇給額と昇給率を、年度ごとに表示します。残業手当などを除いた「本当の昇給」も確かめられます。</p>
+          </li>
+          <li>
+            <span class="num">2</span>
+            <h2>明細の PDF も、そのまま</h2>
+            <p>給与明細の PDF を、フォルダごとまとめて取り込めます。読み取った金額と合計を確かめてから反映できます。</p>
+          </li>
+          <li>
+            <span class="num">3</span>
+            <h2>給与のデータは、端末の中だけ</h2>
+            <p>入力した給与も明細の読み取りも、すべて端末の中で処理します。外部へデータを送ることはなく、アカウント登録もいりません。</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="flow-title">
+      <div class="wrap">
+        <h2 class="section-title" id="flow-title">記録して、振り返って、先を見る</h2>
+        <p class="section-lead">給与明細が届いたら記録するだけ。グラフと見込みは、アプリが自動で作ります。</p>
+        <ol class="flow">
+          <li>
+            <span class="step">1. 記録する</span>
+            <h3>給与と賞与を入れる</h3>
+            <p>基本給や手当を、自分の明細に合わせた項目で入力します。PDF の明細があれば、取り込むだけで反映できます。</p>
+          </li>
+          <li>
+            <span class="step">2. 振り返る</span>
+            <h3>伸びをグラフで見る</h3>
+            <p>総年収・手取り・賞与・昇給率をグラフで切り替えて、年ごとの変化を確かめます。</p>
+          </li>
+          <li>
+            <span class="step">3. 先を見る</span>
+            <h3>数年先と退職金を予測</h3>
+            <p>これまでの伸び方から数年先の年収を予測し、勤続年数に応じた退職金の見込み額も計算します。</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section" id="features">
+      <div class="wrap">
+        <h2 class="section-title">自分の給与の推移を、<br>これ 1 つで</h2>
+        <p class="section-lead">毎月の記録から、グラフ、予測、退職金まで。自分の会社の制度に合わせて使えます。</p>
+
+        <article class="feature">
+          <div>
+            <h3>毎月の給与を、<br>明細どおりに記録</h3>
+            <p>基本給・残業手当・住宅手当・通勤手当など、給与項目は自分の明細に合わせて自由に作れます。月ごとの金額が項目別に並びます。</p>
+            <ul>
+              <li>1 月の金額を 2〜12 月にまとめて使える（ボタンは設定で表示・非表示）</li>
+              <li>非課税の手当は、手取りの概算で分けて計算</li>
+            </ul>
+          </div>
+          <div class="feature-media">
+            <div class="device small"><img src="images/02_months.jpg" alt="2026 年度の「毎月の給与」を開いた画面。1 月 282,500 円、2 月 284,500 円、3 月 290,500 円と月ごとの合計が並び、それぞれ基本給 246,000 円、残業手当、住宅手当 10,000 円、通勤手当 12,000 円の内訳が表示されている" width="660" height="1434" loading="lazy"></div>
+          </div>
+        </article>
+
+        <article class="feature">
+          <div>
+            <span class="tag">1.1 の新機能</span>
+            <h3>編集は専用の画面で。<br>うっかり変更を防ぐ</h3>
+            <p>月をタップすると、その月だけを直す編集画面が開きます。「保存」を押すまで金額は変わらないので、一覧を眺めているときに数字を書き換えてしまう心配がありません。</p>
+            <ul>
+              <li>給与項目ごとの金額と、合計がすぐにわかる</li>
+              <li>保存せずに閉じるときは、確認してから破棄</li>
+            </ul>
+          </div>
+          <div class="feature-media">
+            <div class="device small"><img src="images/03_month_edit.jpg" alt="4 月の給与の編集画面。基本給 246,000、残業手当 12,500、住宅手当 10,000、通勤手当 12,000 の入力欄と、合計 280,500 円が表示され、左上にキャンセル、右上に保存のボタンがある" width="660" height="1434" loading="lazy"></div>
+          </div>
+        </article>
+
+        <article class="feature">
+          <div>
+            <h3>賞与は、支給率と<br>評価から自動で計算</h3>
+            <p>基準額・支給率・評価ランクを入れると、自分で作った計算式で賞与の金額を計算します。夏と冬など、1 年に何回でも追加できます。</p>
+            <ul>
+              <li>賞与の金額から支給率を逆算することもできる</li>
+              <li>前回の賞与の金額も一緒に記録</li>
+            </ul>
+          </div>
+          <div class="feature-media">
+            <div class="device small"><img src="images/04_bonus.jpg" alt="2026 年度の「賞与・評価」を開いた画面。夏期賞与 398,520 円は基準額 246,000・支給率 1.5・評価ランク A、冬期賞与 425,088 円は基準額 246,000・支給率 1.6 で計算されている" width="660" height="1434" loading="lazy"></div>
+          </div>
+        </article>
+
+        <article class="feature">
+          <div>
+            <h3>年収の伸びを、<br>グラフで振り返る</h3>
+            <p>総年収・手取り・月給・賞与・平均支給率・昇給率を切り替えて、年ごとの推移をグラフで確かめられます。前年との差もひと目でわかります。</p>
+            <ul>
+              <li>昇給率の計算に含める給与項目を、設定で選べる</li>
+              <li>年度ごとの数値の一覧も、グラフの下に</li>
+            </ul>
+          </div>
+          <div class="feature-media">
+            <div class="device small"><img src="images/05_trend.jpg" alt="グラフの画面。総年収が選ばれ、最新の 2026 年度 4,241,608 円と前年比 +133,608 円、2021 年から 2026 年までの総年収の推移の折れ線グラフ、年度ごとの総年収の一覧が表示されている" width="660" height="1434" loading="lazy"></div>
+          </div>
+        </article>
+
+        <article class="feature">
+          <div>
+            <h3>これまでの伸びから、<br>数年先を予測</h3>
+            <p>「将来予測を表示」をオンにすると、これまでの平均の伸び方から、数年先の年収の見込みを点線で表示します。何年先まで予測するかも選べます。</p>
+          </div>
+          <div class="feature-media">
+            <div class="device small"><img src="images/08_trend_projection.jpg" alt="将来予測をオンにしたグラフの画面。2021 年から 2026 年までの実績の折れ線に続けて、2029 年までの予測がオレンジの点線で表示され、予測する年数は 3 年先までになっている" width="660" height="1434" loading="lazy"></div>
+          </div>
+        </article>
+
+        <article class="feature">
+          <div>
+            <span class="tag">Pro 版</span>
+            <h3>退職金の見込みも、<br>いつでも計算</h3>
+            <p>勤続年数に応じた支給率と、自分で作った計算式から、退職金の見込み額を計算します。退職年齢を − / ＋ で変えると、金額がすぐに変わります。</p>
+            <ul>
+              <li>一定の年齢以上で付く加給金にも対応</li>
+              <li>年齢ごとの評価ランクを記録して計算に反映</li>
+            </ul>
+          </div>
+          <div class="feature-media">
+            <div class="device small"><img src="images/09_retirement.jpg" alt="退職金の画面。退職金額の見込み 11,400,000 円、退職年齢 60 歳、勤続年数 38 年、支給率 38.00、うち退職加給金 1,900,000 円が表示されている" width="660" height="1434" loading="lazy"></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="more-title">
+      <div class="wrap">
+        <h2 class="section-title" id="more-title">自分の会社の制度に合わせる、細かな機能</h2>
+        <div class="cards">
+          <div class="card">
+            <h3>明細 PDF をフォルダごと<span class="tag" style="margin-left:8px">1.1</span></h3>
+            <p>PDF を選ぶか、フォルダごと選ぶと、サブフォルダの中までまとめて読み込みます。支給額・控除・差引支給額を読み取り、合計が合っているかを確かめてから反映できます。</p>
+          </div>
+          <div class="card">
+            <h3>賞与の計算式を自作</h3>
+            <p>基準額 × 支給率 × 評価の係数など、会社の制度に合わせて賞与の計算式を組み立てられます。</p>
+          </div>
+          <div class="card">
+            <h3>評価ランクを設定</h3>
+            <p>S・A・B などの評価ランクと、それぞれの係数や昇給点を自由に決められます。</p>
+          </div>
+          <div class="card">
+            <h3>手取りを概算</h3>
+            <p>扶養人数や保険料率を入れると、明細の無い月の手取りを概算します。PDF を取り込んだ月は、明細の手取りと控除の内訳を使います。</p>
+          </div>
+          <div class="card">
+            <h3>昇給率の計算対象</h3>
+            <p>昇給率に含める給与項目を選べます。月によって変わる残業手当などを外すと、基本給の伸びだけを確かめられます。</p>
+          </div>
+          <div class="card">
+            <h3>アイコンを選べる</h3>
+            <p>ホーム画面のアイコンを、4 種類のデザインから選べます。</p>
+          </div>
+          <div class="card">
+            <h3>iPad でも</h3>
+            <p>iPad では横長の画面で一覧とグラフを広く見られ、サイドバーでも画面を切り替えられます。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="privacy-title">
+      <div class="wrap reading" style="margin: 0 auto; text-align: center;">
+        <h2 class="section-title" id="privacy-title">給与のデータは、あなたの手元に</h2>
+        <p class="section-lead" style="margin-bottom: 0;">入力した給与のデータは端末の中にだけ保存され、開発者のサーバーへ送ることはありません。給与明細の PDF の読み取りも端末の中で行い、PDF そのものは保存しません。アカウント登録も、解析や広告の仕組みもありません。</p>
+      </div>
+    </section>
+
+    <section class="section" id="pricing" aria-labelledby="pricing-title">
+      <div class="wrap">
+        <h2 class="section-title" id="pricing-title">まずは、そのまま使えます</h2>
+        <p class="section-lead">2 年度分の記録とグラフは、お支払いなしで使えます。長く記録したくなったら、買い切りの NextPay Pro へ。</p>
+        <div class="plans">
+          <div class="plan">
+            <h3>そのまま</h3>
+            <p class="plan-sub">お支払いなしで使える範囲</p>
+            <ul>
+              <li>2 年度分の給与・賞与の記録</li>
+              <li>昇給額・昇給率の自動計算</li>
+              <li>給与明細 PDF の取り込み</li>
+              <li>グラフと将来予測</li>
+              <li>手取りの概算</li>
+            </ul>
+          </div>
+          <div class="plan featured">
+            <h3>NextPay Pro</h3>
+            <p class="plan-sub">買い切り（1 回のお支払い）</p>
+            <ul>
+              <li>年度の無制限追加</li>
+              <li>退職金シミュレーション</li>
+              <li>バックアップと復元</li>
+            </ul>
+          </div>
+        </div>
+        <p class="hero-note" style="text-align: center;">購入した NextPay Pro は、同じ Apple アカウントのほかの端末でも「購入を復元」で使えます。</p>
+        <p class="notice">手取り・将来の年収・退職金の金額は、入力した値と設定から計算した目安です。実際の金額は、勤務先の制度や税・保険料によって異なります。</p>
+      </div>
+    </section>
+
+    <section class="cta">
+      <div class="wrap">
+        <img class="app-icon" src="images/icon.png" alt="">
+        <h2>今年の昇給を、数字で確かめよう。</h2>
+        <p>毎月の給与を記録するだけで、推移と見込みがわかります。</p>
+        <a class="button store-button" href="https://apps.apple.com/jp/app/id6760904159">App Store で見る</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <nav aria-label="フッター">
+        <a href="support/">サポート</a>
+        <a href="privacy/">プライバシーポリシー</a>
+        <a href="../">ほかのアプリ</a>
+      </nav>
+      <span>© 2026 Kobako Apps</span>
+    </div>
+  </footer>
+</body>
+</html>
